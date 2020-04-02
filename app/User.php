@@ -2,38 +2,60 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'doc_type_id', 'role_id', 'status_id', 'first_name', 'last_name', 'document', 'password'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function user_addresses()
+    {
+        return $this->hasMany('App\UserAddress');
+    }
+
+    public function user_phones()
+    {
+        return $this->hasMany('App\UserPhone');
+    }
+
+    public function user_emails()
+    {
+        return $this->hasMany('App\UserEmail');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\UserOrder');
+    }
+
+    public function car_shoppings()
+    {
+        return $this->hasMany('App\CarShopping');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
+
+    public function document_type()
+    {
+        return $this->belongsTo('App\DocumentType');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
 }
