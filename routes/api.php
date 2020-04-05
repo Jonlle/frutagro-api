@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Resources\User as UserResource;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    Route::prefix('/auth')->group(function () {
+        Route::post('register', 'API\AuthController@register')->name('auth.register');
+        Route::post('login', 'API\AuthController@login')->name('auth.login');
+        Route::post('logout', 'API\AuthController@logout')->name('auth.logout');
+        Route::get('user', 'API\AuthController@user')->name('auth.user');
+    });
+
+    Route::apiResource('/users', 'API\UserController');
+    Route::apiResource('roles', 'RoleController');
+
 });
