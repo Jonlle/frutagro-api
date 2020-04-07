@@ -21,10 +21,9 @@ class CreatePermissionsTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            $table->string('id', 10);
+            $table->id();
+            $table->string('name', 40);
             $table->string('status_id', 2);
-
-            $table->primary('id');
 
             $table->index(["status_id"], 'fk_permissions_statuses_idx');
 

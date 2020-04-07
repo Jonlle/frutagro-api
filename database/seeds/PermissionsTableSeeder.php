@@ -12,11 +12,38 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            ['id' => 'all', 'status_id' => '01'],
-            ['id' => 'create', 'status_id' => '01'],
-            ['id' => 'read', 'status_id' => '01'],
-            ['id' => 'update', 'status_id' => '01'],
-            ['id' => 'delete', 'status_id' => '01']
+            ['name' => 'all', 'status_id' => '01'],
+            ['name' => 'user_management_access', 'status_id' => '01'],
+            ['name' => 'permission_create', 'status_id' => '01'],
+            ['name' => 'permission_edit', 'status_id' => '01'],
+            ['name' => 'permission_show', 'status_id' => '01'],
+            ['name' => 'permission_delete', 'status_id' => '01'],
+            ['name' => 'permission_access', 'status_id' => '01'],
+            ['name' => 'role_create', 'status_id' => '01'],
+            ['name' => 'role_edit', 'status_id' => '01'],
+            ['name' => 'role_show', 'status_id' => '01'],
+            ['name' => 'role_delete', 'status_id' => '01'],
+            ['name' => 'role_access', 'status_id' => '01'],
+            ['name' => 'user_create', 'status_id' => '01'],
+            ['name' => 'user_edit', 'status_id' => '01'],
+            ['name' => 'user_show', 'status_id' => '01'],
+            ['name' => 'user_delete', 'status_id' => '01'],
+            ['name' => 'user_access', 'status_id' => '01'],
+            ['name' => 'status_create', 'status_id' => '01'],
+            ['name' => 'status_edit', 'status_id' => '01'],
+            ['name' => 'status_show', 'status_id' => '01'],
+            ['name' => 'status_delete', 'status_id' => '01'],
+            ['name' => 'status_access', 'status_id' => '01'],
+            ['name' => 'customer_create', 'status_id' => '01'],
+            ['name' => 'customer_edit', 'status_id' => '01'],
+            ['name' => 'customer_show', 'status_id' => '01'],
+            ['name' => 'customer_delete', 'status_id' => '01'],
+            ['name' => 'customer_access', 'status_id' => '01'],
+            ['name' => 'product_create', 'status_id' => '01'],
+            ['name' => 'product_edit', 'status_id' => '01'],
+            ['name' => 'product_show', 'status_id' => '01'],
+            ['name' => 'product_delete', 'status_id' => '01'],
+            ['name' => 'product_access', 'status_id' => '01'],
         ];
 
         foreach ($permissions as $row) {
