@@ -6,6 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserEmail extends Model
 {
-    // protected $primaryKey = 'email';
-    // protected $keyType = 'string';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'email', 'status_id', 'user_id', 'principal'
+    ];
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }
