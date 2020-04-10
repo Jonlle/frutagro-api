@@ -23,33 +23,34 @@ class CreateUsersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('username', 10);
-            $table->string('doc_type_id', 3);
+            $table->string('doc_type_id', 3)->nullable();
             $table->string('role_id', 6);
             $table->string('status_id', 2);
-            $table->string('first_name', 50);
-            $table->string('last_name', 50);
-            $table->string('document', 20);
+            $table->string('name', 100)->nullable();
+            $table->string('first_name', 50)->nullable();
+            $table->string('last_name', 50)->nullable();
+            $table->string('document', 20)->nullable();
             $table->string('password', 64);
             $table->rememberToken();
             $table->timestamps();
 
             $table->unique('username');
 
-            $table->index(["doc_type_id"], 'fk_users_document_types');
-            $table->index(["role_id"], 'fk_users_roles_idx');
-            $table->index(["status_id"], 'fk_users_statuses_idx');
+            $table->index('doc_type_id');
+            $table->index('role_id');
+            $table->index('status_id');
 
-            $table->foreign('doc_type_id', 'fk_users_document_types')
+            $table->foreign('doc_type_id')
                   ->references('id')->on('document_types')
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
 
-            $table->foreign('role_id', 'fk_users_roles')
+            $table->foreign('role_id')
                   ->references('id')->on('roles')
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
 
-            $table->foreign('status_id', 'fk_users_statuses')
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('restrict')
                   ->onUpdate('restrict');

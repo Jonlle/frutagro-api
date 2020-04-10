@@ -24,23 +24,19 @@ class CreateUserEmailsTable extends Migration
             $table->id();
             $table->string('email', 50);
             $table->string('status_id', 2);
-            // $table->unsignedInteger('user_id');
+            $table->foreignId('user_id')->constrained()
+                  ->onDelete('restrict')
+                  ->onUpdate('restrict');
             $table->string('principal', 1);
             $table->timestamps();
 
             $table->unique('email');
 
-            $table->index(["status_id"], 'fk_user_emails_statuses_idx');
-            $table->index(["user_id"], 'fk_user_emails_users_idx');
+            $table->index('status_id');
+            $table->index('user_id');
 
-            $table->foreign('status_id', 'fk_user_emails_statuses')
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
-
-            // $table->foreign('user_id', 'fk_user_emails_users')
-            //       ->references('id')->on('users')
-            $table->foreignId('user_id')->constrained()
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
         });

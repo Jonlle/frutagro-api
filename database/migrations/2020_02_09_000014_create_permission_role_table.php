@@ -21,25 +21,20 @@ class CreatePermissionRoleTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            // $table->increments('id');
-            $table->string('role_id', 6);
-
-            $table->index(["role_id"], 'fk_permission_role_roles_idx');
-
-            $table->foreign('role_id', 'fk_permission_role_roles')
-                  ->references('id')->on('roles')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
-
-            // $table->foreign('permission_id', 'fk_permission_role_permissions')
-            //       ->references('id')->on('permissions')
+            $table->string('role_id', 8);
             $table->foreignId('permission_id')->constrained()
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
 
-            $table->index(["permission_id"], 'fk_permission_role_permissions_idx');
+            $table->primary(['role_id', 'permission_id']);
 
-            $table->index(['role_id', 'permission_id']);
+            $table->index('role_id');
+            $table->index('permission_id');
+
+            $table->foreign('role_id')
+                  ->references('id')->on('roles')
+                  ->onDelete('restrict')
+                  ->onUpdate('restrict');
         });
     }
 

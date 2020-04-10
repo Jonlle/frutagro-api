@@ -22,12 +22,12 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('name', 40);
             $table->string('status_id', 2);
+            $table->string('name', 40);
 
-            $table->index(["status_id"], 'fk_permissions_statuses_idx');
+            $table->index('status_id');
 
-            $table->foreign('status_id', 'fk_permissions_statuses')
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
