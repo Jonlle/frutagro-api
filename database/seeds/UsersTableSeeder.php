@@ -11,15 +11,20 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        App\User::create([
-            'username' => 'frutagro',
-            'doc_type_id' => 'rif',
+        $user_email = new App\UserEmail([
+            'email' => 'admin@frutagro.com',
+            'status_id'=> '1',
+            'principal' => '1'
+        ]);
+
+        $user = App\User::create([
+            'username' => 'admin',
             'role_id' => 'owner',
-            'status_id' => '01',
-            'first_name' => 'Frutagro',
-            'last_name' => 'Distribuidora',
-            'document' => 'J1234',
+            'status_id' => '1',
+            'name' => 'Frutagro',
             'password' => bcrypt('frutagro'),
         ]);
+
+        $user->user_emails()->save($user_email);
     }
 }
