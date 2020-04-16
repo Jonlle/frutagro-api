@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('username', 10);
+            $table->string('username', 10)->unique();
             $table->string('doc_type_id', 3)->nullable();
             $table->string('role_id', 6);
             $table->string('status_id', 2);
@@ -33,8 +33,6 @@ class CreateUsersTable extends Migration
             $table->string('password', 64);
             $table->rememberToken();
             $table->timestamps();
-
-            $table->unique('username');
 
             $table->index('doc_type_id');
             $table->index('role_id');
