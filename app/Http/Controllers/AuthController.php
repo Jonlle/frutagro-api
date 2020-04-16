@@ -68,7 +68,8 @@ class AuthController extends BaseController
         $data = Arr::except($validated, ['email']);
         $data['password'] = bcrypt($data['password']);
 
-        $user = User::create($data);
+        $user = new User($data);
+        $user->save();
         $user->user_emails()->save($user_email);
 
         $success['username'] = $user->username;
@@ -151,9 +152,7 @@ class AuthController extends BaseController
 
     public function user(){
         $user =  Auth::user();
-        $user_emails = $user->user_emails->where('principal', '1')->first();
-        $success = Arr::add($user, 'email', $user_emails, 'status', $user->status);
-        $success = new UserResource($success);
+        $success = new UserResource($user);
 
         return $this->sendResponse($success, 'User retrieved successfully.');
     }
