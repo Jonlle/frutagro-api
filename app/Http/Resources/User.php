@@ -20,7 +20,7 @@ class User extends JsonResource
             'role' => $this->role_id,
             'status' => $this->status->description,
             'name' => $this->name,
-            'email' => $this->email->email,
+            'email' => $this->user_emails->where('principal', '1')->first()->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
