@@ -28,8 +28,7 @@ class CreatePaymentsTable extends Migration
 
             $table->foreign('status_id', 'fk_payments_statuses')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

@@ -31,8 +31,7 @@ class CreateFinancialEntitiesTable extends Migration
 
             $table->foreign('status_id', 'fk_financial_entities_statuses')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

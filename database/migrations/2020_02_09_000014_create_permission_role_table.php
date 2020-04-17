@@ -23,8 +23,7 @@ class CreatePermissionRoleTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->string('role_id', 8);
             $table->foreignId('permission_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
             $table->primary(['role_id', 'permission_id']);
 
@@ -33,8 +32,7 @@ class CreatePermissionRoleTable extends Migration
 
             $table->foreign('role_id')
                   ->references('id')->on('roles')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

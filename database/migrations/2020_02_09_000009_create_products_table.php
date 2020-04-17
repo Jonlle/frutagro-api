@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('category_id', 25);
-            // $table->unsignedInteger('currency_code_id');
             $table->string('product_name', 40);
             $table->double('price', 11, 2);
             $table->unsignedInteger('discount');
@@ -35,14 +34,10 @@ class CreateProductsTable extends Migration
 
             $table->foreign('category_id', 'fk_products_categories')
                   ->references('id')->on('categories')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
-            // $table->foreign('currency_code_id', 'fk_products_currency_codes')
-            //       ->references('id')->on('currency_codes')
             $table->foreignId('currency_code_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

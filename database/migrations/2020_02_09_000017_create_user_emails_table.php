@@ -25,8 +25,7 @@ class CreateUserEmailsTable extends Migration
             $table->string('email', 50);
             $table->string('status_id', 2);
             $table->foreignId('user_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
             $table->string('principal', 1);
             $table->timestamps();
 
@@ -37,8 +36,7 @@ class CreateUserEmailsTable extends Migration
 
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

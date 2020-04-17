@@ -31,8 +31,7 @@ class CreateRolesTable extends Migration
 
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

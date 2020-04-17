@@ -24,7 +24,6 @@ class CreateUserPhonesTable extends Migration
             $table->id();
             $table->string('phone_number', 11);
             $table->string('status_id', 2);
-            // $table->unsignedInteger('user_id');
             $table->string('principal', 1);
             $table->timestamps();
 
@@ -35,14 +34,10 @@ class CreateUserPhonesTable extends Migration
 
             $table->foreign('status_id', 'fk_user_phones_statuses')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
-            // $table->foreign('user_id', 'fk_user_phones_users')
-            //       ->references('id')->on('users')
             $table->foreignId('user_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

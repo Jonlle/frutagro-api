@@ -40,18 +40,15 @@ class CreateUsersTable extends Migration
 
             $table->foreign('doc_type_id')
                   ->references('id')->on('document_types')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
             $table->foreign('role_id')
                   ->references('id')->on('roles')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

@@ -31,8 +31,7 @@ class CreateDocumentTypesTable extends Migration
 
             $table->foreign('status_id', 'fk_document_types_statuses')
                   ->references('id')->on('statuses')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

@@ -22,9 +22,6 @@ class CreateOrderProductsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            // $table->unsignedInteger('order_id');
-            // $table->unsignedInteger('product_id');
-            // $table->unsignedInteger('tax_id');
             $table->unsignedInteger('quantity');
             $table->unsignedInteger('discount');
             $table->string('unit', 10);
@@ -33,23 +30,14 @@ class CreateOrderProductsTable extends Migration
             $table->index(["product_id"], 'fk_order_products_products_idx');
             $table->index(["tax_id"], 'fk_order_products_taxes_idx');
 
-            // $table->foreign('order_id', 'fk_order_products_orders')
-            //       ->references('id')->on('orders')
             $table->foreignId('order_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
-            // $table->foreign('product_id', 'fk_order_products_products')
-            //       ->references('id')->on('products')
             $table->foreignId('product_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
-            // $table->foreign('tax_id', 'fk_order_products_taxes')
-            //       ->references('id')->on('taxes')
             $table->foreignId('tax_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 

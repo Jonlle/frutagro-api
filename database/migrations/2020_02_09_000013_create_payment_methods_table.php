@@ -22,8 +22,6 @@ class CreatePaymentMethodsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            // $table->unsignedInteger('financial_entity_id');
-            // $table->unsignedInteger('payment_id');
             $table->string('payment_type_id', 10);
             $table->string('reference_id', 25);
 
@@ -31,22 +29,15 @@ class CreatePaymentMethodsTable extends Migration
             $table->index(["payment_type_id"], 'fk_payment_methods_payment_types_idx');
             $table->index(["payment_id"], 'fk_payments_methods_payment_idx');
 
-            // $table->foreign('financial_entity_id', 'fk_payment_methods_financial_entity')
-            //       ->references('id')->on('financial_entities')
             $table->foreignId('financial_entity_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
-            // $table->foreign('payment_id', 'fk_payment_methods_payments')
-            //       ->references('id')->on('payments')
             $table->foreignId('payment_id')->constrained()
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
 
             $table->foreign('payment_type_id', 'fk_payment_methods_payment_types')
                   ->references('id')->on('payment_types')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+                  ->onDelete('cascade');
         });
     }
 
