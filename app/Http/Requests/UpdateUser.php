@@ -3,9 +3,7 @@
 namespace App\Http\Requests;
 
 use App\User;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class UpdateUser extends FormRequest
 {
@@ -27,7 +25,7 @@ class UpdateUser extends FormRequest
     public function rules()
     {
         $user = User::find($this->route('user'));
-        
+
         return [
             'username' => [
                 'required',

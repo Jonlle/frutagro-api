@@ -30,18 +30,5 @@ class StoreUser extends FormRequest
             'password' => 'required|max:12'
         ];
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'username.unique' => ['error' => 'A user with this username already exists.', 'code' => '409'],
-            'email.unique' => ['error' => 'A user with this email already exists.', 'code' => '409'],
-        ];
-    }
 }
 

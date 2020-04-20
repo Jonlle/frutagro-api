@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends BaseController
 {
