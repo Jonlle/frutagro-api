@@ -23,7 +23,7 @@ class CreatePermissionsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('status_id', 2);
-            $table->string('name', 40);
+            $table->string('name', 40)->unique();
 
             $table->index('status_id');
 
