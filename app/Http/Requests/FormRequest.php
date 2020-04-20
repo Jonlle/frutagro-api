@@ -12,13 +12,22 @@ class FormRequest extends LaravelFormRequest
     protected function failedValidation(Validator $validator)
     {
         $errors = (new ValidationException($validator))->errors();
+        $code = 422;
         $response = [
             'success' => false,
-            'message' => 'Validation error.',
+            'message' => 'The given data was invalid.',
             'errors' => $errors
         ];
 
-        throw new HttpResponseException(response()->json($response, 422));
+        foreach ($validator->failed() as $attribute => $rules) {
+            foreach ($rules as $key => $rule) {
+                if ($key == 'Unique') {
+                    $code = 409;
+                    break 2;
+                }
+            }
+        }
+        throw new HttpResponseException(response()->json($response, $code));
     }
 
     protected function failedAuthorization()
