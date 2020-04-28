@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Permission;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class UpdatePermission extends FormRequest
 {
@@ -24,13 +25,11 @@ class UpdatePermission extends FormRequest
      */
     public function rules()
     {
-        $permission = Permission::find($this->route('permission'));
-
         return [
             'name' => [
                 'required',
                 'max:40',
-                Rule::unique('permissions')->ignore($permission->id),
+                Rule::unique('permissions')->ignore($this->route('permission')),
             ],
             'status_id' => 'required|max:2'
         ];
