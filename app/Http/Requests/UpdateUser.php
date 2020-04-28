@@ -24,13 +24,11 @@ class UpdateUser extends FormRequest
      */
     public function rules()
     {
-        $user = User::find($this->route('user'));
-
         return [
             'username' => [
                 'required',
                 'max:10',
-                Rule::unique('users')->ignore($user->id),
+                Rule::unique('users')->ignore($this->route('user')),
             ],
             'role_id' => 'required|max:8',
             'status_id' => 'required|max:2',
@@ -38,7 +36,7 @@ class UpdateUser extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('user_emails')->ignore($user->id),
+                Rule::unique('user_emails')->ignore($this->route('user')),
             ],
         ];
     }
