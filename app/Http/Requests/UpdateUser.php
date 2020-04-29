@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Validation\Rule;
 
 class UpdateUser extends FormRequest

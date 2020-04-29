@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Permission;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class UpdatePermission extends FormRequest
 {

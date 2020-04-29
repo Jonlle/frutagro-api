@@ -69,7 +69,7 @@ class UserController extends BaseController
             return $this->sendError('User no found.', []);
         }
 
-        $user =  new UserResource(User::find($id));
+        $user =  new UserResource($user);
 
         return $this->sendResponse($user, 'User has been retrieved successfully.');
     }

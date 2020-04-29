@@ -42,7 +42,6 @@ class PermissionRoleTableSeeder extends Seeder
         foreach ($role_permissions as $row) {
             $role = App\Role::find($row['role']);
             $role->permissions()->attach($row['permissions']);
-            $role->permissions()->sync($row['permissions']);
         }
     }
 }

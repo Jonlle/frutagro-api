@@ -30,7 +30,7 @@ class PermissionController extends BaseController
 
         $success =  new PermissionCollection($permissions);
 
-        return $this->sendResponse($success, 'permissions has been retrieved successfully.');
+        return $this->sendResponse($success, 'Permissions has been retrieved successfully.');
     }
 
     /**
@@ -65,7 +65,7 @@ class PermissionController extends BaseController
             return $this->sendError('Permission no found.', []);
         }
 
-        $permission =  new PermissionResource(Permission::find($id));
+        $permission =  new PermissionResource($permission);
 
         return $this->sendResponse($permission, 'Permission has been retrieved successfully.');
     }
