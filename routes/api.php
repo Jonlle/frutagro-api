@@ -34,5 +34,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('/permissions', 'API\PermissionController');
     Route::apiResource('/roles', 'API\RoleController');
     Route::apiResource('/users', 'API\UserController');
+    Route::apiResource('/categories', 'API\CategoryController');
 
 });
