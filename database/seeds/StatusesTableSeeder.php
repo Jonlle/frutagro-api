@@ -12,10 +12,10 @@ class StatusesTableSeeder extends Seeder
     public function run()
     {
         $statuses = [
-            ['id' => '1', 'description' => 'active'],
-            ['id' => '2', 'description' => 'inactive'],
-            ['id' => '3', 'description' => 'enabled'],
-            ['id' => '4', 'description' => 'disabled']
+            ['id' => 'a', 'description' => 'active'],
+            ['id' => 'i', 'description' => 'inactive'],
+            ['id' => 'e', 'description' => 'enabled'],
+            ['id' => 'd', 'description' => 'disabled']
         ];
 
         foreach ($statuses as $row) {
