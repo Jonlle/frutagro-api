@@ -23,20 +23,19 @@ class CreateProductsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('category_id', 25);
+            $table->foreignId('currency_code_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('product_name', 40);
             $table->double('price', 11, 2);
             $table->unsignedInteger('discount');
             $table->string('unit', 10);
             $table->unsignedInteger('stock_cant');
 
-            $table->index(["category_id"], 'fk_products_categories_idx');
-            $table->index(["currency_code_id"], 'fk_products_currency_codes_idx');
+            $table->index('category_id');
+            $table->index('currency_code_id');
 
-            $table->foreign('category_id', 'fk_products_categories')
+            $table->foreign('category_id')
                   ->references('id')->on('categories')
-                  ->onDelete('cascade');
-
-            $table->foreignId('currency_code_id')->constrained()
                   ->onDelete('cascade');
         });
     }

@@ -22,14 +22,12 @@ class CreateUserEmailsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->string('status_id', 2);
             $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
             $table->string('principal', 1);
             $table->timestamps();
-
-            $table->unique('email');
 
             $table->index('status_id');
             $table->index('user_id');
