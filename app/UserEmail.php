@@ -19,5 +19,4 @@ class UserEmail extends Model
     {
         return $this->belongsTo('App\User');
     }
-
 }

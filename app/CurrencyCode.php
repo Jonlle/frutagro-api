@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class CurrencyCode extends Model
 {
-    // protected $primaryKey = 'currency_code_id';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'currency_name', 'exchange_rate'
+    ];
+
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }
