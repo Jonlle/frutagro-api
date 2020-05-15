@@ -22,15 +22,9 @@ class CurrencyCodeController extends BaseController
      */
     public function index()
     {
-        $currency_codes = CurrencyCode::all();
+        $currency_codes = new CurrencyCodeCollection(CurrencyCode::all());
 
-        if(!$currency_codes) {
-            return $this->sendError('CurrencyCodes no found.', []);
-        }
-
-        $success =  new CurrencyCodeCollection($currency_codes);
-
-        return $this->sendResponse($success, 'CurrencyCodes has been retrieved successfully.');
+        return $this->sendResponse($currency_codes, 'CurrencyCodes has been retrieved successfully.');
     }
 
     /**

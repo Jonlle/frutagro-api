@@ -22,15 +22,9 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = new CategoryCollection(Category::all());
 
-        if(!$categories) {
-            return $this->sendError('Categories no found.', []);
-        }
-
-        $success =  new CategoryCollection($categories);
-
-        return $this->sendResponse($success, 'Categories has been retrieved successfully.');
+        return $this->sendResponse($categories, 'Categories has been retrieved successfully.');
     }
 
     /**

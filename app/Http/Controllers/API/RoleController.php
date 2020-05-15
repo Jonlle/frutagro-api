@@ -22,15 +22,9 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = new RoleCollection(Role::all());
 
-        if(!$roles) {
-            return $this->sendError('Roles no found.', []);
-        }
-
-        $success =  new RoleCollection($roles);
-
-        return $this->sendResponse($success, 'Roles has been retrieved successfully.');
+        return $this->sendResponse($roles, 'Roles has been retrieved successfully.');
     }
 
     /**

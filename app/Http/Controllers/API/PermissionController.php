@@ -22,15 +22,9 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $permissions = Permission::all();
+        $permissions = new PermissionCollection(Permission::all());
 
-        if(!$permissions) {
-            return $this->sendError('Permissions no found.', []);
-        }
-
-        $success =  new PermissionCollection($permissions);
-
-        return $this->sendResponse($success, 'Permissions has been retrieved successfully.');
+        return $this->sendResponse($permissions, 'Permissions has been retrieved successfully.');
     }
 
     /**
