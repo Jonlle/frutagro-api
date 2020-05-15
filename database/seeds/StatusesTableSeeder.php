@@ -14,6 +14,8 @@ class StatusesTableSeeder extends Seeder
         $statuses = [
             ['id' => 'a', 'description' => 'active'],
             ['id' => 'i', 'description' => 'inactive'],
+            ['id' => 'av', 'description' => 'available'],
+            ['id' => 'na', 'description' => 'not available'],
             ['id' => 'e', 'description' => 'enabled'],
             ['id' => 'd', 'description' => 'disabled']
         ];
