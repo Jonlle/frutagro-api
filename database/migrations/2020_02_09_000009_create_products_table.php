@@ -29,9 +29,9 @@ class CreateProductsTable extends Migration
             $table->string('product_name', 40);
             $table->string('description', 50);
             $table->double('price', 11, 2);
-            $table->unsignedInteger('discount');
+            $table->unsignedInteger('discount')->nullable();
             $table->string('unit', 10);
-            $table->unsignedInteger('stock_cant');
+            $table->unsignedInteger('stock_cant')->nullable();
             $table->string('sku', 10);
 
             $table->index('category_id');
