@@ -39,7 +39,7 @@ class UserController extends BaseController
 
         $user_email = new UserEmail([
             'email' => $request['email'],
-            'status_id'=> '1',
+            'status_id' => 'a',
             'principal' => '1'
         ]);
 
