@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
-        'category_id', 'currency_code_id', 'status_id', 'product_name', 'price', 'discount', 'unit', 'stock_cant', 'sku'
+        'category_id', 'currency_code_id', 'status_id', 'product_name', 'description', 'price', 'discount', 'unit', 'stock_cant', 'sku'
     ];
 
     public function car_shoppings()
