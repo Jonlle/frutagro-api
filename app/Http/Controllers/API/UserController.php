@@ -23,7 +23,10 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users =  new UserCollection(User::all());
+        $users =  new UserCollection(
+            User::whereIn('role_id', ['owner', 'admin'])
+                ->get()
+        );
 
         return $this->sendResponse($users, 'Users has been retrieved successfully.');
     }
