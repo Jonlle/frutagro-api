@@ -24,11 +24,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username', 10)->unique();
             $table->string('doc_type_id', 3)->nullable();
-            $table->string('role_id', 6);
+            $table->string('role_id', 8);
             $table->string('status_id', 2);
-            $table->string('name', 100)->nullable();
-            $table->string('first_name', 50)->nullable();
-            $table->string('last_name', 50)->nullable();
+            $table->string('name', 100);
             $table->string('document', 20)->nullable();
             $table->string('password', 64);
             $table->rememberToken();
