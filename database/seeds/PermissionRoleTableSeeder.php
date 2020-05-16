@@ -32,12 +32,18 @@ class PermissionRoleTableSeeder extends Seeder
             return Str::endsWith($value['name'], ['show', 'access']);
         });
 
-        $user_permissions = [
-            'role' => 'customer',
+        $person_customer_permissions = [
+            'role' => 'person',
             'permissions' => Arr::pluck($result, 'id')
         ];
 
-        array_push($role_permissions, $owner_permissions, $admin_permissions, $user_permissions);
+        $business_customer_permissions = [
+            'role' => 'business',
+            'permissions' => Arr::pluck($result, 'id')
+        ];
+
+
+        array_push($role_permissions, $owner_permissions, $admin_permissions, $person_customer_permissions, $business_customer_permissions);
 
         foreach ($role_permissions as $row) {
             $role = App\Role::find($row['role']);
