@@ -23,15 +23,23 @@ class UpdateProduct extends FormRequest
     {
         return [
             'category_id' => 'required|max:25',
+            'sku' => 'required|max:10',
+            'product_name' => [
+                'required',
+                'string',
+                'max:40',
+                Rule::unique('products')->ignore($this->route('product')),
+            ],
+            'stock' => 'nullable|numeric|min:1',
+            'unit_name' => 'required|string|max:10',
+            'unit_cant' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:0.00',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'description' => 'required|string|max:50',
+            'file_image' => 'required',
+            'tags' => 'nullable',
             'currency_code_id' => 'required',
             'status_id' => 'required|max:2',
-            'product_name' => 'required|max:40',
-            'description' => 'required|max:50',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric',
-            'unit' => 'required|max:10',
-            'stock_cant' => 'nullable|numeric',
-            'sku' => 'required|max:10'
         ];
     }
 }
