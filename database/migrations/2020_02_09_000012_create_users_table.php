@@ -23,22 +23,19 @@ class CreateUsersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('username', 10)->unique();
-            $table->string('doc_type_id', 3)->nullable();
             $table->string('role_id', 8);
             $table->string('status_id', 2);
             $table->string('name', 100);
+            $table->string('doc_type_id', 3)->nullable();
             $table->string('document', 20)->nullable();
             $table->string('password', 64);
+            $table->string('avatar')->default('avatar.png');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->index('doc_type_id');
             $table->index('role_id');
             $table->index('status_id');
-
-            $table->foreign('doc_type_id')
-                  ->references('id')->on('document_types')
-                  ->onDelete('cascade');
+            $table->index('doc_type_id');
 
             $table->foreign('role_id')
                   ->references('id')->on('roles')
@@ -47,6 +44,11 @@ class CreateUsersTable extends Migration
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');
+
+            $table->foreign('doc_type_id')
+                  ->references('id')->on('document_types')
+                  ->onDelete('cascade');
+
         });
     }
 
