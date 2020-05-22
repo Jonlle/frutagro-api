@@ -23,6 +23,7 @@ class Customer extends JsonResource
             'email' => $this->user_emails->where('principal', '1')->first()->email,
             'doc_type' => $this->doc_type_id,
             'document' => $this->document,
+            'avatar' => $this->avatar,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
