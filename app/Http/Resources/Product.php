@@ -17,15 +17,22 @@ class Product extends JsonResource
         return [
             'id' => $this->id,
             'category' => $this->category_id,
-            'currency' => $this->currency_code->currency_name,
-            'status' => $this->status->description,
+            'sku' => $this->sku,
             'name' => $this->product_name,
-            'description' => $this->description,
+            'slug' => $this->slug,
+            'stock' => $this->stock,
+            'unit_name' => $this->unit_name,
+            'unit_cant' => $this->unit_cant,
             'price' => $this->price,
             'discount' => $this->discount,
-            'unit' => $this->unit,
-            'stock_cant' => $this->stock_cant,
-            'sku' => $this->sku
+            'description' => $this->description,
+            'file_image' => $this->file_image,
+            'file_path' => $this->file_path,
+            'tags' => $this->tags,
+            'currency' => $this->currency_code->currency_name,
+            'status' => $this->status->description,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

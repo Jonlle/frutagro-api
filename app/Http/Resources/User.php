@@ -23,7 +23,7 @@ class User extends JsonResource
             'email' => $this->user_emails->where('principal', '1')->first()->email,
             'avatar' => $this->avatar,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }
