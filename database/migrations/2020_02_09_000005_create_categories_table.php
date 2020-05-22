@@ -22,7 +22,9 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->string('id', 25);
+            $table->string('slug');
             $table->string('description', 50);
+            $table->timestamps();
 
             $table->primary('id');
         });
