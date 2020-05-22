@@ -10,7 +10,7 @@ class Category extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'description'
+        'id', 'slug', 'description'
     ];
 
     public function products()

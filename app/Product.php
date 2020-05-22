@@ -9,7 +9,7 @@ class Product extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'category_id', 'currency_code_id', 'status_id', 'product_name', 'description', 'price', 'discount', 'unit', 'stock_cant', 'sku'
+        'category_id', 'sku', 'product_name', 'slug', 'stock', 'unit_name', 'unit_cant', 'price', 'discount', 'description', 'file_image', 'file_path', 'tags', 'currency_code_id', 'status_id'
     ];
 
     public function car_shoppings()
