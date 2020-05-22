@@ -23,16 +23,21 @@ class CreateProductsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('category_id', 25);
+            $table->string('sku', 10)->unique();
+            $table->string('product_name', 40)->unique();
+            $table->string('slug');
+            $table->unsignedInteger('stock')->nullable();
+            $table->string('unit_name', 10);
+            $table->unsignedInteger('unit_cant');
+            $table->unsignedDecimal('price', 11, 2);
+            $table->unsignedInteger('discount')->nullable();
+            $table->text('description');
+            $table->string('file_image');
+            $table->string('file_path');
+            $table->string('tags')->nullable();
             $table->foreignId('currency_code_id')->constrained()
                   ->onDelete('cascade');
             $table->string('status_id', 2);
-            $table->string('product_name', 40);
-            $table->string('description', 50);
-            $table->double('price', 11, 2);
-            $table->unsignedInteger('discount')->nullable();
-            $table->string('unit', 10);
-            $table->unsignedInteger('stock_cant')->nullable();
-            $table->string('sku', 10);
 
             $table->index('category_id');
             $table->index('currency_code_id');
