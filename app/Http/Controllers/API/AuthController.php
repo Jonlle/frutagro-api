@@ -33,7 +33,7 @@ class AuthController extends BaseController
 
         $user_email = new UserEmail([
             'email' => $request['email'],
-            'status_id' => 'a',
+            'status_id' => 'ac',
             'principal' => '1'
         ]);
 
@@ -55,7 +55,7 @@ class AuthController extends BaseController
 
         $user_email = new UserEmail([
             'email' => $request['email'],
-            'status_id' => 'a',
+            'status_id' => 'ac',
             'principal' => '1'
         ]);
 
@@ -111,7 +111,8 @@ class AuthController extends BaseController
         return response()->json(['message' =>'User logout successfully'], 200);
     }
 
-    public function user(){
+    public function user()
+    {
         $user =  Auth::user();
         $success = new UserResource($user);
 

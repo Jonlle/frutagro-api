@@ -13,15 +13,15 @@ class UsersTableSeeder extends Seeder
     {
         $user_email = new App\UserEmail([
             'email' => 'admin@frutagro.com',
-            'status_id' => 'a',
+            'status_id' => 'ac',
             'principal' => '1'
         ]);
 
         $user = App\User::create([
             'username' => 'admin',
             'role_id' => 'owner',
-            'status_id' => 'a',
-            'name' => 'Frutagro',
+            'status_id' => 'ac',
+            'name' => 'Distribuidora Frutagro',
             'password' => bcrypt('frutagro'),
         ]);
 
