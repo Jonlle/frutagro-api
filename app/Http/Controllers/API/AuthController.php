@@ -12,8 +12,9 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 class AuthController extends BaseController
 {
@@ -38,7 +39,7 @@ class AuthController extends BaseController
         ]);
 
         $data = Arr::except($validated, ['email']);
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = Hash::make($data['password']);
 
         $user = new User($data);
         $user->save();
@@ -60,7 +61,7 @@ class AuthController extends BaseController
         ]);
 
         $data = Arr::except($validated, ['email']);
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = Hash::make($data['password']);
 
         $user = new User($data);
         $user->save();

@@ -48,7 +48,7 @@ class UserController extends BaseController
         ]);
 
         $data = Arr::except($validated, ['email']);
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = Hash::make($data['password']);
 
         $user = new User($data);
         $user->save();

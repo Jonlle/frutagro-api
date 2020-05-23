@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 'owner',
             'status_id' => 'ac',
             'name' => 'Distribuidora Frutagro',
-            'password' => bcrypt('frutagro'),
+            'password' => Hash::make('frutagro'),
         ]);
 
         $user->user_emails()->save($user_email);
