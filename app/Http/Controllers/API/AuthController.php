@@ -8,9 +8,10 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\User as UserResource;
 use App\User;
 use App\UserEmail;
+use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -77,6 +78,7 @@ class AuthController extends BaseController
         $validator = Validator::make($request->all(), [
             'login' => 'required',
             'password' => 'required',
+            'remember_me' => 'boolean'
         ]);
 
         if($validator->fails()) {
@@ -94,11 +96,20 @@ class AuthController extends BaseController
             $credentials['username'] =  $request->login;
         }
 
-        if (auth()->attempt($credentials)) {
-            $user = Auth::user();
-            $success['token'] = $user->createToken('Frutagro_dist')->accessToken;
-            $success['username'] =  $user->username;
-            $success['role'] =  $user->role_id;
+        if (Auth::attempt($credentials)) {
+            $user = $request->user();
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+            if ($request->remember_me)
+                $token->expires_at = now()->addYears(1);
+            $token->save();
+            $success['username'] = $user->username;
+            $success['role'] = $user->role_id;
+            $success['access_token'] = $tokenResult->accessToken;
+            $success['token_type'] = 'Bearer';
+            $success['expires_at'] = Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString();
 
             return $this->sendResponse($success, 'User login successfully.');
         } else {
