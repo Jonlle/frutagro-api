@@ -28,7 +28,7 @@ class UpdateRole extends FormRequest
                 'max:8',
                 Rule::unique('roles')->ignore($this->route('role')),
             ],
-            'status_id' => 'required|max:2',
+            'status_id' => 'max:2',
             'description' => 'required|max:50',
             'permissions.*' => 'integer',
             'permissions' => 'required|array'

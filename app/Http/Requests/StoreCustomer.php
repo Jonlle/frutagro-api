@@ -25,7 +25,7 @@ class StoreCustomer extends FormRequest
             'username' => 'required|unique:users|max:10',
             'doc_type_id' => 'required|max:3',
             'role_id' => 'required|max:8',
-            'status_id' => 'required|max:2',
+            'status_id' => 'max:2',
             'name' => 'required|max:100',
             'document' => 'required|max:20',
             'email' => 'required|email|unique:user_emails',

@@ -30,7 +30,7 @@ class UpdateUser extends FormRequest
                 Rule::unique('users')->ignore($this->route('user')),
             ],
             'role_id' => 'required|max:8',
-            'status_id' => 'required|max:2',
+            'status_id' => 'max:2',
             'name' => 'required|max:100',
             'email' => [
                 'required',

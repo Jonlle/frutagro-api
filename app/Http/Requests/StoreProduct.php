@@ -34,7 +34,7 @@ class StoreProduct extends FormRequest
             'file_image' => 'required',
             'tags' => 'nullable',
             'currency_code_id' => 'required',
-            'status_id' => 'required|max:2'
+            'status_id' => 'max:2'
         ];
     }
 }

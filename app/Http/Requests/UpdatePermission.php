@@ -29,7 +29,7 @@ class UpdatePermission extends FormRequest
                 'max:40',
                 Rule::unique('permissions')->ignore($this->route('permission')),
             ],
-            'status_id' => 'required|max:2'
+            'status_id' => 'max:2'
         ];
     }
 }

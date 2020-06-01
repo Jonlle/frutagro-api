@@ -23,7 +23,7 @@ class StorePermission extends FormRequest
     {
         return [
             'name' => 'required|unique:permissions|max:40',
-            'status_id' => 'required|max:2'
+            'status_id' => 'max:2'
         ];
     }
 }
