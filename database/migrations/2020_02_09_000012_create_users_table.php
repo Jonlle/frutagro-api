@@ -24,12 +24,13 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username', 10)->unique();
             $table->string('role_id', 8);
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
             $table->string('name', 100);
             $table->string('doc_type_id', 3)->nullable();
             $table->string('document', 20)->nullable();
             $table->string('password', 64);
             $table->string('avatar')->default('avatar.png');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

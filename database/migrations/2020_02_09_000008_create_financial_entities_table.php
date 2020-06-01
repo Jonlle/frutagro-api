@@ -23,7 +23,7 @@ class CreateFinancialEntitiesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('entity_name', 100);
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
 
             $table->unique('entity_name');
 

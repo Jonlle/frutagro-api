@@ -37,7 +37,7 @@ class CreateProductsTable extends Migration
             $table->string('tags')->nullable();
             $table->foreignId('currency_code_id')->constrained()
                   ->onDelete('cascade');
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('av');
 
             $table->index('category_id');
             $table->index('currency_code_id');

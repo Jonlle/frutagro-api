@@ -22,7 +22,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->string('id', 8);
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
             $table->string('description', 50);
 
             $table->primary('id');

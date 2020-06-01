@@ -23,7 +23,7 @@ class CreateUserEmailsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('email', 50)->unique();
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
             $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
             $table->string('principal', 1);

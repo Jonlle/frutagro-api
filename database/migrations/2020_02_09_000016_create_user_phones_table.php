@@ -23,7 +23,7 @@ class CreateUserPhonesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('phone_number', 11);
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
             $table->string('principal', 1);
             $table->timestamps();
 
