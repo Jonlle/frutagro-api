@@ -11,6 +11,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 
 class CategoryController extends BaseController
@@ -37,6 +38,7 @@ class CategoryController extends BaseController
     {
         $validated = $request->validated();
 
+        $validated += [ "slug" => Str::slug($validated['id'])];
         $category = new Category($validated);
         $category->save();
 
@@ -80,6 +82,8 @@ class CategoryController extends BaseController
         if(!$category) {
             return $this->sendError('Category no found.', []);
         }
+
+        $validated += [ "slug" => Str::slug($validated['id'])];
 
         foreach ($validated as $key => $value) {
             $category[$key] = $value;
