@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest as LaravelFormRequest;
 
 class FormRequest extends LaravelFormRequest
@@ -19,14 +20,16 @@ class FormRequest extends LaravelFormRequest
             'errors' => $errors
         ];
 
+        $rules_errors = [];
         foreach ($validator->failed() as $attribute => $rules) {
             foreach ($rules as $key => $rule) {
+                $rules_errors[$attribute] =  strtolower($key);
                 if ($key == 'Unique') {
                     $code = 409;
-                    break 2;
                 }
             }
         }
+        $response['rules'] = $rules_errors;
         throw new HttpResponseException(response()->json($response, $code));
     }
 
