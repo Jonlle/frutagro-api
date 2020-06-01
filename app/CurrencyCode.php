@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CurrencyCode extends Model
 {
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
-        'currency_name', 'exchange_rate'
+        'id', 'currency_name', 'currency_symbol', 'exchange_rate'
     ];
 
     public function products()
