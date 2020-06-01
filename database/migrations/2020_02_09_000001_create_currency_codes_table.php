@@ -21,9 +21,12 @@ class CreateCurrencyCodesTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            $table->id();
-            $table->string('currency_name', 10);
-            $table->double('exchange_rate', 11, 2);
+            $table->string('id', 3);
+            $table->string('currency_name', 20);
+            $table->string('currency_symbol', 4);
+            $table->double('exchange_rate', 11, 3);
+
+            $table->primary('id');
         });
     }
 
