@@ -35,9 +35,9 @@ class CreateProductsTable extends Migration
             $table->string('file_image');
             $table->string('file_path');
             $table->string('tags')->nullable();
-            $table->foreignId('currency_code_id')->constrained()
-                  ->onDelete('cascade');
+            $table->string('currency_code_id', 3);
             $table->string('status_id', 2)->default('av');
+            $table->timestamps();
 
             $table->index('category_id');
             $table->index('currency_code_id');
@@ -45,6 +45,10 @@ class CreateProductsTable extends Migration
 
             $table->foreign('category_id')
                   ->references('id')->on('categories')
+                  ->onDelete('cascade');
+
+            $table->foreign('currency_code_id')
+                  ->references('id')->on('currency_codes')
                   ->onDelete('cascade');
 
             $table->foreign('status_id')
