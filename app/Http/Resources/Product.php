@@ -29,7 +29,7 @@ class Product extends JsonResource
             'file_image' => $this->file_image,
             'file_path' => $this->file_path,
             'tags' => $this->tags,
-            'currency' => $this->currency_code->currency_name,
+            'currency' => $this->currency_code->currency_symbol,
             'status' => $this->status->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
