@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class UpdateUser extends FormRequest
 {
@@ -35,7 +37,7 @@ class UpdateUser extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('user_emails')->ignore($this->route('user')),
+                Rule::unique('user_emails')->ignore($this->route('user'), 'user_id'),
             ],
         ];
     }
