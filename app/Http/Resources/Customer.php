@@ -24,6 +24,7 @@ class Customer extends JsonResource
             'doc_type' => $this->doc_type_id,
             'document' => $this->document,
             'avatar' => $this->avatar,
+            'email_verified_at' => $this->email_verified_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
