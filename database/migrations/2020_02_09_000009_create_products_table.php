@@ -32,8 +32,8 @@ class CreateProductsTable extends Migration
             $table->unsignedDecimal('price', 11, 2);
             $table->unsignedInteger('discount')->nullable();
             $table->text('description');
-            $table->string('file_image');
-            $table->string('file_path');
+            $table->string('file_image')->default('frutagro_product.jpg');
+            $table->string('file_path')->default('/images/products');
             $table->string('tags')->nullable();
             $table->string('currency_code_id', 3);
             $table->string('status_id', 2)->default('av');
