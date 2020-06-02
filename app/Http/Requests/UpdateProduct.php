@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 class UpdateProduct extends FormRequest
 {
     /**
@@ -23,7 +25,11 @@ class UpdateProduct extends FormRequest
     {
         return [
             'category_id' => 'required|max:25',
-            'sku' => 'required|max:10',
+            'sku' => [
+                'required',
+                'max:10',
+                Rule::unique('products')->ignore($this->route('product')),
+            ],
             'product_name' => [
                 'required',
                 'string',
@@ -36,10 +42,10 @@ class UpdateProduct extends FormRequest
             'price' => 'required|numeric|min:0.00',
             'discount' => 'nullable|numeric|min:0|max:100',
             'description' => 'required|string|max:50',
-            'file_image' => 'required',
+            'file_image' => 'string',
             'tags' => 'nullable',
             'currency_code_id' => 'required',
-            'status_id' => 'max:2',
+            'status_id' => 'max:2'
         ];
     }
 }
