@@ -12,6 +12,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 
 class UserController extends BaseController
@@ -54,9 +55,7 @@ class UserController extends BaseController
         $user->save();
         $user->user_emails()->save($user_email);
 
-        $success['username'] = $user->username;
-
-        return $this->sendResponse($success, 'User has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse([], 'User has been created successfully.', BaseController::HTTP_CREATED);
     }
 
     /**
@@ -87,13 +86,13 @@ class UserController extends BaseController
      */
     public function update(UpdateUser $request, $id)
     {
-        $validated = $request->validated();
-
         $user = User::find($id);
 
         if(!$user) {
             return $this->sendError('User no found.', []);
         }
+
+        $validated = $request->validated();
 
         $email = Arr::pull($validated, 'email');
         $user_email = $user->user_emails()->first();
@@ -105,9 +104,8 @@ class UserController extends BaseController
         }
 
         $user->save();
-        $success = new UserResource($user);
 
-        return $this->sendResponse($success, 'User has been updated successfully.');
+        return $this->sendResponse([], 'User has been updated successfully.');
     }
 
     /**

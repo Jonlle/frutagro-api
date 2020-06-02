@@ -11,6 +11,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 
@@ -37,14 +38,12 @@ class CategoryController extends BaseController
     public function store(StoreCategory $request)
     {
         $validated = $request->validated();
+        $validated += ["slug" => Str::slug($validated['id'])];
 
-        $validated += [ "slug" => Str::slug($validated['id'])];
         $category = new Category($validated);
         $category->save();
 
-        $success = new CategoryResource($category);
-
-        return $this->sendResponse($success, 'Category has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse([], 'Category has been created successfully.', BaseController::HTTP_CREATED);
     }
 
     /**
@@ -75,24 +74,22 @@ class CategoryController extends BaseController
      */
     public function update(UpdateCategory $request, $id)
     {
-        $validated = $request->validated();
-
         $category = Category::find($id);
 
         if(!$category) {
             return $this->sendError('Category no found.', []);
         }
 
-        $validated += [ "slug" => Str::slug($validated['id'])];
+        $validated = $request->validated();
+        $validated += ["slug" => Str::slug($validated['id'])];
 
         foreach ($validated as $key => $value) {
             $category[$key] = $value;
         }
 
         $category->save();
-        $success = new CategoryResource($category);
 
-        return $this->sendResponse($success, 'Category has been updated successfully.');
+        return $this->sendResponse([], 'Category has been updated successfully.');
     }
 
     /**

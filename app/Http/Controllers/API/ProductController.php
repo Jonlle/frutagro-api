@@ -6,10 +6,13 @@ use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\Product as ProductResource;
+use App\Http\Controllers\API\BaseController as BaseController;
 use App\Product;
 use Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+
 
 class ProductController extends BaseController
 {
@@ -34,13 +37,12 @@ class ProductController extends BaseController
     public function store(StoreProduct $request)
     {
         $validated = $request->validated();
+        $validated += ["slug" => Str::slug($validated['product_name'])];
 
         $product = new Product($validated);
-        $product->save();
+        $product = $product->save();
 
-        $success = new ProductResource($product);
-
-        return $this->sendResponse($success, 'Product has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse([], 'Product has been created successfully.', BaseController::HTTP_CREATED);
     }
 
     /**
@@ -71,18 +73,23 @@ class ProductController extends BaseController
      */
     public function update(UpdateProduct $request, $id)
     {
-        $validated = $request->validated();
-
         $product = Product::find($id);
 
         if(!$product) {
             return $this->sendError('Product no found.', []);
         }
 
-        $product->save();
-        $success = new ProductResource($product);
+        $validated = $request->validated();
 
-        return $this->sendResponse($success, 'Product has been updated successfully.');
+        $validated += ["slug" => Str::slug($validated['product_name'])];
+
+        foreach ($validated as $key => $value) {
+            $product[$key] = $value;
+        }
+
+        $product->save();
+
+        return $this->sendResponse([], 'Product has been updated successfully.');
     }
 
     /**
