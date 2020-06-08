@@ -76,8 +76,8 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'login' => 'required',
-            'password' => 'required',
+            'login' => 'required|string',
+            'password' => 'required|max:12',
             'remember_me' => 'boolean'
         ]);
 
@@ -104,6 +104,7 @@ class AuthController extends BaseController
                 $token->expires_at = now()->addYears(1);
             $token->save();
             $success['username'] = $user->username;
+            $success['status'] = $user->status_id;
             $success['role'] = $user->role_id;
             $success['access_token'] = $tokenResult->accessToken;
             $success['token_type'] = 'Bearer';
