@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 class StoreCustomer extends FormRequest
 {
     /**
@@ -23,11 +25,14 @@ class StoreCustomer extends FormRequest
     {
         return [
             'username' => 'required|unique:users|max:10',
-            'doc_type_id' => 'required|max:3',
+            'doc_type_id' => [
+                'required',
+                Rule::in(['ci', 'rif', 'p']),
+            ],
             'role_id' => 'required|max:8',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
-            'document' => 'required|max:20',
+            'document' => 'required|unique:users|min:7|max:10|regex:/^[VEPJG][1-9]\d{5,8}$/',
             'email' => 'required|email|unique:user_emails',
             'password' => 'required|max:12'
         ];

@@ -29,11 +29,20 @@ class UpdateCustomer extends FormRequest
                 'max:10',
                 Rule::unique('users')->ignore($this->route('customer')),
             ],
-            'doc_type_id' => 'required|max:3',
+            'doc_type_id' => [
+                'required',
+                Rule::in(['ci', 'rif', 'p']),
+            ],
             'role_id' => 'required|max:8',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
-            'document' => 'required|max:20',
+            'document' => [
+                'required',
+                'min:7',
+                'max:10',
+                'regex:/^[VEPJG][1-9]\d{5,8}$/',
+                Rule::unique('users')->ignore($this->route('customer')),
+            ],
             'email' => [
                 'required',
                 'email',
