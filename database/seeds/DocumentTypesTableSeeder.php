@@ -12,11 +12,9 @@ class DocumentTypesTableSeeder extends Seeder
     public function run()
     {
         $doc_types = [
-            ['id' => 'V', 'status_id' => 'ac', 'description' => 'Venezolano'],
-            ['id' => 'E', 'status_id' => 'ac', 'description' => 'Extranjero'],
-            ['id' => 'P', 'status_id' => 'ac', 'description' => 'Pasaporte'],
-            ['id' => 'J', 'status_id' => 'ac', 'description' => 'Rif Jurídico'],
-            ['id' => 'G', 'status_id' => 'ac', 'description' => 'Rif Gobierno'],
+            ['id' => 'ci', 'status_id' => 'ac', 'description' => 'Cédula de identidad'],
+            ['id' => 'rif', 'status_id' => 'ac', 'description' => 'R.I.F'],
+            ['id' => 'p', 'status_id' => 'ac', 'description' => 'Pasaporte']
         ];
 
         foreach ($doc_types as $row) {
