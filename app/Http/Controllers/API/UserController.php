@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
+use App\User;
+use App\UserEmail;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\User as UserResource;
-use App\User;
-use App\UserEmail;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Validator;
 
 class UserController extends BaseController
 {
@@ -24,10 +24,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users =  new UserCollection(
-            User::whereIn('role_id', ['owner', 'admin'])
-                ->get()
-        );
+        $users = new UserCollection(User::all());
 
         return $this->sendResponse($users, 'Users has been retrieved successfully.');
     }
@@ -68,11 +65,11 @@ class UserController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
         }
 
-        $user =  new UserResource($user);
+        $user = new UserResource($user);
 
         return $this->sendResponse($user, 'User has been retrieved successfully.');
     }
@@ -88,7 +85,7 @@ class UserController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
         }
 
@@ -118,7 +115,7 @@ class UserController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
         }
 

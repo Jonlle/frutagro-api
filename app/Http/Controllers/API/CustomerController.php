@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
+use App\User;
+use App\UserEmail;
 use App\Http\Requests\StoreCustomer;
 use App\Http\Requests\UpdateCustomer;
 use App\Http\Resources\CustomerCollection;
 use App\Http\Resources\Customer as CustomerResource;
-use App\User;
-use App\UserEmail;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Validator;
 
 class CustomerController extends BaseController
 {
@@ -24,7 +24,7 @@ class CustomerController extends BaseController
      */
     public function index()
     {
-        $users =  new CustomerCollection(
+        $users = new CustomerCollection(
             User::whereIn('role_id', ['person', 'business'])
                 ->get()
         );
@@ -68,11 +68,15 @@ class CustomerController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
         }
 
-        $user =  new CustomerResource($user);
+        if ($user->role_id != 'person' && $user->role_id != 'business') {
+            return $this->sendError('User is not a customer.', []);
+        }
+
+        $user = new CustomerResource($user);
 
         return $this->sendResponse($user, 'User has been retrieved successfully.');
     }
@@ -88,8 +92,12 @@ class CustomerController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
+        }
+
+        if ($user->role_id != 'person' && $user->role_id != 'business') {
+            return $this->sendError('User is not a customer.', []);
         }
 
         $validated = $request->validated();
@@ -118,7 +126,7 @@ class CustomerController extends BaseController
     {
         $user = User::find($id);
 
-        if(!$user) {
+        if (!$user) {
             return $this->sendError('User no found.', []);
         }
 
