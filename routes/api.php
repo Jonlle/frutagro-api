@@ -30,10 +30,14 @@ Route::prefix('v1')->group(function () {
         });
     });
 
+    Route::prefix('/users')->group(function () {
+        Route::apiResource('/admins', 'API\AdminController');
+        Route::apiResource('/customers', 'API\CustomerController');
+    });
+
+    Route::apiResource('/users', 'API\UserController');
     Route::apiResource('/permissions', 'API\PermissionController');
     Route::apiResource('/roles', 'API\RoleController');
-    Route::apiResource('/users', 'API\UserController');
-    Route::apiResource('/customers', 'API\CustomerController');
     Route::apiResource('/categories', 'API\CategoryController');
     Route::apiResource('/currencies', 'API\CurrencyCodeController');
     Route::apiResource('/products', 'API\ProductController');
