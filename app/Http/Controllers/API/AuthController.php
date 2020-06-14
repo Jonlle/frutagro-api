@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\StoreCustomer;
 use App\Http\Resources\UserCollection;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserAuth as UserResource;
 use App\User;
 use App\UserEmail;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -96,7 +96,7 @@ class AuthController extends BaseController
             $credentials['username'] =  $request->login;
         }
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->remember_me)) {
             $user = $request->user();
             $tokenResult = $user->createToken('Personal Access Token');
             $token = $tokenResult->token;
@@ -104,8 +104,6 @@ class AuthController extends BaseController
                 $token->expires_at = now()->addYears(5);
             $token->save();
             $success['username'] = $user->username;
-            $success['status'] = $user->status_id;
-            $success['role'] = $user->role_id;
             $success['access_token'] = $tokenResult->accessToken;
             $success['token_type'] = 'Bearer';
             $success['expires_at'] = Carbon::parse(
