@@ -101,7 +101,7 @@ class AuthController extends BaseController
             $tokenResult = $user->createToken('Personal Access Token');
             $token = $tokenResult->token;
             if ($request->remember_me)
-                $token->expires_at = now()->addYears(1);
+                $token->expires_at = now()->addYears(5);
             $token->save();
             $success['username'] = $user->username;
             $success['status'] = $user->status_id;
