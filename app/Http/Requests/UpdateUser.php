@@ -39,6 +39,7 @@ class UpdateUser extends FormRequest
                 'email',
                 Rule::unique('user_emails')->ignore($this->route('user'), 'user_id'),
             ],
+            'remember_token' => 'string|nullable',
         ];
     }
 }
