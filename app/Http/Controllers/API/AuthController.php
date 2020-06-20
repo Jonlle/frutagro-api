@@ -76,7 +76,7 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'login' => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|max:12',
             'remember_me' => 'boolean'
         ]);
@@ -87,13 +87,13 @@ class AuthController extends BaseController
         }
 
         $credentials = ['password' => $request->password];
-        $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         if ($fieldType == 'email') {
-            $user_email = UserEmail::where('email', $request->login)->first();
+            $user_email = UserEmail::where('email', $request->email)->first();
             $credentials['username'] = ($user_email) ? $user_email->user->username : '';
         } else {
-            $credentials['username'] =  $request->login;
+            $credentials['username'] =  $request->email;
         }
 
         if (Auth::attempt($credentials, $request->remember_me)) {
