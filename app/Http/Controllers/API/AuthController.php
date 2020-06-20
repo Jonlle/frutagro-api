@@ -119,7 +119,7 @@ class AuthController extends BaseController
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
-        return response()->json(['message' =>'User logout successfully'], 200);
+        return $this->sendResponse([], 'User logout successfully.');
     }
 
     public function user()
