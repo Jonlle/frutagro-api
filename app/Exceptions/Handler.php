@@ -55,13 +55,22 @@ class Handler extends ExceptionHandler
     {
         switch (true) {
             case $exception instanceof ModelNotFoundException:
-                return response()->json(['error' => 'Entry for '.str_replace('App\\', '', $exception->getModel()).' not found'], 404);
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Entry for '.str_replace('App\\', '', $exception->getModel()).' not found'
+                ], 404);
 
             case $exception instanceof NotFoundHttpException:
-                return response()->json(['error' => 'Page not found'], 404);
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Page not found'
+                ], 404);
 
             case $exception instanceof MethodNotAllowedHttpException:
-                return response()->json(['error' => 'Method not allowed'], 404);
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Method not allowed'
+                ], 404);
 
             default:
                 break;
