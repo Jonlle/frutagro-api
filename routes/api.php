@@ -20,6 +20,7 @@ Route::prefix('v1')->group(function () {
         Route::get('user', 'API\AuthController@user')->name('auth.user');
         Route::post('login', 'API\AuthController@login')->name('auth.login');
         Route::post('logout', 'API\AuthController@logout')->name('auth.logout');
+        Route::patch('remember-token', 'API\AuthController@rememberToken')->name('auth.rememberToken');
 
         Route::prefix('/admin')->group(function () {
             Route::post('register', 'API\AuthController@registerAdmin')->name('auth.registerAdmin');
