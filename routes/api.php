@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Resources\User as UserResource;
-use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +18,7 @@ Route::prefix('v1')->group(function () {
         Route::get('user', 'API\AuthController@user')->name('auth.user');
         Route::post('login', 'API\AuthController@login')->name('auth.login');
         Route::post('logout', 'API\AuthController@logout')->name('auth.logout');
-        Route::patch('remember-token', 'API\AuthController@rememberToken')->name('auth.rememberToken');
+        Route::put('remember-token', 'API\AuthController@updateRememberToken')->name('auth.updateRememberToken');
 
         Route::prefix('/admin')->group(function () {
             Route::post('register', 'API\AuthController@registerAdmin')->name('auth.registerAdmin');
