@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest as LaravelFormRequest;
@@ -37,7 +38,7 @@ class FormRequest extends LaravelFormRequest
     {
         $response = [
             'success' => false,
-            'message' => "Access denied. You don't have permission for this action."
+            'message' => "Access denied. You are not authorized for this action."
         ];
         throw new HttpResponseException(response()->json($response, 403));
     }
