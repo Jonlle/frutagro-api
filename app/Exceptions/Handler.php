@@ -3,10 +3,14 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -53,29 +57,55 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        $response = ['success' => false, 'message' => ''];
+        $status = 404;
         switch (true) {
             case $exception instanceof ModelNotFoundException:
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Entry for '.str_replace('App\\', '', $exception->getModel()).' not found'
-                ], 404);
+                $model = str_replace('App\\', '', $exception->getModel());
+                $response['message'] = "No query results for model {$model}.";
+                break;
 
             case $exception instanceof NotFoundHttpException:
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Page not found'
-                ], 404);
+                $response['message'] = 'Page not found.';
+                $status = $exception->getStatusCode();
+                break;
 
             case $exception instanceof MethodNotAllowedHttpException:
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Method not allowed'
-                ], 404);
+                $response['message'] = $exception->getMessage();
+                $status = $exception->getStatusCode();
+                break;
 
+            case $exception instanceof AuthenticationException:
+                $response['message'] = $exception->getMessage();
+                $status = 401;
+                break;
+
+            case $exception instanceof HttpException:
+                $response['message'] = $exception->getMessage();
+                $status = $exception->getStatusCode();
+                break;
+
+            case $exception instanceof QueryException:
+                Log::debug('QueryException: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
+                Log::debug('errorInfo: '.json_encode($exception->errorInfo));
+                $status = 500;
+
+                if (isset($exception->errorInfo) && isset($exception->errorInfo[1])) {
+                    $errorInfo = explode(":", $exception->getMessage());
+                    $response['message'] = $errorInfo[1];
+                    $response['error'] = [
+                        'code' => $exception->errorInfo[1],
+                        'sql_state' => $exception->errorInfo[0]
+                    ];
+                } else {
+                    $response['message'] = 'Internal Server Error.';
+                }
+                break;
             default:
+                return parent::render($request, $exception);
                 break;
         }
 
-        return parent::render($request, $exception);
+        return response()->json($response, $status);
     }
 }
