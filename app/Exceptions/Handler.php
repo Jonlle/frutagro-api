@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
         switch (true) {
             case $exception instanceof ModelNotFoundException:
                 $model = str_replace('App\\', '', $exception->getModel());
-                $response['message'] = "No query results for model {$model}.";
+                $response['message'] = "{$model} not found.";
                 break;
 
             case $exception instanceof NotFoundHttpException:
