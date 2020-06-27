@@ -54,11 +54,7 @@ class CategoryController extends BaseController
      */
     public function show($id)
     {
-        $category = Category::find($id);
-
-        if(!$category) {
-            return $this->sendError('Category no found.', []);
-        }
+        $category = Category::findOrFail($id);
 
         $category =  new CategoryResource($category);
 
@@ -74,11 +70,7 @@ class CategoryController extends BaseController
      */
     public function update(UpdateCategory $request, $id)
     {
-        $category = Category::find($id);
-
-        if(!$category) {
-            return $this->sendError('Category no found.', []);
-        }
+        $category = Category::findOrFail($id);
 
         $validated = $request->validated();
         $validated += ["slug" => Str::slug($validated['id'])];
@@ -100,11 +92,7 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-
-        if(!$category) {
-            return $this->sendError('Category no found.', []);
-        }
+        $category = Category::findOrFail($id);
 
         $category->delete();
 

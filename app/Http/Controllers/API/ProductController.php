@@ -53,11 +53,7 @@ class ProductController extends BaseController
      */
     public function show($id)
     {
-        $product = Product::find($id);
-
-        if(!$product) {
-            return $this->sendError('Product no found.', []);
-        }
+        $product = Product::findOrFail($id);
 
         $product =  new ProductResource($product);
 
@@ -73,11 +69,7 @@ class ProductController extends BaseController
      */
     public function update(UpdateProduct $request, $id)
     {
-        $product = Product::find($id);
-
-        if(!$product) {
-            return $this->sendError('Product no found.', []);
-        }
+        $product = Product::findOrFail($id);
 
         $validated = $request->validated();
 
@@ -100,11 +92,7 @@ class ProductController extends BaseController
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-
-        if(!$product) {
-            return $this->sendError('Product no found.', []);
-        }
+        $product = Product::findOrFail($id);
 
         $product->delete();
 

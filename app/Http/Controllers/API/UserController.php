@@ -63,11 +63,7 @@ class UserController extends BaseController
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return $this->sendError('User no found.', []);
-        }
+        $user = User::findOrFail($id);
 
         $user = new UserResource($user);
 
@@ -83,11 +79,7 @@ class UserController extends BaseController
      */
     public function update(UpdateUser $request, $id)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return $this->sendError('User no found.', []);
-        }
+        $user = User::findOrFail($id);
 
         $validated = $request->validated();
 
@@ -113,11 +105,7 @@ class UserController extends BaseController
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return $this->sendError('User no found.', []);
-        }
+        $user = User::findOrFail($id);
 
         $user->delete();
 

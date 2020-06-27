@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends BaseController
 {
@@ -56,11 +57,7 @@ class RoleController extends BaseController
      */
     public function show($id)
     {
-        $role = Role::find($id);
-
-        if(!$role) {
-            return $this->sendError('Role no found.', []);
-        }
+        $role = Role::findOrFailOrFail($id);
 
         $role =  new RoleResource($role);
 
@@ -76,13 +73,9 @@ class RoleController extends BaseController
      */
     public function update(UpdateRole $request, $id)
     {
+        $role = Role::findOrFailOrFail($id);
+
         $validated = $request->validated();
-
-        $role = Role::find($id);
-
-        if(!$role) {
-            return $this->sendError('Role no found.', []);
-        }
 
         $permissions = Arr::pull($validated, 'permissions');
 
@@ -106,11 +99,7 @@ class RoleController extends BaseController
      */
     public function destroy($id)
     {
-        $role = Role::find($id);
-
-        if(!$role) {
-            return $this->sendError('Role no found.', []);
-        }
+        $role = Role::findOrFailOrFail($id);
 
         $role->delete();
 

@@ -53,7 +53,7 @@ class CurrencyCodeController extends BaseController
      */
     public function show($id)
     {
-        $currency_code = CurrencyCode::find($id);
+        $currency_code = CurrencyCode::findOrFail($id);
 
         if(!$currency_code) {
             return $this->sendError('CurrencyCode no found.', []);
@@ -73,13 +73,9 @@ class CurrencyCodeController extends BaseController
      */
     public function update(UpdateCurrencyCode $request, $id)
     {
+        $currency_code = CurrencyCode::findOrFail($id);
+
         $validated = $request->validated();
-
-        $currency_code = CurrencyCode::find($id);
-
-        if(!$currency_code) {
-            return $this->sendError('CurrencyCode no found.', []);
-        }
 
         foreach ($validated as $key => $value) {
             $currency_code[$key] = $value;
@@ -99,11 +95,7 @@ class CurrencyCodeController extends BaseController
      */
     public function destroy($id)
     {
-        $currency_code = CurrencyCode::find($id);
-
-        if(!$currency_code) {
-            return $this->sendError('CurrencyCode no found.', []);
-        }
+        $currency_code = CurrencyCode::findOrFail($id);
 
         $currency_code->delete();
 

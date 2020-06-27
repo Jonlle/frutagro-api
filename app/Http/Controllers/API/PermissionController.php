@@ -53,11 +53,7 @@ class PermissionController extends BaseController
      */
     public function show($id)
     {
-        $permission = Permission::find($id);
-
-        if(!$permission) {
-            return $this->sendError('Permission no found.', []);
-        }
+        $permission = Permission::findOrFail($id);
 
         $permission =  new PermissionResource($permission);
 
@@ -73,13 +69,9 @@ class PermissionController extends BaseController
      */
     public function update(UpdatePermission $request, $id)
     {
+        $permission = Permission::findOrFail($id);
+
         $validated = $request->validated();
-
-        $permission = Permission::find($id);
-
-        if(!$permission) {
-            return $this->sendError('Permission no found.', []);
-        }
 
         foreach ($validated as $key => $value) {
             $permission[$key] = $value;
@@ -99,7 +91,7 @@ class PermissionController extends BaseController
      */
     public function destroy($id)
     {
-        $permission = Permission::find($id);
+        $permission = Permission::findOrFail($id);
 
         if(!$permission) {
             return $this->sendError('Permission no found.', []);
