@@ -87,11 +87,10 @@ class Handler extends ExceptionHandler
 
             case $exception instanceof QueryException:
                 Log::debug('QueryException: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
-                Log::debug('errorInfo: '.json_encode($exception->errorInfo));
                 $status = 500;
 
                 if (isset($exception->errorInfo) && isset($exception->errorInfo[1])) {
-                    $errorInfo = explode(":", $exception->getMessage());
+                    $errorInfo = explode(": ", $exception->getMessage());
                     $response['message'] = $errorInfo[1];
                     $response['error'] = [
                         'code' => $exception->errorInfo[1],
@@ -102,6 +101,9 @@ class Handler extends ExceptionHandler
                 }
                 break;
             default:
+                if ($exception->getMessage() !== null)
+                    Log::debug('Exception: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
+
                 return parent::render($request, $exception);
                 break;
         }
