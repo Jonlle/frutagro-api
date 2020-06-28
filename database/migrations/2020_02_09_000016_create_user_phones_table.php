@@ -24,19 +24,16 @@ class CreateUserPhonesTable extends Migration
             $table->id();
             $table->string('phone_number', 11);
             $table->string('status_id', 2)->default('ac');
+            $table->foreignId('user_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('principal', 1);
             $table->timestamps();
 
-            $table->unique('phone_number');
+            $table->index('status_id');
+            $table->index('user_id');
 
-            $table->index(["user_id"], 'fk_user_phones_users_idx');
-            $table->index(["status_id"], 'fk_user_phones_statuses_idx');
-
-            $table->foreign('status_id', 'fk_user_phones_statuses')
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
-                  ->onDelete('cascade');
-
-            $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
         });
     }

@@ -24,16 +24,21 @@ class CreateUserAddressesTable extends Migration
             $table->id();
             $table->string('address_type_id', 10);
             $table->string('address', 200);
+            $table->string('status_id', 2)->default('ac');
+            $table->foreignId('user_id')->constrained()
+                  ->onDelete('cascade');
             $table->timestamps();
 
-            $table->index(["address_type_id"], 'fk_user_address_address_types_idx');
-            $table->index(["user_id"], 'fk_user_address_users_idx');
+            $table->index('address_type_id');
+            $table->index('status_id');
+            $table->index('user_id');
 
-            $table->foreign('address_type_id', 'fk_user_address_address_types')
+            $table->foreign('address_type_id')
                   ->references('id')->on('address_types')
                   ->onDelete('cascade');
 
-            $table->foreignId('user_id')->constrained()
+            $table->foreign('status_id')
+                  ->references('id')->on('statuses')
                   ->onDelete('cascade');
         });
     }
