@@ -18,7 +18,7 @@ class UserAuth extends JsonResource
             'id' => $this->id,
             'username' => $this->username,
             'role' => $this->role_id,
-            'status' => $this->status->description,
+            'status' => $this->status->id,
             'name' => $this->name,
             'email' => $this->user_emails->where('principal', '1')->first()->email,
             "password" => $this->getAuthPassword(),

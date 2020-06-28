@@ -17,7 +17,7 @@ class Permission extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->name,
-            'status' => $this->status->description
+            'status' => $this->status
         ];
     }
 }

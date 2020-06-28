@@ -30,7 +30,7 @@ class Product extends JsonResource
             'file_path' => $this->file_path,
             'tags' => $this->tags,
             'currency' => $this->currency_code->currency_symbol,
-            'status' => $this->status->description,
+            'status' => $this->status->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
