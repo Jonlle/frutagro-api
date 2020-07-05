@@ -25,28 +25,43 @@ class UpdateCustomer extends FormRequest
     {
         return [
             'username' => [
-                'required',
                 'max:10',
                 Rule::unique('users')->ignore($this->route('customer')),
             ],
             'doc_type_id' => [
-                'required',
                 Rule::in(['ci', 'rif', 'p']),
             ],
-            'role_id' => 'required|max:8',
+            'role_id' => 'max:8',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
             'document' => [
-                'required',
                 'min:7',
                 'max:10',
                 'regex:/^[VEPJG][1-9]\d{5,8}$/',
                 Rule::unique('users')->ignore($this->route('customer')),
             ],
             'email' => [
-                'required',
                 'email',
+                'different:alternate_email',
                 Rule::unique('user_emails')->ignore($this->route('customer'), 'user_id'),
+            ],
+            'alternate_email' => [
+                'nullable',
+                'email',
+                'different:email',
+                Rule::unique('user_emails', 'email')->ignore($this->route('customer'), 'user_id'),
+            ],
+            'phone' => [
+                'required',
+                'string',
+                'different:alternate_phone',
+                Rule::unique('user_phones', 'phone_number')->ignore($this->route('customer'), 'user_id'),
+            ],
+            'alternate_phone' => [
+                'nullable',
+                'string',
+                'different:phone',
+                Rule::unique('user_phones', 'phone_number')->ignore($this->route('customer'), 'user_id'),
             ]
         ];
     }
