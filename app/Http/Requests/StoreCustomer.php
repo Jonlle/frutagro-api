@@ -24,7 +24,7 @@ class StoreCustomer extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users|max:10',
+            'username' => 'required|alpha_num|min:6|max:10|unique:users',
             'doc_type_id' => [
                 'required',
                 Rule::in(['ci', 'rif', 'p']),
@@ -32,7 +32,7 @@ class StoreCustomer extends FormRequest
             'role_id' => 'required|max:8',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
-            'document' => 'required|unique:users|min:7|max:10|regex:/^[VEPJG][1-9]\d{5,8}$/',
+            'document' => 'required|min:7|max:10|regex:/^[VEPJG][1-9]\d{5,8}$/|unique:users',
             'email' => 'required|email|unique:user_emails',
             'password' => 'required|max:12'
         ];
