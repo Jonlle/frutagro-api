@@ -11,13 +11,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user_email = new App\UserEmail([
+        $admin_email = new App\UserEmail([
             'email' => 'admin@frutagro.com',
             'status_id' => 'ac',
             'principal' => '1'
         ]);
 
-        $user = App\User::create([
+        $admin = App\User::create([
             'username' => 'admin',
             'role_id' => 'owner',
             'status_id' => 'ac',
@@ -25,6 +25,10 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('frutagro'),
         ]);
 
-        $user->user_emails()->save($user_email);
+        $admin->user_emails()->save($admin_email);
+
+        factory(App\User::class, 25)->create()->each(function ($user) {
+            $user->user_emails()->save(factory(App\UserEmail::class)->make());
+        });
     }
 }
