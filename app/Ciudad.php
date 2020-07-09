@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Ciudad extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
-        'state_id', 'city', 'capital'
+        'estado_id', 'ciudad', 'capital'
     ];
 
-    public function state()
+    public function estados()
     {
-        return $this->belongsTo('App\State');
+        return $this->belongsTo('App\Estado');
     }
 }

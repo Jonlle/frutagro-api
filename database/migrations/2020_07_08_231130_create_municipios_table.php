@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatesTable extends Migration
+class CreateMunicipiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('municipios', function (Blueprint $table) {
             $table->id();
-            $table->string('state', 50)->unique();
-            $table->string('iso', 5);
+            $table->foreignId('estado_id')->constrained()
+                  ->onDelete('cascade');
+            $table->string('municipio', 50)->unique();
+
+            $table->index('estado_id');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -26,6 +30,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('municipios');
     }
 }

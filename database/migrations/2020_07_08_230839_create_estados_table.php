@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParishesTable extends Migration
+class CreateEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateParishesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parishes', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('municipality_id')->constrained()
-                  ->onDelete('cascade');
-            $table->string('parish', 50)->unique();
-
-            $table->index('municipality_id');
+            $table->string('estado', 50)->unique();
+            $table->string('iso', 5)->unique();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateParishesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parishes');
+        Schema::dropIfExists('estados');
     }
 }
