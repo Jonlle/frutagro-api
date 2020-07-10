@@ -34,11 +34,22 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/customers', 'API\CustomerController');
     });
 
-    Route::apiResource('/users', 'API\UserController');
-    Route::apiResource('/permissions', 'API\PermissionController');
-    Route::apiResource('/roles', 'API\RoleController');
-    Route::apiResource('/categories', 'API\CategoryController');
-    Route::apiResource('/currencies', 'API\CurrencyCodeController');
-    Route::apiResource('/products', 'API\ProductController');
+    Route::prefix('/')->group(function () {
+        Route::apiResources([
+            'users' => 'API\UserController',
+            'permissions' => 'API\PermissionController',
+            'roles' => 'API\RoleController',
+            'categories' => 'API\CategoryController',
+            'currencies' => 'API\CurrencyCodeController',
+            'products' => 'API\ProductController',
+        ]);
+    });
+
+    Route::get('estados', 'API\AddressController@estados')->name('estados.index
+    ');
+    Route::get('estados/{estado}/ciudades', 'API\AddressController@ciudades')->name('estados.ciudades.index');
+    Route::get('estados/{estado}/municipios', 'API\AddressController@municipios')->name('estados.municipios.index');
+    Route::get('municipios/{municipio}/parroquias', 'API\AddressController@parroquias')->name('municipio.parroquias.index');
+
 
 });
