@@ -12,7 +12,7 @@ class EstadosTableSeeder extends Seeder
     public function run()
     {
         $estados = [
-            ['estado' => 'Amazonas', 'iso' => 'VE-Z'],
+            ['estado' => 'Amazonas', 'iso' => 'VE-X'],
             ['estado' => 'Anzoátegui', 'iso' => 'VE-B'],
             ['estado' => 'Apure', 'iso' => 'VE-C'],
             ['estado' => 'Aragua', 'iso' => 'VE-D'],
@@ -32,11 +32,11 @@ class EstadosTableSeeder extends Seeder
             ['estado' => 'Sucre', 'iso' => 'VE-R'],
             ['estado' => 'Táchira', 'iso' => 'VE-S'],
             ['estado' => 'Trujillo', 'iso' => 'VE-T'],
-            ['estado' => 'Vargas', 'iso' => 'VE-X'],
+            ['estado' => 'Vargas', 'iso' => 'VE-W'],
             ['estado' => 'Yaracuy', 'iso' => 'VE-U'],
             ['estado' => 'Zulia', 'iso' => 'VE-V'],
             ['estado' => 'Distrito Capital', 'iso' => 'VE-A'],
-            ['estado' => 'Dependencias Federales', 'iso' => 'VE-W']
+            ['estado' => 'Dependencias Federales', 'iso' => 'VE-Z']
         ];
 
         foreach ($estados as $row) {
