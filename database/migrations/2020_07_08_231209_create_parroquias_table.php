@@ -17,7 +17,7 @@ class CreateParroquiasTable extends Migration
             $table->id();
             $table->foreignId('municipio_id')->constrained()
                   ->onDelete('cascade');
-            $table->string('parroquia', 50)->unique();
+            $table->string('parroquia', 50);
 
             $table->index('municipio_id');
         });

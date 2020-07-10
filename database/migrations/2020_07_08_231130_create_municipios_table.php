@@ -17,7 +17,7 @@ class CreateMunicipiosTable extends Migration
             $table->id();
             $table->foreignId('estado_id')->constrained()
                   ->onDelete('cascade');
-            $table->string('municipio', 50)->unique();
+            $table->string('municipio', 50);
 
             $table->index('estado_id');
         });

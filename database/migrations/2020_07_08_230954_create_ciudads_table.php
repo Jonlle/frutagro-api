@@ -17,7 +17,7 @@ class CreateCiudadsTable extends Migration
             $table->id();
             $table->foreignId('estado_id')->constrained()
                   ->onDelete('cascade');
-            $table->string('ciudad', 50)->unique();
+            $table->string('ciudad', 50);
             $table->tinyInteger('capital')->default(0);
 
             $table->index('estado_id');
