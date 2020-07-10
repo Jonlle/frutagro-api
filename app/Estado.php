@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estado extends Model
 {
-    protected $table = 'ciudades';
     public $timestamps = false;
 
     protected $fillable = [
