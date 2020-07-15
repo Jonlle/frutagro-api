@@ -14,8 +14,6 @@ class PermissionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'permissions' => $this->collection
-        ];
+        return parent::toArray($request);
     }
 }

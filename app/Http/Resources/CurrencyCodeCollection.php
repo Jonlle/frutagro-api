@@ -14,8 +14,6 @@ class CurrencyCodeCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'corrency_codes' => $this->collection
-        ];
+        return parent::toArray($request);
     }
 }
