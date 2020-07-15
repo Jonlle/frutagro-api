@@ -248,4 +248,24 @@ class CustomerController extends BaseController
 
         return $this->sendResponse([], 'User has been deleted successfully.');
     }
+
+    public function lock($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->status_id == "in") {
+            $status = 'ac';
+            $message = "The user has been activated successfully.";
+        } else {
+            $status = 'in';
+            $message = "The user has been suspended successfully.";
+        }
+
+        $user->status_id = $status;
+        $user->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($succes, $message);
+    }
 }
