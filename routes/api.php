@@ -32,6 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::apiResource('/admins', 'API\AdminController');
         Route::apiResource('/customers', 'API\CustomerController');
+        Route::put('/customers/{customer}/lock', 'API\CustomerController@lock')->name('customer.lock');
     });
 
     Route::prefix('/')->group(function () {
@@ -45,8 +46,7 @@ Route::prefix('v1')->group(function () {
         ]);
     });
 
-    Route::get('estados', 'API\AddressController@estados')->name('estados.index
-    ');
+    Route::get('estados', 'API\AddressController@estados')->name('estados.index');
     Route::get('estados/{estado}/ciudades', 'API\AddressController@ciudades')->name('estados.ciudades.index');
     Route::get('estados/{estado}/municipios', 'API\AddressController@municipios')->name('estados.municipios.index');
     Route::get('municipios/{municipio}/parroquias', 'API\AddressController@parroquias')->name('municipio.parroquias.index');
