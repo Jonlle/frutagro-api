@@ -22,7 +22,7 @@ class StoreProduct extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|max:25',
+            'category_id' => 'required',
             'sku' => 'required|unique:products|max:10',
             'product_name' => 'required|string|unique:products|max:40',
             'stock' => 'nullable|numeric|min:1',

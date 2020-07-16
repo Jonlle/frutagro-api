@@ -38,7 +38,7 @@ class CategoryController extends BaseController
     public function store(StoreCategory $request)
     {
         $validated = $request->validated();
-        $validated += ["slug" => Str::slug($validated['id'])];
+        $validated += ["slug" => Str::slug($validated['category_name'])];
 
         $category = new Category($validated);
         $category->save();
@@ -73,7 +73,7 @@ class CategoryController extends BaseController
         $category = Category::findOrFail($id);
 
         $validated = $request->validated();
-        $validated += ["slug" => Str::slug($validated['id'])];
+        $validated += ["slug" => Str::slug($validated['category_name'])];
 
         foreach ($validated as $key => $value) {
             $category[$key] = $value;

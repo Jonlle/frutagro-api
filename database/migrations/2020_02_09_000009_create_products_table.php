@@ -22,7 +22,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('category_id', 25);
+            $table->foreignId('category_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('sku', 10)->unique();
             $table->string('product_name', 40)->unique();
             $table->string('slug');
@@ -42,10 +43,6 @@ class CreateProductsTable extends Migration
             $table->index('category_id');
             $table->index('currency_code_id');
             $table->index('status_id');
-
-            $table->foreign('category_id')
-                  ->references('id')->on('categories')
-                  ->onDelete('cascade');
 
             $table->foreign('currency_code_id')
                   ->references('id')->on('currency_codes')

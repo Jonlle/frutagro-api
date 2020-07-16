@@ -24,7 +24,7 @@ class UpdateProduct extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|max:25',
+            'category_id' => 'required',
             'sku' => [
                 'required',
                 'max:10',

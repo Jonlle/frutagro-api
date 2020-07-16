@@ -21,12 +21,11 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            $table->string('id', 25);
+            $table->id();
+            $table->string('category_name', 25);
             $table->string('slug');
             $table->string('description', 50);
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 

@@ -23,7 +23,7 @@ class UpdateCategory extends FormRequest
     public function rules()
     {
         return [
-            'id' => [
+            'category_name' => [
                 'required',
                 'max:25',
                 Rule::unique('categories')->ignore($this->route('category')),
