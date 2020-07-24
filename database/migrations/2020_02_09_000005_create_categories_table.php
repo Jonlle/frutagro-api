@@ -22,10 +22,15 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('category_name', 25);
+            $table->string('category_name', 25)->unique();
             $table->string('slug');
             $table->string('description', 50);
+            $table->string('status_id', 2)->default('ac');
             $table->timestamps();
+
+            $table->foreign('status_id')
+                  ->references('id')->on('statuses')
+                  ->onDelete('cascade');
         });
     }
 
