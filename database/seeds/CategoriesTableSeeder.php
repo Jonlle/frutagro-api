@@ -14,6 +14,7 @@ class CategoriesTableSeeder extends Seeder
         $categories = [
             ['category_name' => 'Frutas', 'slug' => 'frutas', 'description' => 'Frutas'],
             ['category_name' => 'Vegetales', 'slug' => 'vegetales', 'description' => 'Vegetales'],
+            ['category_name' => 'Verduras', 'slug' => 'verduras', 'description' => 'Verduras'],
         ];
 
         foreach ($categories as $row) {
