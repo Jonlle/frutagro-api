@@ -23,7 +23,8 @@ class StoreCategory extends FormRequest
     {
         return [
             'category_name' => 'required|string|unique:categories|max:25',
-            'description' => 'nullable|max:50'
+            'description' => 'nullable|max:50',
+            'status_id' => 'max:2',
         ];
     }
 }
