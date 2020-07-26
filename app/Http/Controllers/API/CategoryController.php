@@ -98,4 +98,24 @@ class CategoryController extends BaseController
 
         return $this->sendResponse([], 'Category has been deleted successfully.');
     }
+
+    public function lock($id)
+    {
+        $category = Category::findOrFail($id);
+
+        if ($category->status_id == "di") {
+            $status = 'en';
+            $message = "The category has been enabled successfully.";
+        } else {
+            $status = 'di';
+            $message = "The category has been disabled successfully.";
+        }
+
+        $category->status_id = $status;
+        $category->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($succes, $message);
+    }
 }
