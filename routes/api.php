@@ -44,6 +44,7 @@ Route::prefix('v1')->group(function () {
             'currencies' => 'API\CurrencyCodeController',
             'products' => 'API\ProductController',
         ]);
+        Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
     });
 
     Route::get('estados', 'API\AddressController@estados')->name('estados.index');
