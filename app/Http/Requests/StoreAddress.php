@@ -11,6 +11,13 @@ class StoreAddress extends FormRequest
      */
     public function authorize()
     {
+        $user = \App\User::findOrFail($this->route('customer'));
+
+        if ($user->role_id != 'person' && $user->role_id != 'business') {
+            Log::debug('failed Authorization: User is not a customer.');
+            return false;
+        }
+
         return true;
     }
 

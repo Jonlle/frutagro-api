@@ -11,6 +11,22 @@ class UpdateAddress extends FormRequest
      */
     public function authorize()
     {
+        $user = \App\User::findOrFail($this->route('customer'));
+
+        if ($user->role_id != 'person' && $user->role_id != 'business') {
+            session()->flash('failedAuthorizationMsg', 'User is not a customer.');
+            return false;
+        }
+
+        $address = \App\UserAddress::findOrFail($this->route('address'));
+
+        if ($address->user_id != $user->id) {
+            session()->flash('failedAuthorizationMsg', 'UserAddress does not belong to this user.');
+            return false;
+        }
+
+        session()->flash('address', $address);
+
         return true;
     }
 
