@@ -244,6 +244,10 @@ class CustomerController extends BaseController
     {
         $user = User::findOrFail($id);
 
+        if ($user->role_id != 'person' && $user->role_id != 'business') {
+            return $this->sendError('User is not a customer.', []);
+        }
+
         $user->delete();
 
         return $this->sendResponse([], 'User has been deleted successfully.');
