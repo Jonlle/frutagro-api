@@ -22,23 +22,27 @@ class CreateUserAddressesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('address_type_id', 10);
-            $table->string('address', 200);
             $table->string('status_id', 2)->default('ac');
             $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
+            $table->string('address_type_id', 10);
+            $table->string('postal_code', 4);
+            $table->string('state_id', 20);
+            $table->string('city_id', 20);
+            $table->string('address', 200);
+            $table->string('reference_point', 100)->nullable();
             $table->timestamps();
 
             $table->index('address_type_id');
             $table->index('status_id');
             $table->index('user_id');
 
-            $table->foreign('address_type_id')
-                  ->references('id')->on('address_types')
-                  ->onDelete('cascade');
-
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
+                  ->onDelete('cascade');
+
+            $table->foreign('address_type_id')
+                  ->references('id')->on('address_types')
                   ->onDelete('cascade');
         });
     }
