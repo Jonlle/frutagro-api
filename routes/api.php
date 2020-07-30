@@ -38,6 +38,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('/')->group(function () {
         Route::apiResources([
             'users' => 'API\UserController',
+            'customers.addresses' => 'API\CustomerAddressController',
             'permissions' => 'API\PermissionController',
             'roles' => 'API\RoleController',
             'categories' => 'API\CategoryController',
