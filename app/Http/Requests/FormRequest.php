@@ -40,6 +40,9 @@ class FormRequest extends LaravelFormRequest
             'success' => false,
             'message' => "Access denied. You are not authorized for this action."
         ];
+        if (session()->has('failedAuthorizationMsg')) {
+            Log::debug('Failed Authorization: '.session('failedAuthorizationMsg'));
+        }
         throw new HttpResponseException(response()->json($response, 403));
     }
 
