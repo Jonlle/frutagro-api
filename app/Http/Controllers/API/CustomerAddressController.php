@@ -43,7 +43,7 @@ class CustomerAddressController extends BaseController
     {
         $validated = $request->validated();
 
-        $address = session('address');
+        $user = session('user');
 
         if (count($user->user_addresses) === 5) {
             return $this->sendError('Adding more than five addresses is not allowed.', []);
