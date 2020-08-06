@@ -22,24 +22,31 @@ class CreateOrdersTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('status_id', 2);
-            $table->date('order_date');
-            $table->date('date_processed');
-            $table->string('address_to_send', 200);
-
-            $table->index(["payment_id"], 'fk_orders_payments_idx');
-            $table->index(["status_id"], 'fk_orders_statuses_idx');
-            $table->index(["user_id"], 'fk_orders_users_idx');
-
+            $table->string('order_number')->unique();
+            $table->string('status_id', 2)->default('ac');
+            $table->foreignId('user_id')->constrained()
+                  ->onDelete('cascade');
+            $table->foreignId('user_address_id')->constrained()
+                  ->onDelete('cascade');
             $table->foreignId('payment_id')->constrained()
                   ->onDelete('cascade');
+            $table->foreignId('delivery_method_id')->constrained()
+                  ->onDelete('cascade');
+            $table->text('commentary')->nullable();
+            $table->decimal('grand_total', 20, 2);
+            $table->unsignedInteger('item_count');
+            $table->timestamps();
 
-            $table->foreign('status_id', 'fk_orders_statuses')
+            $table->index('status_id');
+            $table->index("user_id");
+            $table->index("user_address_id");
+            $table->index("payment_id");
+            $table->index("delivery_method_id");
+
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');
 
-            $table->foreignId('user_id')->constrained()
-                  ->onDelete('cascade');
         });
     }
 
