@@ -37,6 +37,6 @@ class Product extends Model
 
     public function suppliers()
     {
-        return $this->belongsToMany('App\Supplier')->using('App\ProductSupplier');
+        return $this->belongsToMany('App\Supplier');
     }
 }
