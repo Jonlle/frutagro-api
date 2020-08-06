@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    // protected $primaryKey = 'payment_id';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'status_id'
+    ];
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
 }

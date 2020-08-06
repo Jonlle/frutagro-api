@@ -22,11 +22,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('status_id', 2);
+            $table->string('status_id', 2)->default('ac');
 
-            $table->index(["status_id"], 'fk_status_payments_idx');
+            $table->index('status_id');
 
-            $table->foreign('status_id', 'fk_payments_statuses')
+            $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');
         });
