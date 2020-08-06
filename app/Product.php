@@ -15,11 +15,6 @@ class Product extends Model
         return $this->hasMany('App\CarShopping');
     }
 
-    public function order_products()
-    {
-        return $this->hasMany('App\OrderProduct');
-    }
-
     public function status()
     {
         return $this->belongsTo('App\Status');
@@ -33,6 +28,11 @@ class Product extends Model
     public function currency_code()
     {
         return $this->belongsTo('App\CurrencyCode');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->whitPivot('tax_id', 'quantity', 'discount', 'unit');
     }
 
     public function suppliers()
