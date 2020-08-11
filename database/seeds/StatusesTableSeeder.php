@@ -20,6 +20,7 @@ class StatusesTableSeeder extends Seeder
             ['id' => 'in', 'description' => 'Inactive - Inactivo'],
             ['id' => 'ne', 'description' => 'New - Nuevo'],
             ['id' => 'pe', 'description' => 'Pending - Pendiente'],
+            ['id' => 'pr', 'description' => 'Processed - Procesada'],
             ['id' => 'un', 'description' => 'Unavailable - Agotado'],
             ['id' => 've', 'description' => 'Verified - Verificado'],
         ];
