@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique();
-            $table->string('status_id', 2)->default('ac');
+            $table->string('status_id', 2)->default('pe');
             $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
             $table->foreignId('user_address_id')->constrained()

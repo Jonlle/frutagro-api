@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('status_id', 2)->default('ac');
+            $table->string('status_id', 2)->default('pe');
 
             $table->index('status_id');
 
