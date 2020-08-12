@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OrderProduct extends Model
+class OrderProduct extends Pivot
 {
     public $timestamps = false;
+    public $incrementing = true;
 
     public function tax()
     {

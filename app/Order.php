@@ -37,7 +37,10 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product')->whitPivot('tax_id', 'quantity', 'discount', 'unit');
+        return $this->belongsToMany('App\Product')
+                        ->withPivot([
+                            'tax_id', 'quantity', 'discount', 'unit'
+                        ]);
     }
 
 }

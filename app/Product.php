@@ -32,7 +32,10 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order')->whitPivot('tax_id', 'quantity', 'discount', 'unit');
+        return $this->belongsToMany('App\Order')
+                        ->withPivot([
+                            'tax_id', 'quantity', 'discount', 'unit'
+                        ]);
     }
 
     public function suppliers()
