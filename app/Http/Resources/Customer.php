@@ -25,7 +25,7 @@ class Customer extends JsonResource
             'document' => $this->document,
             'avatar' => $this->avatar,
             'phone' => $this->user_phones,
-            'address' => $this->user_addresses,
+            'address' => new AddressCollection($this->user_addresses),
             'email_verified_at' => $this->email_verified_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
