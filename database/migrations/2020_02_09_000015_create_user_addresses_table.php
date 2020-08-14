@@ -26,9 +26,11 @@ class CreateUserAddressesTable extends Migration
             $table->foreignId('user_id')->constrained()
                   ->onDelete('cascade');
             $table->string('address_type_id', 10);
-            $table->string('postal_code', 4);
-            $table->string('state_id', 20);
-            $table->string('city_id', 20);
+            $table->string('postal_code', 5);
+            $table->foreignId('estado_id')->constrained()
+                  ->onDelete('cascade');
+            $table->foreignId('ciudad_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('address', 200);
             $table->string('reference_point', 100)->nullable();
             $table->timestamps();
