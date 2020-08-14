@@ -43,6 +43,11 @@ class Status extends Model
         return $this->hasMany('App\UserEmail');
     }
 
+    public function user_addresses()
+    {
+        return $this->hasMany('App\UserAddress');
+    }
+
     public function financial_entities()
     {
         return $this->hasMany('App\FinancialEntity');

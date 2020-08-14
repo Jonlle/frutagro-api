@@ -21,4 +21,9 @@ class Estado extends Model
     {
         return $this->hasMany('App\Municipio');
     }
+
+    public function user_addresses()
+    {
+        return $this->hasMany('App\UserAddress');
+    }
 }

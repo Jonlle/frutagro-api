@@ -17,4 +17,9 @@ class Ciudad extends Model
     {
         return $this->belongsTo('App\Estado');
     }
+
+    public function user_addresses()
+    {
+        return $this->hasMany('App\UserAddress');
+    }
 }
