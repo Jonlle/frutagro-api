@@ -26,12 +26,13 @@ class CreateSuppliersTable extends Migration
             $table->string('contact_name', 40);
             $table->string('contact_title', 30);
             $table->string('address', 200);
-            $table->string('code_postal', 10);
-            $table->string('city', 15);
+            $table->string('code_postal', 5);
+            $table->string('city', 50);
             $table->string('country', 15);
             $table->string('phone', 11);
-            $table->double('fax', 11);
-            $table->double('email', 50);
+            $table->string('fax', 11)->nullable();
+            $table->string('email', 50)->unique();
+            $table->timestamps();
 
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
