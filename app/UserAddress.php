@@ -20,12 +20,12 @@ class UserAddress extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function state()
+    public function estado()
     {
         return $this->belongsTo('App\Estado');
     }
 
-    public function city()
+    public function ciudad()
     {
         return $this->belongsTo('App\Ciudad');
     }
