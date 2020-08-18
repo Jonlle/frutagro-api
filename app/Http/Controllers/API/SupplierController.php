@@ -7,13 +7,7 @@ use App\Http\Requests\UpdateSupplier;
 use App\Http\Resources\SupplierCollection;
 use App\Http\Resources\Supplier as SupplierResource;
 use App\Supplier;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 
 class SupplierController extends BaseController
 {
