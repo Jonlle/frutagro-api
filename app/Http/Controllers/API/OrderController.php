@@ -8,6 +8,7 @@ use App\Http\Resources\OrderCollection;
 use App\Http\Resources\Order as OrderResource;
 use App\Order;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Http\Request;
 
 class OrderController extends BaseController
 {
@@ -109,5 +110,13 @@ class OrderController extends BaseController
         $succes['status'] = $status;
 
         return $this->sendResponse($succes, $message);
+    }
+
+    public function filterOrder(Request $request)
+    {
+        $orders = Order::filter()->orderBy('id')->get();
+        $orders = new OrderCollection($orders);
+
+        return $this->sendResponse($orders, 'Orders has been retrieved successfully.');
     }
 }
