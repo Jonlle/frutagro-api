@@ -100,6 +100,12 @@ class Handler extends ExceptionHandler
                     $response['message'] = 'Internal Server Error.';
                 }
                 break;
+
+            case $exception instanceof CustomException:
+                $response['message'] = $exception->getMessage();
+                $status = 400;
+                break;
+
             default:
                 if ($exception->getMessage() !== null)
                     Log::debug('Exception: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
