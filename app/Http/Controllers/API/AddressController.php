@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Estado;
-use App\Municipio;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\State;
+use App\Municipality;
 
 class AddressController extends BaseController
 {
@@ -16,11 +13,11 @@ class AddressController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function estados()
+    public function states()
     {
-        $estados = Estado::all();
+        $states = State::all();
 
-        return $this->sendResponse($estados, 'States has been retrieved successfully.');
+        return $this->sendResponse($states, 'States has been retrieved successfully.');
     }
 
     /**
@@ -28,13 +25,13 @@ class AddressController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function ciudades($id)
+    public function cities($id)
     {
-        $estado = Estado::findOrFail($id);
+        $state = State::findOrFail($id);
 
-        $ciudades = $estado->ciudades;
+        $cities = $state->cities;
 
-        return $this->sendResponse($ciudades, 'Cities has been retrieved successfully.');
+        return $this->sendResponse($cities, 'Cities has been retrieved successfully.');
     }
 
     /**
@@ -42,13 +39,13 @@ class AddressController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function municipios($id)
+    public function municipalities($id)
     {
-        $estado = Estado::findOrFail($id);
+        $state = State::findOrFail($id);
 
-        $municipios = $estado->municipios;
+        $municipalities = $state->municipalities;
 
-        return $this->sendResponse($municipios, 'Municipalities has been retrieved successfully.');
+        return $this->sendResponse($municipalities, 'Municipalities has been retrieved successfully.');
     }
 
     /**
@@ -56,12 +53,12 @@ class AddressController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function parroquias($id)
+    public function parishes($id)
     {
-        $municipio = Municipio::findOrFail($id);
+        $municipality = Municipality::findOrFail($id);
 
-        $parroquias = $municipio->parroquias;
+        $parishes = $municipality->parishes;
 
-        return $this->sendResponse($parroquias, 'Parishes has been retrieved successfully.');
+        return $this->sendResponse($parishes, 'Parishes has been retrieved successfully.');
     }
 }

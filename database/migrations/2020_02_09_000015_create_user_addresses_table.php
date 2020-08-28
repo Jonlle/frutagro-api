@@ -27,11 +27,10 @@ class CreateUserAddressesTable extends Migration
                   ->onDelete('cascade');
             $table->string('address_type_id', 10);
             $table->string('postal_code', 5);
-            $table->foreignId('estado_id')->constrained()
+            $table->foreignId('state_id')->constrained()
                   ->onDelete('cascade');
-            $table->unsignedBigInteger('ciudad_id');
-            // $table->foreignId('ciudad_id')->on('ciudades')->constrained()
-            //       ->onDelete('cascade');
+            $table->foreignId('city_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('address', 200);
             $table->string('reference_point', 100)->nullable();
             $table->timestamps();
@@ -46,10 +45,6 @@ class CreateUserAddressesTable extends Migration
 
             $table->foreign('address_type_id')
                   ->references('id')->on('address_types')
-                  ->onDelete('cascade');
-
-            $table->foreign('ciudad_id')
-                  ->references('id')->on('ciudades')
                   ->onDelete('cascade');
         });
     }

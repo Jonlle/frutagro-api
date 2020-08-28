@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('/')->group(function () {
         Route::get('orders/list', 'API\OrderController@filterOrder')->name('order.filter');
+        Route::get('users/list', 'API\UserController@filterUser')->name('user.filter');
         Route::apiResources([
             'users' => 'API\UserController',
             'suppliers' => 'API\SupplierController',
@@ -52,10 +53,10 @@ Route::prefix('v1')->group(function () {
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
     });
 
-    Route::get('estados', 'API\AddressController@estados')->name('estados.index');
-    Route::get('estados/{estado}/ciudades', 'API\AddressController@ciudades')->name('estados.ciudades.index');
-    Route::get('estados/{estado}/municipios', 'API\AddressController@municipios')->name('estados.municipios.index');
-    Route::get('municipios/{municipio}/parroquias', 'API\AddressController@parroquias')->name('municipio.parroquias.index');
+    Route::get('states', 'API\AddressController@states')->name('states.index');
+    Route::get('states/{state}/cities', 'API\AddressController@cities')->name('states.cities.index');
+    Route::get('states/{state}/municipalities', 'API\AddressController@municipalities')->name('states.municipalities.index');
+    Route::get('municipalities/{municipality}/parishes', 'API\AddressController@parishes')->name('municipality.parishes.index');
 
 
 });

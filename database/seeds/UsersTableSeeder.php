@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
 
         $customer_email = new App\UserEmail(['email' => 'admin@admin.com', 'principal' => '1']);
 
-        $customer_address = new App\UserAddress(['address_type_id' => 'domicilio', 'postal_code' => '1090', 'estado_id' => 24, 'ciudad_id' => 149, 'address' => 'El Valle, Caracas']);
+        $customer_address = new App\UserAddress(['address_type_id' => 'domicilio', 'postal_code' => '1090', 'state_id' => 24, 'city_id' => 149, 'address' => 'El Valle, Caracas']);
 
         $customer->user_emails()->save($customer_email);
         $customer->user_addresses()->save($customer_address);
