@@ -19,14 +19,21 @@ class BaseController extends Controller
     CONST HTTP_CONFLICT = Response::HTTP_CONFLICT;                          // 409
     CONST HTTP_UNPROCESSABLE_ENTITY = Response::HTTP_UNPROCESSABLE_ENTITY;  // 422
 
-    public function sendResponse($result, $message, $code = self::HTTP_OK)
+    /**
+     * Send success response
+     *
+     * @param   string          $message
+     * @param   resource        $result
+     * @param   integer         $code
+     */
+    public function sendResponse($message, $result = null, $code = self::HTTP_OK)
     {
     	$response = [
             'success' => true,
             'message' => $message,
         ];
 
-        if(!empty($result)){
+        if($result){
             $response['data'] = $result;
         }
 

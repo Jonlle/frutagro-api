@@ -17,7 +17,7 @@ class AddressController extends BaseController
     {
         $states = State::all();
 
-        return $this->sendResponse($states, 'States has been retrieved successfully.');
+        return $this->sendResponse('States has been retrieved successfully.', $states);
     }
 
     /**
@@ -31,7 +31,7 @@ class AddressController extends BaseController
 
         $cities = $state->cities;
 
-        return $this->sendResponse($cities, 'Cities has been retrieved successfully.');
+        return $this->sendResponse('Cities has been retrieved successfully.', $cities);
     }
 
     /**
@@ -45,7 +45,7 @@ class AddressController extends BaseController
 
         $municipalities = $state->municipalities;
 
-        return $this->sendResponse($municipalities, 'Municipalities has been retrieved successfully.');
+        return $this->sendResponse('Municipalities has been retrieved successfully.', $municipalities );
     }
 
     /**
@@ -59,6 +59,6 @@ class AddressController extends BaseController
 
         $parishes = $municipality->parishes;
 
-        return $this->sendResponse($parishes, 'Parishes has been retrieved successfully.');
+        return $this->sendResponse('Parishes has been retrieved successfully.', $parishes);
     }
 }

@@ -24,9 +24,10 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $categories = new CategoryCollection(Category::all());
+        $categories = !empty(request()->all()) ? Category::filter()->get() : Category::all();
+        $categories = new CategoryCollection($categories);
 
-        return $this->sendResponse($categories, 'Categories has been retrieved successfully.');
+        return $this->sendResponse('Categories has been retrieved successfully.', $categories);
     }
 
     /**
@@ -43,7 +44,7 @@ class CategoryController extends BaseController
         $category = new Category($validated);
         $category->save();
 
-        return $this->sendResponse([], 'Category has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('Category has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -58,7 +59,7 @@ class CategoryController extends BaseController
 
         $category =  new CategoryResource($category);
 
-        return $this->sendResponse($category, 'Category has been retrieved successfully.');
+        return $this->sendResponse('Category has been retrieved successfully.', $category);
     }
 
     /**
@@ -81,7 +82,7 @@ class CategoryController extends BaseController
 
         $category->save();
 
-        return $this->sendResponse([], 'Category has been updated successfully.');
+        return $this->sendResponse('Category has been updated successfully.');
     }
 
     /**
@@ -96,7 +97,7 @@ class CategoryController extends BaseController
 
         $category->delete();
 
-        return $this->sendResponse([], 'Category has been deleted successfully.');
+        return $this->sendResponse('Category has been deleted successfully.');
     }
 
     public function lock($id)
@@ -116,6 +117,6 @@ class CategoryController extends BaseController
 
         $succes['status'] = $status;
 
-        return $this->sendResponse($succes, $message);
+        return $this->sendResponse($message, $succes);
     }
 }

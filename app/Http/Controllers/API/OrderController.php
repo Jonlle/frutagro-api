@@ -21,7 +21,7 @@ class OrderController extends BaseController
     {
         $orders = new OrderCollection(Order::all());
 
-        return $this->sendResponse($orders, 'Orders has been retrieved successfully.');
+        return $this->sendResponse('Orders has been retrieved successfully.', $orders);
     }
 
     /**
@@ -37,7 +37,7 @@ class OrderController extends BaseController
         $order = new Order($validated);
         $order->save();
 
-        return $this->sendResponse([], 'Order has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('Order has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -52,7 +52,7 @@ class OrderController extends BaseController
 
         $order =  new OrderResource($order);
 
-        return $this->sendResponse($order, 'Order has been retrieved successfully.');
+        return $this->sendResponse('Order has been retrieved successfully.', $order);
     }
 
     /**
@@ -74,7 +74,7 @@ class OrderController extends BaseController
 
         $order->save();
 
-        return $this->sendResponse([], 'Order has been updated successfully.');
+        return $this->sendResponse('Order has been updated successfully.');
     }
 
     /**
@@ -89,7 +89,7 @@ class OrderController extends BaseController
 
         $order->delete();
 
-        return $this->sendResponse([], 'Order has been deleted successfully.');
+        return $this->sendResponse('Order has been deleted successfully.');
     }
 
     public function lock($id)
@@ -109,7 +109,7 @@ class OrderController extends BaseController
 
         $succes['status'] = $status;
 
-        return $this->sendResponse($succes, $message);
+        return $this->sendResponse($message, $succes);
     }
 
     public function filterOrder(Request $request)
@@ -117,6 +117,6 @@ class OrderController extends BaseController
         $orders = Order::filter()->orderBy('id')->get();
         $orders = new OrderCollection($orders);
 
-        return $this->sendResponse($orders, 'Orders has been retrieved successfully.');
+        return $this->sendResponse('Orders has been retrieved successfully.', $orders);
     }
 }

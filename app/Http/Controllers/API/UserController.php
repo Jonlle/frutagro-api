@@ -24,9 +24,10 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users = new UserCollection(User::all());
+        $users = !empty(request()->all()) ? User::filter()->get() : User::all();
+        $users = new UserCollection($users);
 
-        return $this->sendResponse($users, 'Users has been retrieved successfully.');
+        return $this->sendResponse('Users has been retrieved successfully.', $users);
     }
 
     /**
@@ -52,7 +53,7 @@ class UserController extends BaseController
         $user->save();
         $user->user_emails()->save($user_email);
 
-        return $this->sendResponse([], 'User has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('User has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -67,7 +68,7 @@ class UserController extends BaseController
 
         $user = new UserResource($user);
 
-        return $this->sendResponse($user, 'User has been retrieved successfully.');
+        return $this->sendResponse('User has been retrieved successfully.', $user);
     }
 
     /**
@@ -94,7 +95,7 @@ class UserController extends BaseController
 
         $user->save();
 
-        return $this->sendResponse([], 'User has been updated successfully.');
+        return $this->sendResponse('User has been updated successfully.');
     }
 
     /**
@@ -109,6 +110,6 @@ class UserController extends BaseController
 
         $user->delete();
 
-        return $this->sendResponse([], 'User has been deleted successfully.');
+        return $this->sendResponse('User has been deleted successfully.');
     }
 }

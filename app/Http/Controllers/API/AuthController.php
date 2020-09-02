@@ -70,7 +70,7 @@ class AuthController extends BaseController
 
         $success['username'] = $user->username;
 
-        return $this->sendResponse($success, 'User register successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('User register successfully.', $success, BaseController::HTTP_CREATED);
     }
 
     public function login(Request $request)
@@ -110,7 +110,7 @@ class AuthController extends BaseController
                 $tokenResult->token->expires_at
             )->toDateTimeString();
 
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse('User login successfully.', $success);
         } else {
             return $this->sendError('Unauthorised.', [], BaseController::HTTP_UNAUTHORIZED);
         }
@@ -119,7 +119,7 @@ class AuthController extends BaseController
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
-        return $this->sendResponse([], 'User logout successfully.');
+        return $this->sendResponse('User logout successfully.');
     }
 
     public function user()
@@ -127,7 +127,7 @@ class AuthController extends BaseController
         $user = Auth::user();
         $success = new UserResource($user);
 
-        return $this->sendResponse($success, 'User retrieved successfully.');
+        return $this->sendResponse('User retrieved successfully.');
     }
 
     public function updateRememberToken(Request $request)
@@ -141,6 +141,6 @@ class AuthController extends BaseController
         $user->save();
         $user->timestamps = $timestamps;
 
-        return $this->sendResponse([], 'Remember token has been updated successfully.');
+        return $this->sendResponse('Remember token has been updated successfully.');
     }
 }

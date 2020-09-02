@@ -29,7 +29,7 @@ class CustomerAddressController extends BaseController
 
         $addresses = new AddressCollection($user->user_addresses);
 
-        return $this->sendResponse($addresses, 'Addresses has been retrieved successfully.');
+        return $this->sendResponse('Addresses has been retrieved successfully.', $addresses);
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomerAddressController extends BaseController
 
         $user->user_addresses()->save($addresses);
 
-        return $this->sendResponse([], 'UserAddress has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('UserAddress has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -79,7 +79,7 @@ class CustomerAddressController extends BaseController
 
         $success = new AddressResource($address);
 
-        return $this->sendResponse($success, 'UserAddress has been retrieved successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('UserAddress has been retrieved successfully.', $success);
     }
 
     /**
@@ -102,7 +102,7 @@ class CustomerAddressController extends BaseController
 
         $address->save();
 
-        return $this->sendResponse([], 'UserAddress has been updated successfully.');
+        return $this->sendResponse('UserAddress has been updated successfully.');
     }
 
     /**
@@ -128,6 +128,6 @@ class CustomerAddressController extends BaseController
 
         $address->delete();
 
-        return $this->sendResponse([], 'User has been deleted successfully.');
+        return $this->sendResponse('User has been deleted successfully.');
     }
 }

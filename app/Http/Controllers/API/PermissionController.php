@@ -24,7 +24,7 @@ class PermissionController extends BaseController
     {
         $permissions = new PermissionCollection(Permission::all());
 
-        return $this->sendResponse($permissions, 'Permissions has been retrieved successfully.');
+        return $this->sendResponse('Permissions has been retrieved successfully.', $permissions);
     }
 
     /**
@@ -42,7 +42,7 @@ class PermissionController extends BaseController
 
         $success = new PermissionResource($permission);
 
-        return $this->sendResponse($success, 'Permission has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('Permission has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -57,7 +57,7 @@ class PermissionController extends BaseController
 
         $permission =  new PermissionResource($permission);
 
-        return $this->sendResponse($permission, 'Permission has been retrieved successfully.');
+        return $this->sendResponse('Permission has been retrieved successfully.', $permission);
     }
 
     /**
@@ -80,7 +80,7 @@ class PermissionController extends BaseController
         $permission->save();
         $success = new PermissionResource($permission);
 
-        return $this->sendResponse($success, 'Permission has been updated successfully.');
+        return $this->sendResponse('Permission has been updated successfully.', $success);
     }
 
     /**
@@ -99,6 +99,6 @@ class PermissionController extends BaseController
 
         $permission->delete();
 
-        return $this->sendResponse([], 'Permission has been deleted successfully.');
+        return $this->sendResponse('Permission has been deleted successfully.');
     }
 }

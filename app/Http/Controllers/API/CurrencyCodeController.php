@@ -24,7 +24,7 @@ class CurrencyCodeController extends BaseController
     {
         $currency_codes = new CurrencyCodeCollection(CurrencyCode::all());
 
-        return $this->sendResponse($currency_codes, 'CurrencyCodes has been retrieved successfully.');
+        return $this->sendResponse('CurrencyCodes has been retrieved successfully.', $currency_codes);
     }
 
     /**
@@ -40,9 +40,7 @@ class CurrencyCodeController extends BaseController
         $currency_code = new CurrencyCode($validated);
         $currency_code->save();
 
-        $success = new CurrencyCodeResource($currency_code);
-
-        return $this->sendResponse($success, 'CurrencyCode has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('CurrencyCode has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -61,7 +59,7 @@ class CurrencyCodeController extends BaseController
 
         $currency_code =  new CurrencyCodeResource($currency_code);
 
-        return $this->sendResponse($currency_code, 'CurrencyCode has been retrieved successfully.');
+        return $this->sendResponse('CurrencyCode has been retrieved successfully.', $currency_code);
     }
 
     /**
@@ -84,7 +82,7 @@ class CurrencyCodeController extends BaseController
         $currency_code->save();
         $success = new CurrencyCodeResource($currency_code);
 
-        return $this->sendResponse($success, 'CurrencyCode has been updated successfully.');
+        return $this->sendResponse('CurrencyCode has been updated successfully.', $success);
     }
 
     /**
@@ -99,6 +97,6 @@ class CurrencyCodeController extends BaseController
 
         $currency_code->delete();
 
-        return $this->sendResponse([], 'CurrencyCode has been deleted successfully.');
+        return $this->sendResponse('CurrencyCode has been deleted successfully.');
     }
 }

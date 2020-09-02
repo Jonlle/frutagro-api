@@ -10,11 +10,8 @@ use App\Http\Requests\UpdateCustomer;
 use App\Http\Resources\CustomerCollection;
 use App\Http\Resources\Customer as CustomerResource;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Validator;
 use Illuminate\Support\Facades\Log;
 
 class CustomerController extends BaseController
@@ -31,7 +28,7 @@ class CustomerController extends BaseController
                 ->get()
         );
 
-        return $this->sendResponse($users, 'Users has been retrieved successfully.');
+        return $this->sendResponse('Users has been retrieved successfully.', $users);
     }
 
     /**
@@ -57,7 +54,7 @@ class CustomerController extends BaseController
         $user->save();
         $user->user_emails()->save($user_email);
 
-        return $this->sendResponse([], 'User has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('User has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -76,7 +73,7 @@ class CustomerController extends BaseController
 
         $user = new CustomerResource($user);
 
-        return $this->sendResponse($user, 'User has been retrieved successfully.');
+        return $this->sendResponse('User has been retrieved successfully.', $user);
     }
 
     /**
@@ -231,7 +228,7 @@ class CustomerController extends BaseController
 
         $user->save();
 
-        return $this->sendResponse([], 'User has been updated successfully.');
+        return $this->sendResponse('User has been updated successfully.');
     }
 
     /**
@@ -250,7 +247,7 @@ class CustomerController extends BaseController
 
         $user->delete();
 
-        return $this->sendResponse([], 'User has been deleted successfully.');
+        return $this->sendResponse('User has been deleted successfully.');
     }
 
     public function lock($id)
@@ -270,6 +267,6 @@ class CustomerController extends BaseController
 
         $succes['status'] = $status;
 
-        return $this->sendResponse($succes, $message);
+        return $this->sendResponse($message, $succes);
     }
 }

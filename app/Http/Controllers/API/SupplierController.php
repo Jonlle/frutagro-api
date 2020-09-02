@@ -20,7 +20,7 @@ class SupplierController extends BaseController
     {
         $suppliers = new SupplierCollection(Supplier::all());
 
-        return $this->sendResponse($suppliers, 'Suppliers has been retrieved successfully.');
+        return $this->sendResponse('Suppliers has been retrieved successfully.', $suppliers);
     }
 
     /**
@@ -36,7 +36,7 @@ class SupplierController extends BaseController
         $supplier = new Supplier($validated);
         $supplier->save();
 
-        return $this->sendResponse([], 'Supplier has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('Supplier has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -51,7 +51,7 @@ class SupplierController extends BaseController
 
         $supplier =  new SupplierResource($supplier);
 
-        return $this->sendResponse($supplier, 'Supplier has been retrieved successfully.');
+        return $this->sendResponse('Supplier has been retrieved successfully.', $supplier);
     }
 
     /**
@@ -73,7 +73,7 @@ class SupplierController extends BaseController
 
         $supplier->save();
 
-        return $this->sendResponse([], 'Supplier has been updated successfully.');
+        return $this->sendResponse('Supplier has been updated successfully.');
     }
 
     /**
@@ -88,7 +88,7 @@ class SupplierController extends BaseController
 
         $supplier->delete();
 
-        return $this->sendResponse([], 'Supplier has been deleted successfully.');
+        return $this->sendResponse('Supplier has been deleted successfully.');
     }
 
     public function lock($id)
@@ -108,6 +108,6 @@ class SupplierController extends BaseController
 
         $succes['status'] = $status;
 
-        return $this->sendResponse($succes, $message);
+        return $this->sendResponse($message, $succes);
     }
 }

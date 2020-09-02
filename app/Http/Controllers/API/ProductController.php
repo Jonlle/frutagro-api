@@ -25,7 +25,7 @@ class ProductController extends BaseController
     {
         $products =  new ProductCollection(Product::all());
 
-        return $this->sendResponse($products, 'Products has been retrieved successfully.');
+        return $this->sendResponse('Products has been retrieved successfully.', $products);
     }
 
     /**
@@ -42,7 +42,7 @@ class ProductController extends BaseController
         $product = new Product($validated);
         $product = $product->save();
 
-        return $this->sendResponse([], 'Product has been created successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('Product has been created successfully.', null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductController extends BaseController
 
         $product =  new ProductResource($product);
 
-        return $this->sendResponse($product, 'Product has been retrieved successfully.');
+        return $this->sendResponse('Product has been retrieved successfully.', $product);
     }
 
     /**
@@ -81,7 +81,7 @@ class ProductController extends BaseController
 
         $product->save();
 
-        return $this->sendResponse([], 'Product has been updated successfully.');
+        return $this->sendResponse('Product has been updated successfully.');
     }
 
     /**
@@ -96,6 +96,6 @@ class ProductController extends BaseController
 
         $product->delete();
 
-        return $this->sendResponse([], 'Product has been deleted successfully.');
+        return $this->sendResponse('Product has been deleted successfully.');
     }
 }
