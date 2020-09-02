@@ -22,7 +22,9 @@ class StoreCurrencyCode extends FormRequest
     public function rules()
     {
         return [
-            'currency_name' => 'required|unique:currency_codes|max:10',
+            'id' => 'required|max:3',
+            'currency_name' => 'required|unique:currency_codes|max:20',
+            'currency_symbol' => 'required|max:4',
             'exchange_rate' => 'required|numeric'
         ];
     }

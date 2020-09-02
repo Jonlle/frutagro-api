@@ -17,6 +17,7 @@ class CurrencyCode extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->currency_name,
+            'symbol' => $this->currency_symbol,
             'exchange_rate' => $this->exchange_rate
         ];
     }
