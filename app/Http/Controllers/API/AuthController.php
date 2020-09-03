@@ -11,6 +11,7 @@ use App\UserEmail;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +49,7 @@ class AuthController extends BaseController
 
         $success['username'] = $user->username;
 
-        return $this->sendResponse($success, 'User register successfully.', BaseController::HTTP_CREATED);
+        return $this->sendResponse('User register successfully.', $success, BaseController::HTTP_CREATED);
     }
 
     public function registerAdmin(StoreUser $request)
@@ -82,7 +83,14 @@ class AuthController extends BaseController
         ]);
 
         if($validator->fails()) {
-            return $this->sendError('Validation error.', $validator->errors(), BaseController::HTTP_UNPROCESSABLE_ENTITY);
+
+            // $failed_rules = $validator->failed();
+            // $messages = (new ValidationException($validator))->errors();
+            $error = new \stdClass();
+            $error->failed_rules = $validator->failed();
+            $error->messages = (new ValidationException($validator))->errors();
+
+            return $this->sendError('The given data was invalid.', BaseController::HTTP_UNPROCESSABLE_ENTITY, $error);
 
         }
 
@@ -112,7 +120,7 @@ class AuthController extends BaseController
 
             return $this->sendResponse('User login successfully.', $success);
         } else {
-            return $this->sendError('Unauthorised.', [], BaseController::HTTP_UNAUTHORIZED);
+            return $this->sendError('Unauthorised.', BaseController::HTTP_UNAUTHORIZED);
         }
     }
 

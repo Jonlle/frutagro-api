@@ -24,7 +24,7 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $addresses = new AddressCollection($user->user_addresses);
@@ -46,7 +46,7 @@ class CustomerAddressController extends BaseController
         $user = session('user');
 
         if (count($user->user_addresses) === 5) {
-            return $this->sendError('Adding more than five addresses is not allowed.', []);
+            return $this->sendError('Adding more than five addresses is not allowed.', BaseController::HTTP_CONFLICT);
         }
 
         $addresses = new UserAddress($validated);
@@ -68,13 +68,13 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $address = UserAddress::findOrFail($address);
 
         if ($address->user_id != $user->id) {
-            return $this->sendError('UserAddress not found.', []);
+            return $this->sendError('UserAddress not found.');
         }
 
         $success = new AddressResource($address);
@@ -117,13 +117,13 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $address = UserAddress::findOrFail($address);
 
         if ($address->user_id != $user->id) {
-            return $this->sendError('UserAddress not found.', []);
+            return $this->sendError('UserAddress not found.');
         }
 
         $address->delete();

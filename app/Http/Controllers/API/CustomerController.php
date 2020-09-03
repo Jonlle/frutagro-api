@@ -68,7 +68,7 @@ class CustomerController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $user = new CustomerResource($user);
@@ -88,7 +88,7 @@ class CustomerController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $validated = $request->validated();
@@ -242,7 +242,7 @@ class CustomerController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 'person' && $user->role_id != 'business') {
-            return $this->sendError('User is not a customer.', []);
+            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
         $user->delete();

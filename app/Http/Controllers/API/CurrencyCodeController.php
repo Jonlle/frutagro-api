@@ -53,10 +53,6 @@ class CurrencyCodeController extends BaseController
     {
         $currency_code = CurrencyCode::findOrFail($id);
 
-        if(!$currency_code) {
-            return $this->sendError('CurrencyCode no found.', []);
-        }
-
         $currency_code =  new CurrencyCodeResource($currency_code);
 
         return $this->sendResponse('CurrencyCode has been retrieved successfully.', $currency_code);

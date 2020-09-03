@@ -93,10 +93,6 @@ class PermissionController extends BaseController
     {
         $permission = Permission::findOrFail($id);
 
-        if(!$permission) {
-            return $this->sendError('Permission no found.', []);
-        }
-
         $permission->delete();
 
         return $this->sendResponse('Permission has been deleted successfully.');

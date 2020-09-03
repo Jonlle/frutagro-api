@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest as LaravelFormRequest;
@@ -13,37 +12,55 @@ class FormRequest extends LaravelFormRequest
 {
     protected function failedValidation(Validator $validator)
     {
-        $errors = (new ValidationException($validator))->errors();
         $code = 422;
-        $response = [
-            'success' => false,
-            'message' => 'The given data was invalid.',
-            'errors' => $errors
-        ];
+        $failed_rules = $validator->failed();
+        $messages = (new ValidationException($validator))->errors();
 
-        $rules_errors = [];
-        foreach ($validator->failed() as $attribute => $rules) {
+        foreach ($failed_rules as $attribute => $rules) {
             foreach ($rules as $key => $rule) {
-                $rules_errors[$attribute] =  strtolower($key);
                 if ($key == 'Unique') {
                     $code = 409;
+                    break 2;
                 }
             }
         }
-        $response['rules'] = $rules_errors;
+
+        $error = new \stdClass();
+        $error->code = $code;
+        $error->message = 'The given data was invalid.';
+        $error->failed_rules = $failed_rules;
+        $error->messages = $messages;
+
+        $response = [
+            'success' => false,
+            'error' => $error
+        ];
+
+        Log::debug('Failed Validation: '.json_encode($error, JSON_UNESCAPED_UNICODE));
+
         throw new HttpResponseException(response()->json($response, $code));
     }
 
     protected function failedAuthorization()
     {
+        $code = 403;
+
+        $error = new \stdClass();
+        $error->code = $code;
+        $error->message = "Access denied. You are not authorized for this action.";
+
         $response = [
             'success' => false,
-            'message' => "Access denied. You are not authorized for this action."
+            'error' => $error
         ];
+
         if (session()->has('failedAuthorizationMsg')) {
             Log::debug('Failed Authorization: '.session('failedAuthorizationMsg'));
         }
-        throw new HttpResponseException(response()->json($response, 403));
+
+        Log::debug('Failed Authorization: '.json_encode($error, JSON_UNESCAPED_UNICODE));
+
+        throw new HttpResponseException(response()->json($response, $code));
     }
 
 }

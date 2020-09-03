@@ -69,7 +69,7 @@ class AdminController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 'owner' && $user->role_id != 'admin') {
-            return $this->sendError('User is not an admin.', []);
+            return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
         }
 
         $user = new UserResource($user);
@@ -89,7 +89,7 @@ class AdminController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 'owner' && $user->role_id != 'admin') {
-            return $this->sendError('User is not an admin.', []);
+            return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
         }
 
         $validated = $request->validated();

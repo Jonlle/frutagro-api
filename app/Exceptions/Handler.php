@@ -6,9 +6,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+// use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+// use Symfony\Component\HttpKernel\Exception\HttpException;
+// use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Illuminate\Support\Facades\Log;
 
@@ -57,62 +57,68 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        $response = ['success' => false, 'message' => ''];
-        $status = 404;
+        $status = 500;
+        $error = new \stdClass();
+        $error->code = $status;
+        $error->message = 'Internal Server Error.';
+
         switch (true) {
             case $exception instanceof ModelNotFoundException:
                 $model = str_replace('App\\', '', $exception->getModel());
-                $response['message'] = "{$model} not found.";
+                $status = 404;
+                $error->message = "{$model} not found.";
                 break;
 
-            case $exception instanceof NotFoundHttpException:
-                $response['message'] = 'Page not found.';
-                $status = $exception->getStatusCode();
-                break;
+            // case $exception instanceof NotFoundHttpException:
+            //     $error->message = 'Page not found.';
+            //     // $status = $exception->getStatusCode();
+            //     break;
 
-            case $exception instanceof MethodNotAllowedHttpException:
-                $response['message'] = $exception->getMessage();
-                $status = $exception->getStatusCode();
-                break;
+            // case $exception instanceof MethodNotAllowedHttpException:
+            //     $error->message = $exception->getMessage();
+            //     // $status = $exception->getStatusCode();
+            //     break;
 
             case $exception instanceof AuthenticationException:
-                $response['message'] = $exception->getMessage();
                 $status = 401;
+                $error->message = $exception->getMessage();
                 break;
 
-            case $exception instanceof HttpException:
-                $response['message'] = $exception->getMessage();
-                $status = $exception->getStatusCode();
-                break;
+            // case $exception instanceof HttpException:
+            //     $error->message = $exception->getMessage();
+            //     // $status = $exception->getStatusCode();
+            //     break;
 
             case $exception instanceof QueryException:
-                Log::debug('QueryException: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
-                $status = 500;
-
                 if (isset($exception->errorInfo) && isset($exception->errorInfo[1])) {
                     $errorInfo = explode(": ", $exception->getMessage());
-                    $response['message'] = $errorInfo[1];
-                    $response['error'] = [
+                    $error->message = $errorInfo[1];
+                    $error->sql = [
                         'code' => $exception->errorInfo[1],
                         'sql_state' => $exception->errorInfo[0]
                     ];
-                } else {
-                    $response['message'] = 'Internal Server Error.';
                 }
                 break;
 
             case $exception instanceof CustomException:
-                $response['message'] = $exception->getMessage();
+                $error->message = $exception->getMessage();
                 $status = 400;
                 break;
 
             default:
-                if ($exception->getMessage() !== null)
-                    Log::debug('Exception: '.json_encode($exception->getMessage(), JSON_UNESCAPED_UNICODE));
-
-                return parent::render($request, $exception);
+                // return parent::render($request, $exception);
                 break;
         }
+
+        $error->code = $status;
+        $response = ['success' => false, 'error' => $error ];
+
+        $exception_response = [
+            'status_code' =>  method_exists($exception,'getStatusCode') ? $exception->getStatusCode() : $status,
+            'message' =>  method_exists($exception,'getMessage') ? $exception->getMessage() : $error->message
+        ];
+
+        Log::debug('Exception: '.json_encode($exception_response, JSON_UNESCAPED_UNICODE));
 
         return response()->json($response, $status);
     }

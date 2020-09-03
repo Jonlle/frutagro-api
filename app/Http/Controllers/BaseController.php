@@ -40,16 +40,23 @@ class BaseController extends Controller
         return response()->json($response, $code);
     }
 
-    public function sendError($error, $errorMessages, $code = self::HTTP_NOT_FOUND)
+    /**
+     * Send error response
+     *
+     * @param   string          $message
+     * @param   integer         $code
+     * @param   object          $errors
+     */
+    public function sendError($message, $code = self::HTTP_NOT_FOUND, $errors = null)
     {
-    	$response = [
-            'success' => false,
-            'message' => $error,
-        ];
+        $error = ($errors) ? $errors : new \stdClass() ;
+        $error->code = $code;
+        $error->message = $message;
 
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
+        $response = [
+            'success' => false,
+            'error' => $error,
+        ];
 
         return response()->json($response, $code);
     }
