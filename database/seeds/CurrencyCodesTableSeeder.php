@@ -12,8 +12,8 @@ class CurrencyCodesTableSeeder extends Seeder
     public function run()
     {
         $currency_codes = [
-            ['id' => 'VEF', 'currency_name' => 'Venezuelan Bolivar', 'currency_symbol' => 'Bs.S', 'exchange_rate' => '197000'],
-            ['id' => 'USD', 'currency_name' => 'United States Dollar', 'currency_symbol' => '$', 'exchange_rate' => '1'],
+            ['id' => 'VES', 'currency_name' => 'Bolívar Soberano', 'currency_symbol' => 'Bs.S', 'exchange_rate' => 365000, 'default' => '0'],
+            ['id' => 'USD', 'currency_name' => 'United States Dollar', 'currency_symbol' => '$', 'exchange_rate' => 1, 'default' => '1'],
         ];
 
         foreach ($currency_codes as $row) {
