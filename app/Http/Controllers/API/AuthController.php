@@ -135,7 +135,7 @@ class AuthController extends BaseController
         $user = Auth::user();
         $success = new UserResource($user);
 
-        return $this->sendResponse('User retrieved successfully.');
+        return $this->sendResponse('User retrieved successfully.', $success);
     }
 
     public function updateRememberToken(Request $request)
