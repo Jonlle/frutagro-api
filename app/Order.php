@@ -13,7 +13,7 @@ class Order extends Model
         'order_number', 'status_id', 'user_id', 'user_address_id', 'payment_id', 'delivery_method_id', 'commentary', 'grand_total', 'item_count'
     ];
 
-    private static $whiteListFilter =[
+    private static $whiteListFilter = [
         'status_id'
     ];
 
