@@ -24,13 +24,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()
                   ->onDelete('cascade');
-            $table->string('sku', 10)->unique();
             $table->string('product_name', 40)->unique();
             $table->string('slug');
-            $table->unsignedInteger('stock')->nullable();
-            $table->string('unit_name', 10);
-            $table->unsignedInteger('unit_cant');
-            $table->unsignedDecimal('price', 11, 2);
             $table->unsignedInteger('discount')->nullable();
             $table->text('description');
             $table->string('file_image')->default('frutagro_product.jpg');

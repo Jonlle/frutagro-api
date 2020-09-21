@@ -13,18 +13,22 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $products = [
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Acelga', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD'],
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Aji Dulce', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD'],
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Aji Picante', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD'],
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Ajo', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD'],
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Berenjena', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD'],
-            ['category_id' => '2', 'sku' => '', 'product_name' => 'Ciruela', 'slug' => '', 'unit_name' => 'Gr', 'unit_cant' => '100', 'price' => 100.00, 'description' => 'Product description', 'currency_code_id' => 'USD']
+            ['category_id' => '2', 'product_name' => 'Acelga', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD'],
+            ['category_id' => '2', 'product_name' => 'Aji Dulce', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD'],
+            ['category_id' => '2', 'product_name' => 'Aji Picante', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD'],
+            ['category_id' => '2', 'product_name' => 'Ajo', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD'],
+            ['category_id' => '2', 'product_name' => 'Berenjena', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD'],
+            ['category_id' => '2', 'product_name' => 'Ciruela', 'slug' => '', 'description' => 'Product description', 'currency_code_id' => 'USD']
         ];
 
         foreach ($products as $key => $value) {
             $value['slug'] = Str::slug($value['product_name']);
-            $value['sku'] = 'FRU'.strtoupper(substr($value['slug'], 0, 3)).$value['unit_name'][0].'00'.strval($key);
-            App\Product::create($value);
+            $sku = 'FRU'.strtoupper(substr($value['slug'], 0, 3)).'K00'.strval($key);
+            $product = App\Product::create($value);
+            $attributes = new App\ProductAttribute(['sku'=> $sku, 'unit_name'=> 'Kg', 'unit_cant'=> 10, 'price'=> 10, 'stock'=> 10]);
+            $product->product_attributes()->save($attributes);
         }
+
+
     }
 }

@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'category_id', 'sku', 'product_name', 'slug', 'stock', 'unit_name', 'unit_cant', 'price', 'discount', 'description', 'file_image', 'file_path', 'tags', 'currency_code_id', 'status_id'
+        'category_id', 'product_name', 'slug', 'discount', 'description', 'file_image', 'file_path', 'tags', 'currency_code_id', 'status_id'
     ];
 
     public function car_shoppings()
     {
         return $this->hasMany('App\CarShopping');
+    }
+
+    public function product_attributes()
+    {
+        return $this->hasMany('App\ProductAttribute');
     }
 
     public function status()
