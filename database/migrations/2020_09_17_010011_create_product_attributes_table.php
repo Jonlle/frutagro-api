@@ -27,6 +27,7 @@ class CreateProductAttributesTable extends Migration
             $table->string('unit_name', 10);
             $table->float('unit_cant');
             $table->float('price');
+            $table->integer('discount')->unsigned()->default(0);
             $table->unsignedInteger('stock')->nullable();
             $table->string('tags')->nullable();
             $table->string('status_id', 2)->default('av');
