@@ -30,8 +30,9 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('file_image')->default('frutagro_product.jpg');
             $table->string('file_path')->default('/images/products');
-            $table->string('currency_code_id', 3);
-            $table->string('status_id', 2)->default('en');
+            $table->string('currency_code_id', 3)->default('USD');
+            $table->string('tags')->nullable();
+            $table->string('status_id', 2)->default('av');
             $table->timestamps();
 
             $table->index('category_id');

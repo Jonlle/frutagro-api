@@ -29,7 +29,6 @@ class CreateProductAttributesTable extends Migration
             $table->float('price');
             $table->integer('discount')->unsigned()->default(0);
             $table->unsignedInteger('stock')->nullable();
-            $table->string('tags')->nullable();
             $table->string('status_id', 2)->default('av');
             $table->timestamps();
 
