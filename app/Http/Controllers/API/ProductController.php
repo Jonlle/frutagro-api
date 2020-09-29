@@ -8,10 +8,9 @@ use App\Http\Resources\ProductCollection;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Product;
-use Validator;
-use Illuminate\Http\Request;
+use App\ProductAttribute;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 
 class ProductController extends BaseController
@@ -37,10 +36,26 @@ class ProductController extends BaseController
     public function store(StoreProduct $request)
     {
         $validated = $request->validated();
-        $validated += ["slug" => Str::slug($validated['product_name'])];
 
-        $product = new Product($validated);
-        $product = $product->save();
+        $data_product = Arr::except($validated, ['attributes']);
+        $data_product['slug'] = isset($data_product['slug']) ? $data_product['slug'] : Str::slug($data_product['product_name']);
+
+        $product = new Product($data_product);
+        $product->save();
+
+        $attributes = $validated['attributes'];
+        $id = $product->id;
+        $category = $product->category->category_name;
+
+        foreach ($attributes as $key => $value) {
+            $product_attributes = new ProductAttribute($value);
+
+            if (!$product_attributes->sku) {
+                $product_attributes->sku = strtoupper(substr($category, 0, 3).substr($data_product['slug'], 0, 3).substr($value['unit_name'], 0, 1).sprintf("%'.03d", $id));
+            }
+
+            $product->product_attributes()->save($product_attributes);
+        }
 
         return $this->sendResponse('Product has been created successfully.', null, BaseController::HTTP_CREATED);
     }
@@ -73,13 +88,36 @@ class ProductController extends BaseController
 
         $validated = $request->validated();
 
-        $validated += ["slug" => Str::slug($validated['product_name'])];
+        $data_product = Arr::except($validated, ['attributes']);
+        $data_product['slug'] = isset($data_product['slug']) ? $data_product['slug'] : Str::slug($data_product['product_name']);
 
-        foreach ($validated as $key => $value) {
+        foreach ($data_product as $key => $value) {
             $product[$key] = $value;
         }
 
         $product->save();
+
+        $attributes = $validated['attributes'];
+        $id = $product->id;
+        $category = $product->category->category_name;
+
+        $product_attributes = $product->product_attributes;
+
+        foreach ($attributes as $key => $attrs) {
+            if (isset($product_attributes[$key])) {
+                $product_attrs = $product_attributes[$key];
+                foreach ($attrs as $key => $value) {
+                    $product_attrs[$key] = $value;
+                }
+                $product_attrs->save();
+            } else {
+                $product_attrs = new ProductAttribute($attrs);
+                if (!$product_attrs->sku) {
+                    $product_attrs->sku = strtoupper(substr($category, 0, 3).substr($data_product['slug'], 0, 3).substr($attrs['unit_name'], 0, 1).sprintf("%'.03d", $id));
+                }
+                $product->product_attributes()->save($product_attrs);
+            }
+        }
 
         return $this->sendResponse('Product has been updated successfully.');
     }
@@ -97,5 +135,25 @@ class ProductController extends BaseController
         $product->delete();
 
         return $this->sendResponse('Product has been deleted successfully.');
+    }
+
+    public function lock($id)
+    {
+        $product = Product::findOrFail($id);
+
+        if ($product->status_id == "di") {
+            $status = 'av';
+            $message = "The product has been enabled successfully.";
+        } else {
+            $status = 'di';
+            $message = "The product has been disabled successfully.";
+        }
+
+        $product->status_id = $status;
+        $product->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($message, $succes);
     }
 }
