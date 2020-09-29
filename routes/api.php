@@ -49,14 +49,12 @@ Route::prefix('v1')->group(function () {
             'products' => 'API\ProductController',
             'orders' => 'API\OrderController',
         ]);
-        Route::get('categories/list', 'API\CategoryController@list')->name('category.list');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
+        Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
     Route::get('states/{state}/cities', 'API\AddressController@cities')->name('states.cities.index');
     Route::get('states/{state}/municipalities', 'API\AddressController@municipalities')->name('states.municipalities.index');
     Route::get('municipalities/{municipality}/parishes', 'API\AddressController@parishes')->name('municipality.parishes.index');
-
-
 });
