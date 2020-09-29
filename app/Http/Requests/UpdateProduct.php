@@ -25,27 +25,30 @@ class UpdateProduct extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'sku' => [
-                'required',
-                'max:10',
-                Rule::unique('products')->ignore($this->route('product')),
-            ],
             'product_name' => [
                 'required',
                 'string',
                 'max:40',
                 Rule::unique('products')->ignore($this->route('product')),
             ],
-            'stock' => 'nullable|numeric|min:1',
-            'unit_name' => 'required|string|max:10',
-            'unit_cant' => 'required|numeric|min:1',
-            'price' => 'required|numeric|min:0.00',
-            'discount' => 'nullable|numeric|min:0|max:100',
+            'slug' => 'nullable|string',
             'description' => 'required|string|max:50',
-            'file_image' => 'string',
+            'currency_code_id' => 'string|max:3',
             'tags' => 'nullable',
-            'currency_code_id' => 'required',
-            'status_id' => 'max:2'
+            'file_image' => 'nullable',
+            'file_path' => 'nullable',
+            'stock' => 'nullable|numeric|min:1',
+            'status_id' => 'max:2',
+            'attributes.*.sku' => [
+                'nullable',
+                'max:10',
+                Rule::unique('product_attributes')->ignore($this->route('product'), 'product_id'),
+            ],
+            'attributes.*.unit_name' => 'required|string|max:10',
+            'attributes.*.unit_cant' => 'required|numeric|min:1',
+            'attributes.*.price' => 'required|numeric|min:0.00',
+            'attributes.*.discount' => 'nullable|numeric|min:0|max:100',
+            'attributes.*.status_id' => 'max:2',
         ];
     }
 }
