@@ -156,4 +156,24 @@ class ProductController extends BaseController
 
         return $this->sendResponse($message, $succes);
     }
+
+    public function lockAttribute($attribute)
+    {
+        $attr = ProductAttribute::findOrFail($attribute);
+
+        if ($attr->status_id == "di") {
+            $status = 'av';
+            $message = "The product has been enabled successfully.";
+        } else {
+            $status = 'di';
+            $message = "The product has been disabled successfully.";
+        }
+
+        $attr->status_id = $status;
+        $attr->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($message, $succes);
+    }
 }

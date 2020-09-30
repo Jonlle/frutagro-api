@@ -24,7 +24,6 @@ class ProductTableSeeder extends Seeder
 
         foreach ($products as $key => $value) {
             $value['slug'] = Str::slug($value['product_name']);
-            // $sku = 'FRU'.strtoupper(substr($value['slug'], 0, 3)).'K00'.strval($key);
             $attrs = array_pop($value);
             $product = App\Product::create($value);
 
