@@ -20,7 +20,7 @@ class PermissionRoleTableSeeder extends Seeder
         ];
 
         $filtered = Arr::where($permissions, function ($value, $key) {
-            return !Str::contains($value['name'], ['all', 'user_', 'role_', 'permission_']);
+            return !Str::contains($value['name'], ['all', 'user', 'staff_management', 'roles', 'permissions']);
         });
 
         $admin_permissions = [
@@ -28,18 +28,14 @@ class PermissionRoleTableSeeder extends Seeder
             'permissions' => Arr::pluck($filtered, 'id')
         ];
 
-        $result = Arr::where($filtered, function ($value, $key) {
-            return Str::endsWith($value['name'], ['show', 'access']);
-        });
-
         $person_customer_permissions = [
             'role' => 'person',
-            'permissions' => Arr::pluck($result, 'id')
+            'permissions' => [2]
         ];
 
         $business_customer_permissions = [
             'role' => 'business',
-            'permissions' => Arr::pluck($result, 'id')
+            'permissions' => [2]
         ];
 
 
