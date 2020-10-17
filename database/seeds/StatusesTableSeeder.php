@@ -15,6 +15,7 @@ class StatusesTableSeeder extends Seeder
             ['id' => 'ac', 'description' => 'Active - Activo'],
             ['id' => 'av', 'description' => 'Available - Disponible'],
             ['id' => 'co', 'description' => 'Completed - Completado'],
+            ['id' => 'ca', 'description' => 'Cancelled - Cancelado'],
             ['id' => 'di', 'description' => 'Disabled - Deshabilitado'],
             ['id' => 'en', 'description' => 'Enabled - Habilitado'],
             ['id' => 'in', 'description' => 'Inactive - Inactivo'],
