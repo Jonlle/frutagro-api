@@ -29,7 +29,7 @@ class UpdateUser extends FormRequest
             'username' => [
                 'required',
                 'max:10',
-                Rule::unique('users')->ignore($this->route('user')),
+                Rule::unique('users')->ignore($this->route('admin')),
             ],
             'role_id' => 'required|max:8',
             'status_id' => 'max:2',
@@ -37,7 +37,7 @@ class UpdateUser extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('user_emails')->ignore($this->route('user'), 'user_id'),
+                Rule::unique('user_emails')->ignore($this->route('admin'), 'user_id'),
             ],
             'remember_token' => 'string|nullable',
         ];

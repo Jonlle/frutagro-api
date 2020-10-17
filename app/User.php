@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, Filterable;
 
     protected $fillable = [
         'username', 'doc_type_id', 'role_id', 'status_id', 'name', 'document', 'password', 'avatar'
@@ -21,6 +21,10 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    private static $whiteListFilter = [
+        'status_id', 'role_id'
     ];
 
     public function user_addresses()
