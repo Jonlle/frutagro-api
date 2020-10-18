@@ -24,7 +24,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('category_name', 25)->unique();
             $table->string('slug');
-            $table->string('description', 50);
+            $table->string('description', 50)->nullable();
             $table->string('status_id', 2)->default('en');
             $table->timestamps();
 
