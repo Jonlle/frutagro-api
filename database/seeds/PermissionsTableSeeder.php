@@ -62,7 +62,7 @@ class PermissionsTableSeeder extends Seeder
             ['name' => 'orders-delete', 'status_id' => 'ac'],
             ['name' => 'orders-access', 'status_id' => 'ac'],
             ['name' => 'orders-status', 'status_id' => 'ac'],
-            ['name' => 'orders_email', 'status_id' => 'ac'],
+            ['name' => 'orders-email', 'status_id' => 'ac'],
             ['name' => 'messages-create', 'status_id' => 'ac'],
             ['name' => 'messages-edit', 'status_id' => 'ac'],
             ['name' => 'messages-show', 'status_id' => 'ac'],
