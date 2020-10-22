@@ -7,11 +7,7 @@ use App\Http\Requests\UpdatePermission;
 use App\Http\Resources\PermissionCollection;
 use App\Http\Resources\Permission as PermissionResource;
 use App\Permission;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Arr;
 
 class PermissionController extends BaseController
 {
@@ -22,7 +18,8 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $permissions = new PermissionCollection(Permission::all());
+        $permissions = !empty(request()->all()) ? Permission::filter()->get() : Permission::all();
+        $permissions = new PermissionCollection($permissions);
 
         return $this->sendResponse('Permissions has been retrieved successfully.', $permissions);
     }
@@ -39,8 +36,6 @@ class PermissionController extends BaseController
 
         $permission = new Permission($validated);
         $permission->save();
-
-        $success = new PermissionResource($permission);
 
         return $this->sendResponse('Permission has been created successfully.', null, BaseController::HTTP_CREATED);
     }
