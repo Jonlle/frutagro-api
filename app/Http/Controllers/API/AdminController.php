@@ -9,11 +9,8 @@ use App\Http\Requests\UpdateUser;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\User as UserResource;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Validator;
 
 class AdminController extends BaseController
 {
@@ -121,5 +118,25 @@ class AdminController extends BaseController
         $user->delete();
 
         return $this->sendResponse('User has been deleted successfully.');
+    }
+
+    public function lock($id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->status_id == "in") {
+            $status = 'ac';
+            $message = "The user has been activated successfully.";
+        } else {
+            $status = 'in';
+            $message = "The user has been suspended successfully.";
+        }
+
+        $user->status_id = $status;
+        $user->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($message, $succes);
     }
 }

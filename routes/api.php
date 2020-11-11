@@ -33,6 +33,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admins', 'API\AdminController');
         Route::apiResource('/customers', 'API\CustomerController');
         Route::put('/customers/{customer}/lock', 'API\CustomerController@lock')->name('customer.lock');
+        Route::put('/admins/{admin}/lock', 'API\CustomerController@lock')->name('admin.lock');
     });
 
     Route::prefix('/')->group(function () {
