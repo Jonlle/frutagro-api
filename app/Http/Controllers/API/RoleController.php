@@ -55,7 +55,7 @@ class RoleController extends BaseController
      */
     public function show($id)
     {
-        $role = Role::findOrFailOrFail($id);
+        $role = Role::findOrFail($id);
 
         $role =  new RoleResource($role);
 
@@ -71,7 +71,7 @@ class RoleController extends BaseController
      */
     public function update(UpdateRole $request, $id)
     {
-        $role = Role::findOrFailOrFail($id);
+        $role = Role::findOrFail($id);
 
         $validated = $request->validated();
 
@@ -97,7 +97,7 @@ class RoleController extends BaseController
      */
     public function destroy($id)
     {
-        $role = Role::findOrFailOrFail($id);
+        $role = Role::findOrFail($id);
 
         $role->delete();
 
