@@ -19,7 +19,7 @@ class OrdersTableSeeder extends Seeder
         ];
 
         foreach ($orders as $row) {
-            $row['order_number'] = substr(Carbon::now()->format('YmdHiu'), 2);
+            $row['order_number'] = substr(Carbon::now()->format('YmdHiv'), 2);
             App\Order::create($row);
         }
     }
