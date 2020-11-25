@@ -25,7 +25,6 @@ class UpdatePermission extends FormRequest
     {
         return [
             'name' => [
-                'required',
                 'max:40',
                 Rule::unique('permissions')->ignore($this->route('permission')),
             ],
