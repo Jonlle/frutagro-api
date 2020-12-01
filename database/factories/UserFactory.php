@@ -18,13 +18,13 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $role = $faker->randomElement(['person', 'business']);
+    $role = $faker->randomElement([3, 4]);
     $evenValidator = function($username) {
        return strlen($username) < 11;
     };
-    $doc_type_id = $role == 'person' ? $faker->randomElement(['ci', 'rif', 'p']) : 'rif';
-    $document = $role == 'person' ? $faker->nationalId : $faker->taxpayerIdentificationNumber;
-    $name = $role == 'person' ? $faker->name : $faker->company;
+    $doc_type_id = $role == 3 ? $faker->randomElement(['ci', 'rif', 'p']) : 'rif';
+    $document = $role == 3 ? $faker->nationalId : $faker->taxpayerIdentificationNumber;
+    $name = $role == 3 ? $faker->name : $faker->company;
 
     return [
         'username' => $faker->valid($evenValidator)->userName,

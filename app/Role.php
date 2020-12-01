@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
-        'id', 'status_id', 'description'
+        'name', 'status_id', 'description'
     ];
 
     public function users()

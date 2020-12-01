@@ -22,7 +22,7 @@ class StoreRole extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|unique:roles|max:20',
+            'name' => 'required|unique:roles|max:20',
             'status_id' => 'max:2',
             'description' => 'required|max:50',
             'permissions.*' => 'integer',

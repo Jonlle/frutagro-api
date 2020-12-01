@@ -17,7 +17,7 @@ class User extends JsonResource
         return [
             'id' => $this->id,
             'username' => $this->username,
-            'role' => $this->role_id,
+            'role' => $this->role,
             'status' => $this->status_id,
             'name' => $this->name,
             'email' => $this->user_emails->where('principal', '1')->first()->email,

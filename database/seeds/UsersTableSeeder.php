@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
 
         $owner = App\User::create([
             'username' => 'admin',
-            'role_id' => 'owner',
+            'role_id' => 1,
             'name' => 'Distribuidora Frutagro',
             'password' => Hash::make('frutagro'),
         ]);
@@ -32,8 +32,8 @@ class UsersTableSeeder extends Seeder
         ];
 
         $admins = [
-            ['username' => 'CarolGut', 'role_id' => 'admin', 'name' => 'Jennifer Cadiz', 'password' => Hash::make('123')],
-            ['username' => 'Jonlle', 'role_id' => 'admin', 'name' => 'Jhonatan Llerena', 'password' => Hash::make('190792')]
+            ['username' => 'CarolGut', 'role_id' => 2, 'name' => 'Jennifer Cadiz', 'password' => Hash::make('123')],
+            ['username' => 'Jonlle', 'role_id' => 2, 'name' => 'Jhonatan Llerena', 'password' => Hash::make('190792')]
         ];
 
         for ($i=0; $i < 2; $i++) {
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
             $admin_model->user_emails()->save($email_model);
         }
 
-        $customer = App\User::create(['username' => 'Conejito', 'role_id' => 'person', 'name' => 'Conejito Cadiz', 'doc_type_id' => 'ci', 'document' => 'V21375756', 'password' => Hash::make('123')]);
+        $customer = App\User::create(['username' => 'Conejito', 'role_id' => 3, 'name' => 'Conejito Cadiz', 'doc_type_id' => 'ci', 'document' => 'V21375756', 'password' => Hash::make('123')]);
 
         $customer_email = new App\UserEmail(['email' => 'admin@admin.com', 'principal' => '1']);
 

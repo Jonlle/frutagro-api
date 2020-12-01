@@ -22,7 +22,7 @@ class AdminController extends BaseController
     public function index()
     {
         $users = new UserCollection(
-            User::whereIn('role_id', ['owner', 'admin'])
+            User::whereIn('role_id', [1, 2])
                 ->get()
         );
 
@@ -65,7 +65,7 @@ class AdminController extends BaseController
     {
         $user = User::findOrFail($id);
 
-        if ($user->role_id != 'owner' && $user->role_id != 'admin') {
+        if ($user->role_id != 1 && $user->role_id != 2) {
             return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
         }
 
@@ -85,7 +85,7 @@ class AdminController extends BaseController
     {
         $user = User::findOrFail($id);
 
-        if ($user->role_id != 'owner' && $user->role_id != 'admin') {
+        if ($user->role_id != 1 && $user->role_id != 2) {
             return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
         }
 

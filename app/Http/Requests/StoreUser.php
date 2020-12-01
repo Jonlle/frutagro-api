@@ -23,7 +23,7 @@ class StoreUser extends FormRequest
     {
         return [
             'username' => 'required|unique:users|max:10',
-            'role_id' => 'required|max:8',
+            'role_id' => 'required',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
             'email' => 'required|email|unique:user_emails',

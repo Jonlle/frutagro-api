@@ -31,7 +31,7 @@ class UpdateCustomer extends FormRequest
             'doc_type_id' => [
                 Rule::in(['ci', 'rif', 'p']),
             ],
-            'role_id' => 'max:8',
+            'role_id' => 'required',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
             'document' => [

@@ -23,7 +23,7 @@ class CustomerAddressController extends BaseController
     {
         $user = User::findOrFail($customer);
 
-        if ($user->role_id != 'person' && $user->role_id != 'business') {
+        if ($user->role_id != 3 && $user->role_id != 4) {
             return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
@@ -67,7 +67,7 @@ class CustomerAddressController extends BaseController
     {
         $user = User::findOrFail($customer);
 
-        if ($user->role_id != 'person' && $user->role_id != 'business') {
+        if ($user->role_id != 3 && $user->role_id != 4) {
             return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 
@@ -116,7 +116,7 @@ class CustomerAddressController extends BaseController
     {
         $user = User::findOrFail($customer);
 
-        if ($user->role_id != 'person' && $user->role_id != 'business') {
+        if ($user->role_id != 3 && $user->role_id != 4) {
             return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
         }
 

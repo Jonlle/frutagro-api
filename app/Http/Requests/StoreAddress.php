@@ -13,7 +13,7 @@ class StoreAddress extends FormRequest
     {
         $user = \App\User::findOrFail($this->route('customer'));
 
-        if ($user->role_id != 'person' && $user->role_id != 'business') {
+        if ($user->role_id != 3 && $user->role_id != 4) {
             session()->flash('failedAuthorizationMsg', 'User is not a customer.');
             return false;
         }

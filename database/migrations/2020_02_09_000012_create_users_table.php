@@ -23,7 +23,8 @@ class CreateUsersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('username', 10)->unique();
-            $table->string('role_id', 8);
+            $table->foreignId('role_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('status_id', 2)->default('ac');
             $table->string('name', 100);
             $table->string('doc_type_id', 3)->nullable();
@@ -38,10 +39,6 @@ class CreateUsersTable extends Migration
             $table->index('status_id');
             $table->index('doc_type_id');
 
-            $table->foreign('role_id')
-                  ->references('id')->on('roles')
-                  ->onDelete('cascade');
-
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');
@@ -49,7 +46,6 @@ class CreateUsersTable extends Migration
             $table->foreign('doc_type_id')
                   ->references('id')->on('document_types')
                   ->onDelete('cascade');
-
         });
     }
 

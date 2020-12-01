@@ -15,7 +15,7 @@ class PermissionRoleTableSeeder extends Seeder
         $permissions = App\Permission::all()->toArray();
 
         $owner_permissions = [
-            'role' => 'owner',
+            'role' => 1,
             'permissions' => [1]
         ];
 
@@ -24,17 +24,17 @@ class PermissionRoleTableSeeder extends Seeder
         });
 
         $admin_permissions = [
-            'role' => 'admin',
+            'role' => 2,
             'permissions' => Arr::pluck($filtered, 'id')
         ];
 
         $person_customer_permissions = [
-            'role' => 'person',
+            'role' => 3,
             'permissions' => [2]
         ];
 
         $business_customer_permissions = [
-            'role' => 'business',
+            'role' => 4,
             'permissions' => [2]
         ];
 
