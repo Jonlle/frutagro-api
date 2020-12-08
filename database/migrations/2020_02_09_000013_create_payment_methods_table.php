@@ -22,7 +22,7 @@ class CreatePaymentMethodsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('payment_type_id', 10);
+            $table->string('payment_type_id', 15);
             $table->string('reference_number', 25)->nullable();
             $table->unsignedBigInteger('financial_entity_id')->nullable();
             $table->foreignId('payment_id')->constrained()
