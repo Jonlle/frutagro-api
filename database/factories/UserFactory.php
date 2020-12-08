@@ -22,13 +22,13 @@ $factory->define(User::class, function (Faker $faker) {
     $evenValidator = function($username) {
        return strlen($username) < 11;
     };
-    $doc_type_id = $role == 3 ? $faker->randomElement(['ci', 'rif', 'p']) : 'rif';
+    $document_type_id = $role == 3 ? $faker->randomElement(['ci', 'rif', 'p']) : 'rif';
     $document = $role == 3 ? $faker->nationalId : $faker->taxpayerIdentificationNumber;
     $name = $role == 3 ? $faker->name : $faker->company;
 
     return [
         'username' => $faker->valid($evenValidator)->userName,
-        'doc_type_id' => $doc_type_id,
+        'document_type_id' => $document_type_id,
         'role_id' => $role,
         'name' => $name,
         'document' => $document,

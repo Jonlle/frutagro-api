@@ -25,7 +25,7 @@ class StoreCustomer extends FormRequest
     {
         return [
             'username' => 'required|alpha_num|min:6|max:10|unique:users',
-            'doc_type_id' => [
+            'document_type_id' => [
                 'required',
                 Rule::in(['ci', 'rif', 'p']),
             ],

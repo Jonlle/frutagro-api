@@ -28,7 +28,7 @@ class UpdateCustomer extends FormRequest
                 'max:10',
                 Rule::unique('users')->ignore($this->route('customer')),
             ],
-            'doc_type_id' => [
+            'document_type_id' => [
                 Rule::in(['ci', 'rif', 'p']),
             ],
             'role_id' => 'required',

@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
                   ->onDelete('cascade');
             $table->string('status_id', 2)->default('ac');
             $table->string('name', 100);
-            $table->string('doc_type_id', 3)->nullable();
+            $table->string('document_type_id', 3)->nullable();
             $table->string('document', 20)->nullable();
             $table->string('password', 64);
             $table->string('avatar')->default('avatar.png');
@@ -37,13 +37,13 @@ class CreateUsersTable extends Migration
 
             $table->index('role_id');
             $table->index('status_id');
-            $table->index('doc_type_id');
+            $table->index('document_type_id');
 
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');
 
-            $table->foreign('doc_type_id')
+            $table->foreign('document_type_id')
                   ->references('id')->on('document_types')
                   ->onDelete('cascade');
         });

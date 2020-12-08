@@ -21,7 +21,7 @@ class Customer extends JsonResource
             'status' => $this->status_id,
             'name' => $this->name,
             'email' => $this->user_emails,
-            'doc_type' => $this->doc_type_id,
+            'doc_type' => $this->document_type_id,
             'document' => $this->document,
             'avatar' => $this->avatar,
             'phone' => $this->user_phones,

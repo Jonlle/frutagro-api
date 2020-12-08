@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
             $admin_model->user_emails()->save($email_model);
         }
 
-        $customer = App\User::create(['username' => 'Conejito', 'role_id' => 3, 'name' => 'Conejito Cadiz', 'doc_type_id' => 'ci', 'document' => 'V21375756', 'password' => Hash::make('123')]);
+        $customer = App\User::create(['username' => 'Conejito', 'role_id' => 3, 'name' => 'Conejito Cadiz', 'document_type_id' => 'ci', 'document' => 'V21375756', 'password' => Hash::make('123')]);
 
         $customer_email = new App\UserEmail(['email' => 'admin@admin.com', 'principal' => '1']);
 
