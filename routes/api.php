@@ -37,8 +37,6 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('/')->group(function () {
-        Route::get('orders/list', 'API\OrderController@filterOrder')->name('order.filter');
-        Route::get('users/list', 'API\UserController@filterUser')->name('user.filter');
         Route::apiResources([
             'users' => 'API\UserController',
             'suppliers' => 'API\SupplierController',
@@ -49,6 +47,8 @@ Route::prefix('v1')->group(function () {
             'currencies' => 'API\CurrencyCodeController',
             'products' => 'API\ProductController',
             'orders' => 'API\OrderController',
+            'financial-entities' => 'API\FinancialEntityController',
+            'payment-methods' => 'API\AdminPaymentMethodController',
         ]);
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
