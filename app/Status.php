@@ -67,4 +67,9 @@ class Status extends Model
     {
         return $this->hasMany('App\DeliveryMethod');
     }
+
+    public function admin_payments_methods()
+    {
+        return $this->hasMany('App\AdminPaymentMethod');
+    }
 }

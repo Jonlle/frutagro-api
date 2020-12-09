@@ -13,4 +13,9 @@ class PaymentType extends Model
     {
         return $this->hasMany('App\PaymentMethod');
     }
+
+    public function admin_payment_methods()
+    {
+        return $this->hasMany('App\AdminPaymentMethod');
+    }
 }
