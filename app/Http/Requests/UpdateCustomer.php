@@ -25,7 +25,7 @@ class UpdateCustomer extends FormRequest
     {
         return [
             'username' => [
-                'max:10',
+                'max:15',
                 Rule::unique('users')->ignore($this->route('customer')),
             ],
             'document_type_id' => [

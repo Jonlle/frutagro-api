@@ -28,7 +28,7 @@ class UpdateUser extends FormRequest
         return [
             'username' => [
                 'required',
-                'max:10',
+                'max:15',
                 Rule::unique('users')->ignore($this->route('admin')),
             ],
             'role_id' => 'required',

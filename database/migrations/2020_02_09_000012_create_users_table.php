@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('username', 10)->unique();
+            $table->string('username', 15)->unique();
             $table->foreignId('role_id')->constrained()
                   ->onDelete('cascade');
             $table->string('status_id', 2)->default('ac');
