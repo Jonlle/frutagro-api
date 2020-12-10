@@ -30,7 +30,7 @@ class CreateAdminPaymentMethodsTable extends Migration
             $table->string('target_name')->nullable();     //nombre de la persona destino
             $table->string('file_image')->nullable();      //Imagen refente al banco
             $table->string('file_path')->nullable();       //Path de la imagen referente al banco
-            $table->string('status_id', 2)->default('ac');
+            $table->string('status_id', 2)->default('en');
             $table->timestamps();
         });
 
