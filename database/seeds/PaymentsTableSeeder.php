@@ -13,7 +13,7 @@ class PaymentsTableSeeder extends Seeder
     {
         $payment_methods = [
             ['payment_type_id' => 'cash', 'reference_number' => null, 'financial_entity_id' => null],
-            ['payment_type_id' => 'tranfer', 'reference_number' => '058303', 'financial_entity_id' => 22],
+            ['payment_type_id' => 'transfer', 'reference_number' => '058303', 'financial_entity_id' => 22],
             ['payment_type_id' => 'mobilepayment', 'reference_number' => '190792', 'financial_entity_id' => 9],
         ];
 
