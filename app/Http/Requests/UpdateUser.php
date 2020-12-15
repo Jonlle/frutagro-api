@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class UpdateUser extends FormRequest
 {

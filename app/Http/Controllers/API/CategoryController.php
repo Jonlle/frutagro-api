@@ -7,13 +7,8 @@ use App\Http\Requests\UpdateCategory;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\Category as CategoryResource;
 use App\Category;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 
 class CategoryController extends BaseController
 {

@@ -33,7 +33,7 @@ class AdminPaymentMethodController extends BaseController
     public function store(StoreAdminPaymentMethod $request)
     {
         $validated = $request->validated();
-        // dd($validated);
+
         $adm_pay_method = new AdminPaymentMethod($validated);
         $adm_pay_method->save();
 
