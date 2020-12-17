@@ -13,8 +13,8 @@ class PaymentTypesTableSeeder extends Seeder
     {
         $payment_types = [
             ['id' => 'cash', 'description' => 'Cash - Efectivo'],
-            ['id' => 'mobilepayment', 'description' => 'Mobile payment - Pago Móvil'],
-            ['id' => 'transfer', 'description' => 'Transfer - Transferencia Bancaria']
+            ['id' => 'mobile_payment', 'description' => 'Mobile payment - Pago Móvil'],
+            ['id' => 'bank_transfer', 'description' => 'Bank transfer - Transferencia Bancaria']
         ];
 
         foreach ($payment_types as $row) {
