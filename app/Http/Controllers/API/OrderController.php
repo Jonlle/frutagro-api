@@ -19,7 +19,8 @@ class OrderController extends BaseController
      */
     public function index()
     {
-        $orders = new OrderCollection(Order::all());
+        $orders = !empty(request()->all()) ? Order::filter()->orderBy('id')->get() : Order::all();
+        $orders = new OrderCollection($orders);
 
         return $this->sendResponse('Orders has been retrieved successfully.', $orders);
     }
