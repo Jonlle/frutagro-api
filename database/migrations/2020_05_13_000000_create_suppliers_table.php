@@ -25,10 +25,14 @@ class CreateSuppliersTable extends Migration
             $table->string('supplier_name', 40);
             $table->string('contact_name', 40);
             $table->string('contact_title', 30);
+            $table->string('document_type_id', 3)->nullable();
+            $table->string('document', 20)->nullable();
+            $table->string('postal_code', 5);
+            $table->foreignId('state_id')->constrained()
+                  ->onDelete('cascade');
+            $table->foreignId('city_id')->constrained()
+                  ->onDelete('cascade');
             $table->string('address', 200);
-            $table->string('code_postal', 5);
-            $table->string('city', 50);
-            $table->string('country', 15);
             $table->string('phone', 11);
             $table->string('fax', 11)->nullable();
             $table->string('email', 50)->unique();

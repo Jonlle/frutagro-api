@@ -18,9 +18,19 @@ class DocumentType extends Model
         return $this->hasMany('App\User');
     }
 
+    public function suppliers()
+    {
+        return $this->hasMany('App\Supplier');
+    }
+
     public function admin_payment_methods()
     {
         return $this->hasMany('App\AdminPaymentMethod');
+    }
+
+    public function bank_data()
+    {
+        return $this->hasMany('App\BankData');
     }
 
     public function status()

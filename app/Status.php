@@ -48,6 +48,11 @@ class Status extends Model
         return $this->hasMany('App\UserAddress');
     }
 
+    public function suppliers()
+    {
+        return $this->hasMany('App\Supplier');
+    }
+
     public function financial_entities()
     {
         return $this->hasMany('App\FinancialEntity');
@@ -71,5 +76,15 @@ class Status extends Model
     public function admin_payments_methods()
     {
         return $this->hasMany('App\AdminPaymentMethod');
+    }
+
+    public function bank_data()
+    {
+        return $this->hasMany('App\BankData');
+    }
+
+    public function social_media()
+    {
+        return $this->hasMany('App\SocialMedia');
     }
 }

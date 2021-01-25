@@ -26,4 +26,10 @@ class State extends Model
     {
         return $this->hasMany('App\UserAddress');
     }
+
+    public function suppliers()
+    {
+        return $this->hasMany('App\Supplier');
+    }
+
 }

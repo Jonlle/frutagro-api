@@ -11,6 +11,8 @@ class SuppliersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Supplier::class,5)->create();
+        factory(App\Supplier::class,5)->create()->each(function ($supplier) {
+            $supplier->bank_data()->save(factory(App\BankData::class)->make());
+        });
     }
 }
