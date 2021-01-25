@@ -28,7 +28,7 @@ return [
     |
     */
     'models_namespace' => 'Models',
-    'controllers_namespace' => 'Http\\Controllers',
+    'controllers_namespace' => 'Http\\Controllers\\API',
 
 
     /*
@@ -100,7 +100,7 @@ return [
     |
     */
 
-    'use_guarded' => true,
+    'use_guarded' => false,
 
     /*
     |--------------------------------------------------------------------------

@@ -1,0 +1,35 @@
+models:
+  BankData:
+    payment_type_id: string
+    financial_entity_id: id nullable
+    supplier_id: id nullable
+    target_acount: nullable
+    document_type_id: string:3 nullable
+    document: string:20 nullable
+    target_name: string nullable
+    file_image: string nullable
+    file_path: string nullable
+    status_id: string:2 default:en
+    relationships:
+      belongsTo: PaymentType, DocumentType, Status
+  State:
+    state: string:50 unique
+    iso: string:5 unique
+    relationships:
+      hasMany: City, Municipality
+  City:
+    state_id: id
+    city: string:50
+    capital: tinyInteger default:0
+  Municipality:
+    state_id: id
+    municipality: string:50
+    relationships:
+      hasMany: Parish
+  Parish:
+    municipality_id: id
+    parish: string:50
+controllers:
+  BankData:
+    index:
+      query: all
