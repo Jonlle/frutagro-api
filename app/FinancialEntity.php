@@ -19,18 +19,18 @@ class FinancialEntity extends Model
         'status_id'
     ];
 
-    public function status()
-    {
-        return $this->belongsTo('App\Status');
-    }
-
     public function payment_methods()
     {
         return $this->hasMany('App\PaymentMethod');
     }
 
-    public function admin_payment_methods()
+    public function bank_data()
     {
-        return $this->hasMany('App\AdminPaymentMethod');
+        return $this->hasMany('App\BankData');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
     }
 }

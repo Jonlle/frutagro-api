@@ -8,7 +8,7 @@ class PaymentType extends Model
 {
     public $incrementing = false;
     public $timestamps = false;
-    
+
     protected $fillable = [
         'id', 'description'
     ];
@@ -22,4 +22,10 @@ class PaymentType extends Model
     {
         return $this->hasMany('App\AdminPaymentMethod');
     }
+
+    public function bank_data()
+    {
+        return $this->hasMany('App\BankData');
+    }
+
 }

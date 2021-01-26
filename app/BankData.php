@@ -24,6 +24,11 @@ class BankData extends Model
         'status_id',
     ];
 
+    public function admin_payments_methods()
+    {
+        return $this->hasMany('App\AdminPaymentMethod');
+    }
+
     public function paymentType()
     {
         return $this->belongsTo(\App\Models\PaymentType::class);
