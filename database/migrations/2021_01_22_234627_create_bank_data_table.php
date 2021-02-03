@@ -18,14 +18,14 @@ class CreateBankDataTable extends Migration
         Schema::create('bank_data', function (Blueprint $table) {
             $table->id();
             $table->string('payment_type_id');               //tipo de pago (pago movil o transferencia)
-            $table->unsignedBigInteger('financial_entity_id')->nullable(); //banco
+            $table->unsignedBigInteger('financial_entity_id'); //banco
             $table->unsignedBigInteger('supplier_id')->nullable();  //proveedor
-            $table->string('target_acount')->nullable();   //numero de telf o numero de cuenta
-            $table->string('document_type_id', 3)->nullable();  //tipo de documento (rif, ci, etc)
-            $table->string('document', 20)->nullable();    //numero de identificacion
-            $table->string('target_name')->nullable();     //nombre de la persona destino
-            $table->string('file_image')->nullable();      //Imagen refente al banco
-            $table->string('file_path')->nullable();       //Path de la imagen referente al banco
+            $table->string('target_acount');   //numero de telf o numero de cuenta
+            $table->string('document_type_id', 3);  //tipo de documento (rif, ci, etc)
+            $table->string('document', 20);    //numero de identificacion
+            $table->string('target_name');     //nombre de la persona destino
+            $table->string('file_image')->default('frutagro_payment_methods.png');  //Imagen refente al banco
+            $table->string('file_path')->default('/images/logoPaymentMethods'); //Path de la imagen referente al banco
             $table->string('status_id', 2)->default('en');
             $table->timestamps();
         });

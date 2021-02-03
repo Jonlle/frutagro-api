@@ -31,26 +31,26 @@ class BankData extends Model
 
     public function paymentType()
     {
-        return $this->belongsTo(\App\Models\PaymentType::class);
+        return $this->belongsTo('App\PaymentType');
     }
 
     public function documentType()
     {
-        return $this->belongsTo(\App\Models\DocumentType::class);
+        return $this->belongsTo('App\DocumentType');
     }
 
     public function status()
     {
-        return $this->belongsTo(\App\Models\Status::class);
+        return $this->belongsTo('App\Status');
     }
 
     public function financialEntity()
     {
-        return $this->belongsTo(\App\Models\FinancialEntity::class);
+        return $this->belongsTo('App\FinancialEntity');
     }
 
     public function supplier()
     {
-        return $this->belongsTo(\App\Models\Supplier::class);
+        return $this->belongsTo('App\Supplier');
     }
 }
