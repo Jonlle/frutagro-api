@@ -27,15 +27,14 @@ class CreateSuppliersTable extends Migration
             $table->string('contact_title', 30);
             $table->string('document_type_id', 3)->nullable();
             $table->string('document', 20)->nullable();
-            $table->string('postal_code', 5);
+            $table->string('postal_code', 5)->nullable();
             $table->foreignId('state_id')->constrained()
                   ->onDelete('cascade');
             $table->foreignId('city_id')->constrained()
                   ->onDelete('cascade');
             $table->string('address', 200);
-            $table->string('phone', 11);
-            $table->string('fax', 11)->nullable();
-            $table->string('email', 50)->unique();
+            $table->string('phone', 11)->nullable();
+            $table->string('email', 50)->nullable();
             $table->timestamps();
 
             $table->foreign('status_id')

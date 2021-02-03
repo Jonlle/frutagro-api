@@ -28,17 +28,17 @@ class UpdateSupplier extends FormRequest
             'supplier_name' => 'required|string|max:40',
             'contact_name' => 'required|string|max:100',
             'contact_title' => 'string|max:100',
+            'document_type_id' => [
+                'nullable',
+                Rule::in(['ci', 'rif', 'p']),
+            ],
+            'document' => 'nullable|min:7|max:10|regex:/^[VEPJG][1-9]\d{5,8}$/',
+            'postal_code' => 'nullable|string|max:5',
+            'state_id' => 'required',
+            'city_id' => 'required',
             'address' => 'string|max:200',
-            'code_postal' => 'string|max:5',
-            'city' => 'string|max:50',
-            'country' => 'string|max:15',
-            'phone' => 'string|max:11',
-            'fax' => 'string|max:11',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('suppliers')->ignore($this->route('supplier')),
-            ]
+            'phone' => 'nullable|string|max:11',
+            'email' => 'nullable|email'
         ];
     }
 }

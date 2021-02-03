@@ -18,7 +18,6 @@ class Supplier extends Model
         'city_id',
         'address',
         'phone',
-        'fax',
         'email',
     ];
 

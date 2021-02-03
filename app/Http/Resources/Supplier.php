@@ -23,11 +23,10 @@ class Supplier extends JsonResource
             'doc_type' => $this->document_type_id,
             'document' => $this->document,
             'postal_code' => $this->postal_code,
-            'state' => $this->state_id,
-            'city' => $this->city_id,
+            'state' => $this->state->state,
+            'city' => $this->city->city,
             'address' => $this->address,
             'phone' => $this->phone,
-            'fax' => $this->fax,
             'email' => $this->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
