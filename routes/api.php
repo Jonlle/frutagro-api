@@ -49,12 +49,14 @@ Route::prefix('v1')->group(function () {
             'orders' => 'API\OrderController',
             'financial-entities' => 'API\FinancialEntityController',
             'payment-types' => 'API\PaymentTypeController',
+            'bank-data' => 'API\BankDataController',
             'payment-methods' => 'API\AdminPaymentMethodController',
         ]);
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
         Route::put('products-attributes/{attribute}/lock', 'API\ProductController@lockAttribute')->name('product.attribute.lock');
         Route::put('payment-methods/{id}/lock', 'API\AdminPaymentMethodController@lock')->name('paymentMethod.lock');
+        Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('paymentMethod.lock');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
