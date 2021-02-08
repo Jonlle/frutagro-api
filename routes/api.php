@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +51,7 @@ Route::prefix('v1')->group(function () {
             'payment-types' => 'API\PaymentTypeController',
             'bank-data' => 'API\BankDataController',
             'payment-methods' => 'API\AdminPaymentMethodController',
+            'social-media' => 'API\SocialMediaController',
         ]);
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
