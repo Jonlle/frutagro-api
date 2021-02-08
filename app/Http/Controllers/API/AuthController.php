@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\StoreCustomer;
-use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserAuth as UserResource;
 use App\User;
 use App\UserEmail;
@@ -15,7 +14,6 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
 
 class AuthController extends BaseController
@@ -82,16 +80,12 @@ class AuthController extends BaseController
             'remember_me' => 'boolean'
         ]);
 
-        if($validator->fails()) {
-
-            // $failed_rules = $validator->failed();
-            // $messages = (new ValidationException($validator))->errors();
+        if ($validator->fails()) {
             $error = new \stdClass();
             $error->failed_rules = $validator->failed();
             $error->messages = (new ValidationException($validator))->errors();
 
             return $this->sendError('The given data was invalid.', BaseController::HTTP_UNPROCESSABLE_ENTITY, $error);
-
         }
 
         $credentials = ['password' => $request->password];
