@@ -57,7 +57,8 @@ Route::prefix('v1')->group(function () {
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
         Route::put('products-attributes/{attribute}/lock', 'API\ProductController@lockAttribute')->name('product.attribute.lock');
         Route::put('payment-methods/{id}/lock', 'API\AdminPaymentMethodController@lock')->name('paymentMethod.lock');
-        Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('paymentMethod.lock');
+        Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('bankData.lock');
+        Route::put('social-media/{id}/lock', 'API\SocialMediaController@lock')->name('socialMedia.lock');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
