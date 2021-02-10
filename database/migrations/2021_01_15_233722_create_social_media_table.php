@@ -19,7 +19,7 @@ class CreateSocialMediaTable extends Migration
             $table->string('icon_size')->default('fa-2x');
             $table->string('name')->unique();
             $table->string('url')->nullable();
-            $table->string('status_id', 2)->default('en');
+            $table->string('status_id', 2)->default('di');
             $table->timestamps();
         });
 
