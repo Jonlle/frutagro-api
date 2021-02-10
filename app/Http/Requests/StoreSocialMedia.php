@@ -24,7 +24,7 @@ class StoreSocialMedia extends FormRequest
         return [
             'icon_name' => 'string',
             'icon_size' => 'string',
-            'name' => 'required|string',
+            'name' => 'required|string|unique:social_media',
             'url' => 'nullable',
             'status_id' => 'max:2',
         ];
