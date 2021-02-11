@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class StoreSocialMedia extends FormRequest
+class UpsertSocialMedia extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,11 @@ class StoreSocialMedia extends FormRequest
     public function rules()
     {
         return [
-            'icon_name' => 'string',
-            'icon_size' => 'string',
-            'name' => 'required|string|unique:social_media',
-            'url' => 'url|nullable',
-            'status_id' => 'max:2',
+            'social_media.*.icon_name' => 'string',
+            'social_media.*.icon_size' => 'string',
+            'social_media.*.name' => 'required|string',
+            'social_media.*.url' => 'required_if:status_id,en|url|nullable',
+            'social_media.*.status_id' => 'required|max:2',
         ];
     }
 }

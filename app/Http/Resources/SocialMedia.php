@@ -19,7 +19,7 @@ class SocialMedia extends JsonResource
             'icon_name' => $this->icon_name,
             'icon_size' => $this->icon_size,
             'name' => $this->name,
-            'url' => $this->description,
+            'url' => $this->url,
             'status' => $this->status_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

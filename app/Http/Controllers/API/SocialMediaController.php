@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\SocialMedia;
 use App\Http\Requests\StoreSocialMedia;
 use App\Http\Requests\UpdateSocialMedia;
+use App\Http\Requests\UpsertSocialMedia;
 use App\Http\Resources\SocialMediaCollection;
 use App\Http\Resources\SocialMedia as SocialMediaResource;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -73,6 +74,26 @@ class SocialMediaController extends BaseController
         }
 
         $social_media->save();
+
+        return $this->sendResponse('Social Media has been updated successfully.');
+    }
+
+    /**
+     * Update existing models or create new models.
+     *
+     * @param  UpdateSocialMedia  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upsert(UpsertSocialMedia $request)
+    {
+        $validated = $request->validated();
+
+        foreach ($validated['social_media'] as $social_media) {
+            SocialMedia::updateOrCreate(
+                ['name' => $social_media['name']],
+                ['url' => $social_media['url'], 'status_id' => $social_media['status_id']]
+            );
+        }
 
         return $this->sendResponse('Social Media has been updated successfully.');
     }
