@@ -28,7 +28,7 @@ class CustomerController extends BaseController
                 ->get()
         );
 
-        return $this->sendResponse('Users has been retrieved successfully.', $users);
+        return $this->sendResponse(trans('response.success_customer_index'), $users);
     }
 
     /**
@@ -54,7 +54,7 @@ class CustomerController extends BaseController
         $user->save();
         $user->user_emails()->save($user_email);
 
-        return $this->sendResponse('User has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_customer_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -73,7 +73,7 @@ class CustomerController extends BaseController
 
         $user = new CustomerResource($user);
 
-        return $this->sendResponse('User has been retrieved successfully.', $user);
+        return $this->sendResponse(trans('response.success_customer_show'), $user);
     }
 
     /**
@@ -88,7 +88,7 @@ class CustomerController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 3 && $user->role_id != 4) {
-            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_customer_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $validated = $request->validated();
@@ -228,7 +228,7 @@ class CustomerController extends BaseController
 
         $user->save();
 
-        return $this->sendResponse('User has been updated successfully.');
+        return $this->sendResponse(trans('response.success_customer_update'));
     }
 
     /**
@@ -242,12 +242,12 @@ class CustomerController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 3 && $user->role_id != 4) {
-            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_customer_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $user->delete();
 
-        return $this->sendResponse('User has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_customer_destroy'));
     }
 
     public function lock($id)
@@ -256,10 +256,10 @@ class CustomerController extends BaseController
 
         if ($user->status_id == "in") {
             $status = 'ac';
-            $message = "The user has been activated successfully.";
+            $message = trans('response.success_customer_unlock');
         } else {
             $status = 'in';
-            $message = "The user has been suspended successfully.";
+            $message =trans('response.success_customer_lock');
         }
 
         $user->status_id = $status;

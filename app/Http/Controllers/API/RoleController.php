@@ -25,7 +25,7 @@ class RoleController extends BaseController
     {
         $roles = new RoleCollection(Role::all());
 
-        return $this->sendResponse('Roles has been retrieved successfully.', $roles);
+        return $this->sendResponse(trans('response.success_role_index'), $roles);
     }
 
     /**
@@ -44,7 +44,7 @@ class RoleController extends BaseController
         $role->save();
         $role->permissions()->attach($permissions);
 
-        return $this->sendResponse('Role has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_role_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -59,7 +59,7 @@ class RoleController extends BaseController
 
         $role =  new RoleResource($role);
 
-        return $this->sendResponse('Role has been retrieved successfully.', $role);
+        return $this->sendResponse(trans('response.success_role_show'), $role);
     }
 
     /**
@@ -86,7 +86,7 @@ class RoleController extends BaseController
 
         $success= new RoleResource($role);
 
-        return $this->sendResponse('Role has been updated successfully.', $success);
+        return $this->sendResponse(trans('response.success_role_update'), $success);
     }
 
     /**
@@ -101,6 +101,6 @@ class RoleController extends BaseController
 
         $role->delete();
 
-        return $this->sendResponse('Role has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_role_destroy'));
     }
 }

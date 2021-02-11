@@ -21,7 +21,7 @@ class FinancialEntityController extends BaseController
         $financial_entities = !empty(request()->all()) ? FinancialEntity::filter()->get() : FinancialEntity::all();
         $financial_entities = new FinancialEntityCollection($financial_entities);
 
-        return $this->sendResponse('Financial Entities has been retrieved successfully.', $financial_entities);
+        return $this->sendResponse(trans('response.success_financial_entity_index'), $financial_entities);
     }
 
     /**
@@ -37,7 +37,7 @@ class FinancialEntityController extends BaseController
         $financial_entity = new FinancialEntity($validated);
         $financial_entity->save();
 
-        return $this->sendResponse('Financial Entity has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_financial_entity_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -51,7 +51,7 @@ class FinancialEntityController extends BaseController
         $financial_entity = FinancialEntity::findOrFail($id);
         $financial_entity = new FinancialEntityResource($financial_entity);
 
-        return $this->sendResponse('Financial Entity has been retrieved successfully.', $financial_entity);
+        return $this->sendResponse(trans('response.success_financial_entity_show'), $financial_entity);
     }
 
     /**
@@ -73,7 +73,7 @@ class FinancialEntityController extends BaseController
 
         $financial_entity->save();
 
-        return $this->sendResponse('Financial Entity has been updated successfully.');
+        return $this->sendResponse(trans('response.success_financial_entity_update'));
     }
 
     /**
@@ -87,7 +87,7 @@ class FinancialEntityController extends BaseController
         $financial_entity = FinancialEntity::findOrFail($id);
         $financial_entity->delete();
 
-        return $this->sendResponse('Financial Entity has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_financial_entity_destroy'));
     }
 
     public function lock($id)
@@ -96,10 +96,10 @@ class FinancialEntityController extends BaseController
 
         if ($financial_entity->status_id == "di") {
             $status = 'en';
-            $message = "The financial_entity has been enabled successfully.";
+            $message = trans('response.success_financial_entity_unlock');
         } else {
             $status = 'di';
-            $message = "The financial_entity has been disabled successfully.";
+            $message = trans('response.success_financial_entity_lock');
         }
 
         $financial_entity->status_id = $status;

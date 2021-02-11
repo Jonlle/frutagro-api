@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\SocialMedia;
 use App\Http\Requests\StoreSocialMedia;
 use App\Http\Requests\UpdateSocialMedia;
+use App\Http\Requests\UpsertSocialMedia;
 use App\Http\Resources\SocialMediaCollection;
 use App\Http\Resources\SocialMedia as SocialMediaResource;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -21,7 +22,7 @@ class SocialMediaController extends BaseController
         $social_media = SocialMedia::all();
         $social_media = new SocialMediaCollection($social_media);
 
-        return $this->sendResponse('Social Media has been retrieved successfully.', $social_media);
+        return $this->sendResponse(trans('response.success_social_media_index'), $social_media);
     }
 
     /**
@@ -37,7 +38,7 @@ class SocialMediaController extends BaseController
         $social_media = new SocialMedia($validated);
         $social_media->save();
 
-        return $this->sendResponse('Social Media has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_social_media_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -52,7 +53,7 @@ class SocialMediaController extends BaseController
 
         $social_media =  new SocialMediaResource($social_media);
 
-        return $this->sendResponse('Social Media has been retrieved successfully.', $social_media);
+        return $this->sendResponse(trans('response.success_social_media_show'), $social_media);
     }
 
     /**
@@ -74,7 +75,27 @@ class SocialMediaController extends BaseController
 
         $social_media->save();
 
-        return $this->sendResponse('Social Media has been updated successfully.');
+        return $this->sendResponse(trans('response.success_social_media_update'));
+    }
+
+    /**
+     * Update existing models or create new models.
+     *
+     * @param  UpdateSocialMedia  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upsert(UpsertSocialMedia $request)
+    {
+        $validated = $request->validated();
+
+        foreach ($validated['social_media'] as $social_media) {
+            SocialMedia::updateOrCreate(
+                ['name' => $social_media['name']],
+                ['url' => $social_media['url'], 'status_id' => $social_media['status_id']]
+            );
+        }
+
+        return $this->sendResponse(trans('response.success_social_media_update'));
     }
 
     /**
@@ -89,7 +110,7 @@ class SocialMediaController extends BaseController
 
         $social_media->delete();
 
-        return $this->sendResponse('Social Media has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_social_media_destroy'));
     }
 
     public function lock($id)
@@ -98,10 +119,10 @@ class SocialMediaController extends BaseController
 
         if ($social_media->status_id == "di") {
             $status = 'en';
-            $message = "The social media has been enabled successfully.";
+            $message = trans('response.success_social_media_unlock');
         } else {
             $status = 'di';
-            $message = "The social media has been disabled successfully.";
+            $message = trans('response.success_social_media_lock');
         }
 
         $social_media->status_id = $status;

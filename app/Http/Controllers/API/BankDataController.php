@@ -21,7 +21,7 @@ class BankDataController extends BaseController
         $bank_data = !empty(request()->all()) ? BankData::filter()->get() : BankData::all();
         $bank_data = new BankDataCollection($bank_data);
 
-        return $this->sendResponse('Bank data has been retrieved successfully.', $bank_data);
+        return $this->sendResponse(trans('response.success_bank_data_index'), $bank_data);
     }
 
     /**
@@ -37,7 +37,7 @@ class BankDataController extends BaseController
         $bank_data = new BankData($validated);
         $bank_data->save();
 
-        return $this->sendResponse('Bank data has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_bank_data_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -52,7 +52,7 @@ class BankDataController extends BaseController
 
         $bank_data =  new BankDataResource($bank_data);
 
-        return $this->sendResponse('Bank data has been retrieved successfully.', $bank_data);
+        return $this->sendResponse(trans('response.success_bank_data_show'), $bank_data);
     }
 
     /**
@@ -74,7 +74,7 @@ class BankDataController extends BaseController
 
         $bank_data->save();
 
-        return $this->sendResponse('Bank data has been updated successfully.');
+        return $this->sendResponse(trans('response.success_bank_data_update'));
     }
 
     /**
@@ -89,7 +89,7 @@ class BankDataController extends BaseController
 
         $bank_data->delete();
 
-        return $this->sendResponse('Bank data has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_bank_data_destroy'));
     }
 
     public function lock($id)
@@ -98,10 +98,10 @@ class BankDataController extends BaseController
 
         if ($bank_data->status_id == "di") {
             $status = 'en';
-            $message = "The bank data has been enabled successfully.";
+            $message = trans('response.success_bank_data_unlock');
         } else {
             $status = 'di';
-            $message = "The bank data has been disabled successfully.";
+            $message = trans('response.success_bank_data_lock');
         }
 
         $bank_data->status_id = $status;
