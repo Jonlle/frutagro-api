@@ -7,12 +7,8 @@ use App\Http\Requests\UpdateRole;
 use App\Http\Resources\RoleCollection;
 use App\Http\Resources\Role as RoleResource;
 use App\Role;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 class RoleController extends BaseController
 {
