@@ -9,11 +9,8 @@ use App\Http\Requests\UpdateUser;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\User as UserResource;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Validator;
 
 class UserController extends BaseController
 {

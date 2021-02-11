@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateAddress;
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\Address as AddressResource;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Log;
 
 class CustomerAddressController extends BaseController
 {
