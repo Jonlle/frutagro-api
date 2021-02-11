@@ -24,7 +24,7 @@ class ProductController extends BaseController
     {
         $products =  new ProductCollection(Product::all());
 
-        return $this->sendResponse('Products has been retrieved successfully.', $products);
+        return $this->sendResponse(trans('response.success_product_index'), $products);
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductController extends BaseController
             $product->product_attributes()->save($product_attributes);
         }
 
-        return $this->sendResponse('Product has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_product_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductController extends BaseController
 
         $product =  new ProductResource($product);
 
-        return $this->sendResponse('Product has been retrieved successfully.', $product);
+        return $this->sendResponse(trans('response.success_product_show'), $product);
     }
 
     /**
@@ -119,7 +119,7 @@ class ProductController extends BaseController
             }
         }
 
-        return $this->sendResponse('Product has been updated successfully.');
+        return $this->sendResponse(trans('response.success_product_update'));
     }
 
     /**
@@ -134,7 +134,7 @@ class ProductController extends BaseController
 
         $product->delete();
 
-        return $this->sendResponse('Product has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_product_destroy'));
     }
 
     public function lock($id)
@@ -143,10 +143,10 @@ class ProductController extends BaseController
 
         if ($product->status_id == "di") {
             $status = 'av';
-            $message = "The product has been enabled successfully.";
+            $message = trans('response.success_product_unlock');
         } else {
             $status = 'di';
-            $message = "The product has been disabled successfully.";
+            $message = trans('response.success_product_lock');
         }
 
         $product->status_id = $status;
@@ -163,10 +163,10 @@ class ProductController extends BaseController
 
         if ($attr->status_id == "di") {
             $status = 'av';
-            $message = "The product has been enabled successfully.";
+            $message = trans('response.success_product_unlock');
         } else {
             $status = 'di';
-            $message = "The product has been disabled successfully.";
+            $message = trans('response.success_product_lock');
         }
 
         $attr->status_id = $status;

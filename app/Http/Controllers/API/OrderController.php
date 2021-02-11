@@ -22,7 +22,7 @@ class OrderController extends BaseController
         $orders = !empty(request()->all()) ? Order::filter()->orderBy('id')->get() : Order::all();
         $orders = new OrderCollection($orders);
 
-        return $this->sendResponse('Orders has been retrieved successfully.', $orders);
+        return $this->sendResponse(trans('response.success_order_index'), $orders);
     }
 
     /**
@@ -38,7 +38,7 @@ class OrderController extends BaseController
         $order = new Order($validated);
         $order->save();
 
-        return $this->sendResponse('Order has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_order_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -53,7 +53,7 @@ class OrderController extends BaseController
 
         $order =  new OrderResource($order);
 
-        return $this->sendResponse('Order has been retrieved successfully.', $order);
+        return $this->sendResponse(trans('response.success_order_show'), $order);
     }
 
     /**
@@ -75,7 +75,7 @@ class OrderController extends BaseController
 
         $order->save();
 
-        return $this->sendResponse('Order has been updated successfully.');
+        return $this->sendResponse(trans('response.success_order_update'));
     }
 
     /**
@@ -90,7 +90,7 @@ class OrderController extends BaseController
 
         $order->delete();
 
-        return $this->sendResponse('Order has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_order_destroy'));
     }
 
     public function lock($id)
@@ -99,10 +99,10 @@ class OrderController extends BaseController
 
         if ($order->status_id == "di") {
             $status = 'en';
-            $message = "The order has been enabled successfully.";
+            $message = trans('response.success_order_unlock');
         } else {
             $status = 'di';
-            $message = "The order has been disabled successfully.";
+            $message = trans('response.success_order_lock');
         }
 
         $order->status_id = $status;
@@ -118,6 +118,6 @@ class OrderController extends BaseController
         $orders = Order::filter()->orderBy('id')->get();
         $orders = new OrderCollection($orders);
 
-        return $this->sendResponse('Orders has been retrieved successfully.', $orders);
+        return $this->sendResponse(trans('response.success_order_index'), $orders);
     }
 }

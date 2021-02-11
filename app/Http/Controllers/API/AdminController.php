@@ -26,7 +26,7 @@ class AdminController extends BaseController
                 ->get()
         );
 
-        return $this->sendResponse('Users has been retrieved successfully.', $users);
+        return $this->sendResponse(trans('response.success_admin_index'), $users);
     }
 
     /**
@@ -52,7 +52,7 @@ class AdminController extends BaseController
         $user->save();
         $user->user_emails()->save($user_email);
 
-        return $this->sendResponse('User has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_admin_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -66,12 +66,12 @@ class AdminController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 1 && $user->role_id != 2) {
-            return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_admin_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $user = new UserResource($user);
 
-        return $this->sendResponse('User has been retrieved successfully.', $user);
+        return $this->sendResponse(trans('response.success_admin_show'), $user);
     }
 
     /**
@@ -86,7 +86,7 @@ class AdminController extends BaseController
         $user = User::findOrFail($id);
 
         if ($user->role_id != 1 && $user->role_id != 2) {
-            return $this->sendError('User is not an admin.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_admin_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $validated = $request->validated();
@@ -102,7 +102,7 @@ class AdminController extends BaseController
 
         $user->save();
 
-        return $this->sendResponse('User has been updated successfully.');
+        return $this->sendResponse(trans('response.success_admin_update'));
     }
 
     /**
@@ -117,7 +117,7 @@ class AdminController extends BaseController
 
         $user->delete();
 
-        return $this->sendResponse('User has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_admin_destroy'));
     }
 
     public function lock($id)
@@ -126,10 +126,10 @@ class AdminController extends BaseController
 
         if ($user->status_id == "in") {
             $status = 'ac';
-            $message = "The user has been activated successfully.";
+            $message = trans('response.success_admin_unlock');
         } else {
             $status = 'in';
-            $message = "The user has been suspended successfully.";
+            $message = trans('response.success_admin_lock');
         }
 
         $user->status_id = $status;

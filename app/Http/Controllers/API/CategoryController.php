@@ -22,7 +22,7 @@ class CategoryController extends BaseController
         $categories = !empty(request()->all()) ? Category::filter()->get() : Category::all();
         $categories = new CategoryCollection($categories);
 
-        return $this->sendResponse('Categories has been retrieved successfully.', $categories);
+        return $this->sendResponse(trans('response.success_category_index'), $categories);
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoryController extends BaseController
         $category = new Category($validated);
         $category->save();
 
-        return $this->sendResponse('Category has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_category_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoryController extends BaseController
 
         $category =  new CategoryResource($category);
 
-        return $this->sendResponse('Category has been retrieved successfully.', $category);
+        return $this->sendResponse(trans('response.success_category_show'), $category);
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends BaseController
 
         $category->save();
 
-        return $this->sendResponse('Category has been updated successfully.');
+        return $this->sendResponse(trans('response.success_category_update'));
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoryController extends BaseController
 
         $category->delete();
 
-        return $this->sendResponse('Category has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_category_destroy'));
     }
 
     public function lock($id)
@@ -101,10 +101,10 @@ class CategoryController extends BaseController
 
         if ($category->status_id == "di") {
             $status = 'en';
-            $message = "The category has been enabled successfully.";
+            $message = trans('response.success_category_unlock');
         } else {
             $status = 'di';
-            $message = "The category has been disabled successfully.";
+            $message = trans('response.success_category_lock');
         }
 
         $category->status_id = $status;
