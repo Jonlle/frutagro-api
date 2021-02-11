@@ -31,7 +31,7 @@ class UpdateSocialMedia extends FormRequest
                 'string',
                 Rule::unique('social_media')->ignore($this->route('social_medium')),
             ],
-            'url' => 'url|nullable',
+            'url' => 'required_if:status_id,en|url|nullable',
             'status_id' => 'max:2',
         ];
     }

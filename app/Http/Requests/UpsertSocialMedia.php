@@ -25,7 +25,7 @@ class UpsertSocialMedia extends FormRequest
             'social_media.*.icon_name' => 'string',
             'social_media.*.icon_size' => 'string',
             'social_media.*.name' => 'required|string',
-            'social_media.*.url' => 'required|url',
+            'social_media.*.url' => 'required_if:status_id,en|url|nullable',
             'social_media.*.status_id' => 'required|max:2',
         ];
     }
