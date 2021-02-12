@@ -9,13 +9,14 @@ use App\Http\Resources\Product as ProductResource;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Product;
 use App\ProductAttribute;
+use App\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 
 
 class ProductController extends BaseController
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -175,5 +176,20 @@ class ProductController extends BaseController
         $succes['status'] = $status;
 
         return $this->sendResponse($message, $succes);
+    }
+
+    /**
+     * Display a listing of the products by category.
+     *
+     * @param  int  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function getByCategory($category)
+    {
+        $category = Category::findOrFail($category);
+
+        $products = new ProductCollection($category->products);
+
+        return $this->sendResponse(trans('response.success_product_index'), $products);
     }
 }
