@@ -23,12 +23,12 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 3 && $user->role_id != 4) {
-            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_customer_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $addresses = new AddressCollection($user->user_addresses);
 
-        return $this->sendResponse('Addresses has been retrieved successfully.', $addresses);
+        return $this->sendResponse(trans('response.success_user_address_index'), $addresses);
     }
 
     /**
@@ -45,14 +45,14 @@ class CustomerAddressController extends BaseController
         $user = session('user');
 
         if (count($user->user_addresses) === 5) {
-            return $this->sendError('Adding more than five addresses is not allowed.', BaseController::HTTP_CONFLICT);
+            return $this->sendError(trans('response.error_user_address_five_not'), BaseController::HTTP_CONFLICT);
         }
 
         $addresses = new UserAddress($validated);
 
         $user->user_addresses()->save($addresses);
 
-        return $this->sendResponse('UserAddress has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_user_address_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -67,18 +67,18 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 3 && $user->role_id != 4) {
-            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_customer_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $address = UserAddress::findOrFail($address);
 
         if ($address->user_id != $user->id) {
-            return $this->sendError('UserAddress not found.');
+            return $this->sendError(trans('response.error_user_address_not'));
         }
 
         $success = new AddressResource($address);
 
-        return $this->sendResponse('UserAddress has been retrieved successfully.', $success);
+        return $this->sendResponse(trans('response.success_user_address_show'), $success);
     }
 
     /**
@@ -101,7 +101,7 @@ class CustomerAddressController extends BaseController
 
         $address->save();
 
-        return $this->sendResponse('UserAddress has been updated successfully.');
+        return $this->sendResponse(trans('response.success_user_address_update'));
     }
 
     /**
@@ -116,17 +116,17 @@ class CustomerAddressController extends BaseController
         $user = User::findOrFail($customer);
 
         if ($user->role_id != 3 && $user->role_id != 4) {
-            return $this->sendError('User is not a customer.', BaseController::HTTP_FORBIDDEN);
+            return $this->sendError(trans('response.error_customer_not'), BaseController::HTTP_FORBIDDEN);
         }
 
         $address = UserAddress::findOrFail($address);
 
         if ($address->user_id != $user->id) {
-            return $this->sendError('UserAddress not found.');
+            return $this->sendError(trans('response.error_user_address_not'));
         }
 
         $address->delete();
 
-        return $this->sendResponse('User has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_user_address_destroy'));
     }
 }

@@ -21,7 +21,7 @@ class PaymentTypeController extends BaseController
         $payment_types = PaymentType::all();
         $payment_types = new PaymentTypeCollection($payment_types);
 
-        return $this->sendResponse('Payment Types has been retrieved successfully.', $payment_types);
+        return $this->sendResponse(trans('response.success_payment_type_index'), $payment_types);
     }
 
     /**
@@ -37,7 +37,7 @@ class PaymentTypeController extends BaseController
         $payment_type = new PaymentType($validated);
         $payment_type->save();
 
-        return $this->sendResponse('Payment Type has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_payment_type_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -52,7 +52,7 @@ class PaymentTypeController extends BaseController
 
         $payment_type =  new PaymentTypeResource($payment_type);
 
-        return $this->sendResponse('Payment Type has been retrieved successfully.', $payment_type);
+        return $this->sendResponse(trans('response.success_payment_type_show'), $payment_type);
     }
 
     /**
@@ -74,7 +74,7 @@ class PaymentTypeController extends BaseController
 
         $payment_type->save();
 
-        return $this->sendResponse('Payment Type has been updated successfully.');
+        return $this->sendResponse(trans('response.success_payment_type_update'));
     }
 
     /**
@@ -89,7 +89,7 @@ class PaymentTypeController extends BaseController
 
         $payment_type->delete();
 
-        return $this->sendResponse('Payment Type has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_payment_type_destroy'));
     }
 
     public function lock($id)
@@ -98,10 +98,10 @@ class PaymentTypeController extends BaseController
 
         if ($payment_type->status_id == "di") {
             $status = 'en';
-            $message = "The payment_type has been enabled successfully.";
+            $message = trans('response.success_payment_type_unlock');
         } else {
             $status = 'di';
-            $message = "The payment_type has been disabled successfully.";
+            $message = trans('response.success_payment_type_lock');
         }
 
         $payment_type->status_id = $status;

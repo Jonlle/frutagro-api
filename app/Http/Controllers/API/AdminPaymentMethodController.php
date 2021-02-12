@@ -21,7 +21,7 @@ class AdminPaymentMethodController extends BaseController
         $adm_pay_methods = !empty(request()->all()) ? AdminPaymentMethod::filter()->get() : AdminPaymentMethod::all();
         $adm_pay_methods = new AdminPaymentMethodCollection($adm_pay_methods);
 
-        return $this->sendResponse('Admin payment methods has been retrieved successfully.', $adm_pay_methods);
+        return $this->sendResponse(trans('response.success_admin_pay_method_index'), $adm_pay_methods);
     }
 
     /**
@@ -37,7 +37,7 @@ class AdminPaymentMethodController extends BaseController
         $adm_pay_method = new AdminPaymentMethod($validated);
         $adm_pay_method->save();
 
-        return $this->sendResponse('Admin payment method has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_admin_pay_method_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -52,7 +52,7 @@ class AdminPaymentMethodController extends BaseController
 
         $adm_pay_method =  new AdminPaymentMethodResource($adm_pay_method);
 
-        return $this->sendResponse('Admin payment method has been retrieved successfully.', $adm_pay_method);
+        return $this->sendResponse(trans('response.success_admin_pay_method_show'), $adm_pay_method);
     }
 
     /**
@@ -74,7 +74,7 @@ class AdminPaymentMethodController extends BaseController
 
         $adm_pay_method->save();
 
-        return $this->sendResponse('Admin payment method has been updated successfully.');
+        return $this->sendResponse(trans('response.success_admin_pay_method_update'));
     }
 
     /**
@@ -89,7 +89,7 @@ class AdminPaymentMethodController extends BaseController
 
         $adm_pay_method->delete();
 
-        return $this->sendResponse('Admin payment method has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_admin_pay_method_destroy'));
     }
 
     public function lock($id)
@@ -98,10 +98,10 @@ class AdminPaymentMethodController extends BaseController
 
         if ($adm_pay_method->status_id == "di") {
             $status = 'en';
-            $message = "The adm_pay_method has been enabled successfully.";
+            $message = trans('response.success_admin_pay_method_unlock');
         } else {
             $status = 'di';
-            $message = "The adm_pay_method has been disabled successfully.";
+            $message = trans('response.success_admin_pay_method_lock');
         }
 
         $adm_pay_method->status_id = $status;

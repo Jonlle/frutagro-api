@@ -20,7 +20,7 @@ class SupplierController extends BaseController
     {
         $suppliers = new SupplierCollection(Supplier::all());
 
-        return $this->sendResponse('Suppliers has been retrieved successfully.', $suppliers);
+        return $this->sendResponse(trans('response.success_supplier_index'), $suppliers);
     }
 
     /**
@@ -36,7 +36,7 @@ class SupplierController extends BaseController
         $supplier = new Supplier($validated);
         $supplier->save();
 
-        return $this->sendResponse('Supplier has been created successfully.', null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_supplier_store'), null, BaseController::HTTP_CREATED);
     }
 
     /**
@@ -51,7 +51,7 @@ class SupplierController extends BaseController
 
         $supplier =  new SupplierResource($supplier);
 
-        return $this->sendResponse('Supplier has been retrieved successfully.', $supplier);
+        return $this->sendResponse(trans('response.success_supplier_show'), $supplier);
     }
 
     /**
@@ -73,7 +73,7 @@ class SupplierController extends BaseController
 
         $supplier->save();
 
-        return $this->sendResponse('Supplier has been updated successfully.');
+        return $this->sendResponse(trans('response.success_supplier_update'));
     }
 
     /**
@@ -88,7 +88,7 @@ class SupplierController extends BaseController
 
         $supplier->delete();
 
-        return $this->sendResponse('Supplier has been deleted successfully.');
+        return $this->sendResponse(trans('response.success_supplier_destroy'));
     }
 
     public function lock($id)
@@ -97,10 +97,10 @@ class SupplierController extends BaseController
 
         if ($supplier->status_id == "di") {
             $status = 'en';
-            $message = "The supplier has been enabled successfully.";
+            $message = trans('response.success_supplier_unlock');
         } else {
             $status = 'di';
-            $message = "The supplier has been disabled successfully.";
+            $message = trans('response.success_supplier_lock');
         }
 
         $supplier->status_id = $status;
