@@ -17,13 +17,7 @@ class AdminPaymentMethod extends JsonResource
         return [
             'id' => $this->id,
             'payment_type' => $this->payment_type_id,
-            'financial_entity' => new FinancialEntity($this->financial_entity),
-            'target_acount' => $this->target_acount,
-            'document_type' => $this->document_type_id,
-            'document' => $this->document,
-            'target_name' => $this->target_name,
-            'file_image' => $this->file_image,
-            'file_path' => $this->file_path,
+            'bank_data' => new BankData($this->bank_data),
             'status' => $this->status_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
