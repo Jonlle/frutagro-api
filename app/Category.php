@@ -14,7 +14,7 @@ class Category extends Model
     ];
 
     private static $whiteListFilter = [
-        'status_id'
+        'status_id', 'slug'
     ];
 
     public function products()
