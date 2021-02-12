@@ -19,7 +19,7 @@ class SocialMediaController extends BaseController
      */
     public function index()
     {
-        $social_media = SocialMedia::all();
+        $social_media = !empty(request()->all()) ? SocialMedia::filter()->get() : SocialMedia::all();
         $social_media = new SocialMediaCollection($social_media);
 
         return $this->sendResponse(trans('response.success_social_media_index'), $social_media);
