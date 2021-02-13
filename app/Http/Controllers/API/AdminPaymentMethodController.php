@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\StoreAdminPaymentMethod;
-use App\Http\Requests\UpdateAdminPaymentMethod;
+use App\Http\Requests\StoreBankData;
+use App\Http\Requests\UpdateBankData;
 use App\Http\Resources\AdminPaymentMethodCollection;
 use App\Http\Resources\AdminPaymentMethod as AdminPaymentMethodResource;
 use App\AdminPaymentMethod;
+use App\BankData;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 class AdminPaymentMethodController extends BaseController
@@ -27,15 +28,17 @@ class AdminPaymentMethodController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  StoreAdminPaymentMethod  $request
+     * @param  StoreBankData  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdminPaymentMethod $request)
+    public function store(StoreBankData $request)
     {
         $validated = $request->validated();
 
-        $adm_pay_method = new AdminPaymentMethod($validated);
-        $adm_pay_method->save();
+        $adm_pay_method = new AdminPaymentMethod(['payment_type_id' => $validated['payment_type_id']]);
+        $bank_data_model = new BankData($validated);
+        $bank_data_model->save();
+        $bank_data_model->admin_payments_methods()->save($adm_pay_method);
 
         return $this->sendResponse(trans('response.success_admin_pay_method_store'), null, BaseController::HTTP_CREATED);
     }
@@ -58,21 +61,27 @@ class AdminPaymentMethodController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateAdminPaymentMethod  $request
+     * @param  UpdateBankData  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdminPaymentMethod $request, $id)
+    public function update(UpdateBankData $request, $id)
     {
         $adm_pay_method = AdminPaymentMethod::findOrFail($id);
 
         $validated = $request->validated();
 
-        foreach ($validated as $key => $value) {
-            $adm_pay_method[$key] = $value;
-        }
+        $adm_pay_method['payment_type_id'] = $validated['payment_type_id'];
 
         $adm_pay_method->save();
+
+        $bank_data_model = $adm_pay_method->bank_data;
+
+        foreach ($validated as $key => $value) {
+            $bank_data_model[$key] = $value;
+        }
+
+        $bank_data_model->save();
 
         return $this->sendResponse(trans('response.success_admin_pay_method_update'));
     }
