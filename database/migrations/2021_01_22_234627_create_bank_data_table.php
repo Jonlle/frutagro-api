@@ -24,7 +24,7 @@ class CreateBankDataTable extends Migration
             $table->string('document_type_id', 3);  //tipo de documento (rif, ci, etc)
             $table->string('document', 20);    //numero de identificacion
             $table->string('target_name');     //nombre de la persona destino
-            $table->string('file_image')->default('frutagro_payment_methods.png');  //Imagen refente al banco
+            $table->string('file_image')->default('frutagro_payment_methods.svg');  //Imagen refente al banco
             $table->string('file_path')->default('/images/logoPaymentMethods'); //Path de la imagen referente al banco
             $table->string('status_id', 2)->default('en');
             $table->timestamps();
