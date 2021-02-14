@@ -14,7 +14,7 @@ class Product extends Model
     ];
 
     private static $whiteListFilter = [
-        'status_id'
+        'id', 'status_id', 'category_id',
     ];
 
     public function car_shoppings()
