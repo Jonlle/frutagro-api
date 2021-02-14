@@ -24,7 +24,7 @@ class ProductController extends BaseController
     public function index()
     {
         $products = !empty(request()->all()) ? Product::filter()->get() : Product::all();
-        $products =  new ProductCollection(Product::all());
+        $products =  new ProductCollection($products);
 
         return $this->sendResponse(trans('response.success_product_index'), $products);
     }
