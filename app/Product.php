@@ -3,11 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class Product extends Model
 {
+    use Filterable;
+
     protected $fillable = [
         'category_id', 'product_name', 'slug', 'discount', 'description', 'file_image', 'file_path', 'tags', 'currency_code_id', 'status_id'
+    ];
+
+    private static $whiteListFilter = [
+        'status_id'
     ];
 
     public function car_shoppings()
