@@ -33,9 +33,6 @@ class UpdateSupplier extends FormRequest
                 Rule::in(['ci', 'rif', 'p']),
             ],
             'document' => 'nullable|min:7|max:10|regex:/^[VEPJG][1-9]\d{5,8}$/',
-            'postal_code' => 'nullable|string|max:5',
-            'state_id' => 'required',
-            'city_id' => 'required',
             'address' => 'string|max:200',
             'phone' => 'nullable|string|max:11',
             'email' => 'nullable|email'

@@ -15,9 +15,6 @@ $factory->define(Supplier::class, function (Faker $faker) {
         'contact_title' => $faker->jobTitle,
         'document_type_id' => $document_type_id,
         'document' => $document,
-        'postal_code' => $faker->postcode,
-        'state_id' =>  24,
-        'city_id' => $faker->numberBetween($min = 149, $max = 150),
         'address' => $faker->streetAddress,
         'phone' => substr($faker->e164PhoneNumber, -10),
         'email' => $faker->unique()->safeEmail
