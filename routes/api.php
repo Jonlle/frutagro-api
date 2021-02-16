@@ -55,8 +55,10 @@ Route::prefix('v1')->group(function () {
         ]);
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
         Route::get('categories/{category}/products', 'API\ProductController@getByCategory')->name('categories.products.index');
+        Route::get('categories/{category}/products', 'API\ProductController@getByCategory')->name('categories.products.index');
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
         Route::put('products-attributes/{attribute}/lock', 'API\ProductController@lockAttribute')->name('product.attribute.lock');
+        Route::post('products/recommended', 'API\ProductController@getRecomended')->name('product.getRecomended');
         Route::put('payment-methods/{id}/lock', 'API\AdminPaymentMethodController@lock')->name('paymentMethod.lock');
         Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('bankData.lock');
         Route::post('social-media/upsert', 'API\SocialMediaController@upsert')->name('socialMedia.upsert');
