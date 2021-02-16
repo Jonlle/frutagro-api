@@ -36,7 +36,7 @@ class SupplierController extends BaseController
         $supplier = new Supplier($validated);
         $supplier->save();
 
-        return $this->sendResponse(trans('response.success_supplier_store'), null, BaseController::HTTP_CREATED);
+        return $this->sendResponse(trans('response.success_supplier_store'), ['id' => $supplier->id], BaseController::HTTP_CREATED);
     }
 
     /**
