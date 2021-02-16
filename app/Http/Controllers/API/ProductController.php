@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
+use App\Http\Requests\RecommendedProduct;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -53,7 +54,7 @@ class ProductController extends BaseController
             $product_attributes = new ProductAttribute($value);
 
             if (!$product_attributes->sku) {
-                $product_attributes->sku = strtoupper(substr($category, 0, 3).substr($data_product['slug'], 0, 3).substr($value['unit_name'], 0, 1).sprintf("%'.03d", $id));
+                $product_attributes->sku = strtoupper(substr($category, 0, 3) . substr($data_product['slug'], 0, 3) . substr($value['unit_name'], 0, 1) . sprintf("%'.03d", $id));
             }
 
             $product->product_attributes()->save($product_attributes);
@@ -115,7 +116,7 @@ class ProductController extends BaseController
             } else {
                 $product_attrs = new ProductAttribute($attrs);
                 if (!$product_attrs->sku) {
-                    $product_attrs->sku = strtoupper(substr($category, 0, 3).substr($data_product['slug'], 0, 3).substr($attrs['unit_name'], 0, 1).sprintf("%'.03d", $id));
+                    $product_attrs->sku = strtoupper(substr($category, 0, 3) . substr($data_product['slug'], 0, 3) . substr($attrs['unit_name'], 0, 1) . sprintf("%'.03d", $id));
                 }
                 $product->product_attributes()->save($product_attrs);
             }
@@ -192,5 +193,26 @@ class ProductController extends BaseController
         $products = new ProductCollection($category->products);
 
         return $this->sendResponse(trans('response.success_product_index'), $products);
+    }
+
+    /**
+     * get recommended products.
+     *
+     * @param  RecommendedProduct  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getRecomended(RecommendedProduct $request)
+    {
+        $validated = $request->validated();
+
+        $recommendedProducts = Product::where('category_id', $validated['category_id'])
+            ->where('id', '!=', $validated['id'])
+            ->inRandomOrder()
+            ->take(isset($validated['take']) ? $validated['take'] : 4)
+            ->get();
+
+        $response =  new ProductCollection($recommendedProducts);
+
+        return $this->sendResponse(trans('response.success_product_index'), $response);
     }
 }
