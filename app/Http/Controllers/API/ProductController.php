@@ -199,14 +199,15 @@ class ProductController extends BaseController
      * get recommended products.
      *
      * @param  RecommendedProduct  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getRecomended(RecommendedProduct $request)
+    public function getRecomended(RecommendedProduct $request, $id)
     {
         $validated = $request->validated();
 
         $recommendedProducts = Product::where('category_id', $validated['category_id'])
-            ->where('id', '!=', $validated['id'])
+            ->where('id', '!=', $id)
             ->inRandomOrder()
             ->take(isset($validated['take']) ? $validated['take'] : 4)
             ->get();

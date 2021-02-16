@@ -23,7 +23,6 @@ class RecommendedProduct extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
             'category_id' => 'required',
             'take' => 'nullable'
         ];
