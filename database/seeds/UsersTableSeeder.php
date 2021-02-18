@@ -48,8 +48,11 @@ class UsersTableSeeder extends Seeder
 
         $customer_address = new App\UserAddress(['address_type_id' => 'domicilio', 'postal_code' => '1090', 'state_id' => 24, 'city_id' => 149, 'address' => 'El Valle, Caracas']);
 
+        $user_phone = new App\UserPhone(['phone_number' => '04162133470', 'principal' => '1']);
+
         $customer->user_emails()->save($customer_email);
         $customer->user_addresses()->save($customer_address);
+        $customer->user_phones()->save($user_phone);
 
         factory(App\User::class,5)->create()->each(function ($user) {
             $user->user_emails()->save(factory(App\UserEmail::class)->make());
