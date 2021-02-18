@@ -135,6 +135,8 @@ return [
     'success_role_show' => 'Role retrieved successfully!',
     'success_role_update' => 'Role updated successfully!',
     'success_role_destroy' => 'Role deleted successfully!',
+    'success_role_lock' => 'Role switch off successfully!',
+    'success_role_unlock' => 'Role activated successfully!',
 
     'success_supplier_index' => 'Suppliers retrieved successfully!',
     'success_supplier_store' => 'Supplier created successfully!',

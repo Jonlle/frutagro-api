@@ -53,6 +53,7 @@ Route::prefix('v1')->group(function () {
             'payment-methods' => 'API\AdminPaymentMethodController',
             'social-media' => 'API\SocialMediaController',
         ]);
+        Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
         Route::get('categories/{category}/products', 'API\ProductController@getByCategory')->name('categories.products.index');
         Route::get('categories/{category}/products', 'API\ProductController@getByCategory')->name('categories.products.index');

@@ -99,4 +99,24 @@ class RoleController extends BaseController
 
         return $this->sendResponse(trans('response.success_role_destroy'));
     }
+
+    public function status($id)
+    {
+        $user = Role::findOrFail($id);
+
+        if ($user->status_id == "in") {
+            $status = 'ac';
+            $message = trans('response.success_role_unlock');
+        } else {
+            $status = 'in';
+            $message = trans('response.success_role_lock');
+        }
+
+        $user->status_id = $status;
+        $user->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($message, $succes);
+    }
 }

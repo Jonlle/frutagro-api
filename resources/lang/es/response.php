@@ -135,6 +135,8 @@ return [
     'success_role_show' => '¡Rol recuperado con éxito!',
     'success_role_update' => '¡Rol actualizado con éxito!',
     'success_role_destroy' => '¡Rol eliminado con éxito!',
+    'success_role_lock' => 'Role desactivado con éxito!',
+    'success_role_unlock' => 'Role activado con éxito!',
 
     'success_supplier_index' => '¡Proveedores recuperados con éxito!',
     'success_supplier_store' => '¡Proveedor creado con éxito!',
