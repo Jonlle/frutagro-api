@@ -91,15 +91,15 @@ class SupplierController extends BaseController
         return $this->sendResponse(trans('response.success_supplier_destroy'));
     }
 
-    public function lock($id)
+    public function status($id)
     {
         $supplier = Supplier::findOrFail($id);
 
-        if ($supplier->status_id == "di") {
-            $status = 'en';
+        if ($supplier->status_id == "in") {
+            $status = 'ac';
             $message = trans('response.success_supplier_unlock');
         } else {
-            $status = 'di';
+            $status = 'in';
             $message = trans('response.success_supplier_lock');
         }
 

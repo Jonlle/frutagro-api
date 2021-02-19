@@ -60,6 +60,7 @@ Route::prefix('v1')->group(function () {
         Route::put('products/{product}/lock', 'API\ProductController@lock')->name('product.lock');
         Route::put('products-attributes/{attribute}/lock', 'API\ProductController@lockAttribute')->name('product.attribute.lock');
         Route::get('products/{product}/recommended', 'API\ProductController@getRecomended')->name('product.getRecomended');
+        Route::put('suppliers/{id}/status', 'API\SupplierController@status')->name('supplier.status');
         Route::put('payment-methods/{id}/lock', 'API\AdminPaymentMethodController@lock')->name('paymentMethod.lock');
         Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('bankData.lock');
         Route::post('social-media/upsert', 'API\SocialMediaController@upsert')->name('socialMedia.upsert');
