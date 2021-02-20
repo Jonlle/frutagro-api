@@ -20,6 +20,12 @@ return [
 
 
     /*---------------- RESPONSES  ADMIN---------------- */
+    'success_index' => 'They have successfully recovered!',
+    'success_store' => 'Has been created successfully!',
+    'success_show' => 'Has been successfully recovered!',
+    'success_update' => 'Has been updated successfully!',
+    'success_destroy' => 'Has been removed successfully!',
+
     'success_register' => 'User register successfully!',
 
     'error_login_data_invalid' => 'Data provided invalid',
@@ -146,11 +152,11 @@ return [
     'success_supplier_lock' => 'Supplier disabled successfully!',
     'success_supplier_unlock' => 'Supplier enabled successfully!',
 
+    'success_logo_favicon_index' => 'Logo and favicon successfully recovered!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',
     'success_parish_index' => 'Parishes retrieved successfully!',
 
 ];
-
-?>

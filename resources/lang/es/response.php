@@ -20,6 +20,12 @@ return [
 
 
     /*---------------- RESPONSES  ADMIN---------------- */
+    'success_index' => '¡Se han recuperado con éxito!',
+    'success_store' => '¡Se ha creado con éxito!',
+    'success_show' => '¡Se ha recuperado con éxito!',
+    'success_update' => '¡Se ha actualizado con éxito!',
+    'success_destroy' => '¡Se ha eliminado con éxito!',
+
     'success_register' => '¡Registro de usuario con éxito!',
 
     'error_login_data_invalid' => 'Datos proporcionados no válidos',
@@ -146,11 +152,11 @@ return [
     'success_supplier_lock' => '¡Proveedor suspendido con éxito!',
     'success_supplier_unlock' => '¡Proveedor activado con éxito!',
 
+    'success_logo_favicon_index' => '¡Logo y favicon recuperados con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',
     'success_parish_index' => '¡Parroquias recuperadas con éxito!',
 
 ];
-
-?>
