@@ -104,11 +104,11 @@ class RoleController extends BaseController
     {
         $user = Role::findOrFail($id);
 
-        if ($user->status_id == "in") {
-            $status = 'ac';
+        if ($user->status_id == "di") {
+            $status = 'en';
             $message = trans('response.success_role_unlock');
         } else {
-            $status = 'in';
+            $status = 'di';
             $message = trans('response.success_role_lock');
         }
 

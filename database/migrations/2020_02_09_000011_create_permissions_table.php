@@ -22,14 +22,14 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('status_id', 2)->default('ac');
+            $table->string('status_id', 2)->default('en');
             $table->string('name', 45)->unique();
 
             $table->index('status_id');
 
             $table->foreign('status_id')
-                  ->references('id')->on('statuses')
-                  ->onDelete('cascade');
+                ->references('id')->on('statuses')
+                ->onDelete('cascade');
         });
     }
 

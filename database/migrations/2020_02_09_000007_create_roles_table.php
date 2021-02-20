@@ -22,7 +22,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('status_id', 2)->default('ac');
+            $table->string('status_id', 2)->default('en');
             $table->string('name', 20);
             $table->string('description', 50);
 
@@ -30,8 +30,8 @@ class CreateRolesTable extends Migration
             $table->index('status_id');
 
             $table->foreign('status_id')
-                  ->references('id')->on('statuses')
-                  ->onDelete('cascade');
+                ->references('id')->on('statuses')
+                ->onDelete('cascade');
         });
     }
 
