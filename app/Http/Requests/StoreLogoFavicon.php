@@ -23,7 +23,7 @@ class StoreLogoFavicon extends FormRequest
     {
         return [
             'info_name' => 'required',
-            'file_image' => 'nullable|image|mimes:jpg,jpeg,png',
+            'file_image' => 'nullable|string',
             'file_path' => 'nullable',
         ];
     }
