@@ -16,7 +16,7 @@ class CreateInformationTextsTable extends Migration
         Schema::create('information_texts', function (Blueprint $table) {
             $table->id();
             $table->string('section_name');
-            $table->string('information_text');
+            $table->string('information_text')->nullable();
             $table->string('status_id', 2)->default('ac');
             $table->timestamps();
         });

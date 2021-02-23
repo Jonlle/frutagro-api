@@ -23,7 +23,7 @@ class InformationTextStoreRequest extends FormRequest
     {
         return [
             'section_name' => ['required', 'string'],
-            'information_text' => ['required', 'string'],
+            'information_text' => ['nullable', 'string'],
             'status_id' => ['nullable', 'string', 'max:2'],
         ];
     }
