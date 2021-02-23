@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class InformationText extends Model
 {
+    use Filterable;
+
     protected $hidden = ['created_at', 'updated_at'];
 
     /**
@@ -17,5 +20,9 @@ class InformationText extends Model
         'section_name',
         'information_text',
         'status_id',
+    ];
+
+    private static $whiteListFilter = [
+        'status_id', 'section_name'
     ];
 }

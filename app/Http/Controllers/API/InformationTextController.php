@@ -16,7 +16,8 @@ class InformationTextController extends Controller
      */
     public function index()
     {
-        $informationTexts = new InformationTextCollection(InformationText::all());
+        $informationTexts = !empty(request()->all()) ? InformationText::filter()->get() : InformationText::all();
+        $informationTexts = new InformationTextCollection($informationTexts);
 
         return $this->sendResponse(trans('response.success_information_text_index'), $informationTexts);
     }
