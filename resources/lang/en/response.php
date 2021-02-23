@@ -2,7 +2,7 @@
 
 return [
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | App Reset Language Lines
     |--------------------------------------------------------------------------
@@ -153,6 +153,14 @@ return [
     'success_supplier_unlock' => 'Supplier enabled successfully!',
 
     'success_logo_favicon_index' => 'Logo and favicon successfully recovered!',
+
+    'success_information_text_index' => 'Information texts retrieved successfully!',
+    'success_information_text_store' => 'Information text created successfully!',
+    'success_information_text_show' => 'Information text retrieved successfully!',
+    'success_information_text_update' => 'Information text updated successfully!',
+    'success_information_text_destroy' => 'Information text deleted successfully!',
+    'success_information_text_lock' => 'Information text disabled successfully!',
+    'success_information_text_unlock' => 'Information text enabled successfully!',
 
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
