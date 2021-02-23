@@ -52,7 +52,8 @@ Route::prefix('v1')->group(function () {
             'bank-data' => 'API\BankDataController',
             'payment-methods' => 'API\AdminPaymentMethodController',
             'social-media' => 'API\SocialMediaController',
-            'logo-favicon' => 'API\LogoFaviconController'
+            'logo-favicon' => 'API\LogoFaviconController',
+            'information-text' => 'API\InformationTextController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
