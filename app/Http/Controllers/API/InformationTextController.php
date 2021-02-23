@@ -12,7 +12,7 @@ use App\Models\InformationText;
 class InformationTextController extends Controller
 {
     /**
-     * @return \App\Http\Resources\InformationTextCollection
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class InformationTextController extends Controller
 
     /**
      * @param \App\Http\Requests\InformationTextStoreRequest $request
-     * @return \App\Http\Resources\InformationTextResource
+     * @return \Illuminate\Http\Response
      */
     public function store(InformationTextStoreRequest $request)
     {
@@ -34,7 +34,7 @@ class InformationTextController extends Controller
 
     /**
      * @param \App\Models\InformationText $informationText
-     * @return \App\Http\Resources\InformationTextResource
+     * @return \Illuminate\Http\Response
      */
     public function show(InformationText $informationText)
     {
@@ -46,7 +46,7 @@ class InformationTextController extends Controller
     /**
      * @param \App\Http\Requests\InformationTextUpdateRequest $request
      * @param \App\Models\InformationText $informationText
-     * @return \App\Http\Resources\InformationTextResource
+     * @return \Illuminate\Http\Response
      */
     public function update(InformationTextUpdateRequest $request, InformationText $informationText)
     {

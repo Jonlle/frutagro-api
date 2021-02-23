@@ -1,17 +1,4 @@
 models:
-  BankData:
-    payment_type_id: string
-    financial_entity_id: id nullable
-    supplier_id: id nullable
-    target_acount: nullable
-    document_type_id: string:3 nullable
-    document: string:20 nullable
-    target_name: string nullable
-    file_image: string nullable
-    file_path: string nullable
-    status_id: string:2 default:en
-    relationships:
-      belongsTo: PaymentType, DocumentType, Status
   State:
     state: string:50 unique
     iso: string:5 unique
@@ -29,7 +16,33 @@ models:
   Parish:
     municipality_id: id
     parish: string:50
-controllers:
   BankData:
-    index:
-      query: all
+    payment_type_id: string
+    financial_entity_id: id nullable
+    supplier_id: id nullable
+    target_acount: nullable
+    document_type_id: string:3 nullable
+    document: string:20 nullable
+    target_name: string nullable
+    file_image: string nullable
+    file_path: string nullable
+    status_id: string:2 default:en
+    relationships:
+      belongsTo: PaymentType, DocumentType, Status
+  InformationText:
+    section_name: string
+    information_text: string
+    status_id: string:2 default:ac
+controllers:
+  State:
+    resource: api
+  City:
+    resource: api
+  Municipality:
+    resource: api
+  Parish:
+    resource: api
+  BankData:
+    resource: api
+  InformationText:
+    resource: api
