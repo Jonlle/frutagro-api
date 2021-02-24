@@ -24,8 +24,8 @@ class CreateCurrencyCodesTable extends Migration
             $table->string('id', 3);
             $table->string('currency_name', 20);
             $table->string('currency_symbol', 4);
-            $table->double('exchange_rate', 11, 3);
-            $table->string('default', 1);
+            $table->double('exchange_rate', 11, 2);
+            $table->string('default', 1)->default('0');
             $table->string('status_id', 2)->default('en');
             $table->timestamps();
 
