@@ -37,5 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderProductsTableSeeder::class);
         $this->call(SocialMediaTableSeeder::class);
         $this->call(LogoFaviconTableSeeder::class);
+        $this->call(InformationTextsTableSeeder::class);
     }
 }
