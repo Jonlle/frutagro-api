@@ -24,12 +24,17 @@ class UpdateCurrencyCode extends FormRequest
     public function rules()
     {
         return [
+            'id' => ['required', 'max:3'],
             'currency_name' => [
                 'required',
-                'max:10',
+                'string',
+                'max:20',
                 Rule::unique('currency_codes')->ignore($this->route('currency')),
             ],
-            'exchange_rate' => 'required|numeric'
+            'currency_symbol' => ['required', 'string', 'max:4'],
+            'exchange_rate' => ['required', 'numeric', 'between:-999999999.99,999999999.99'],
+            'default' => ['nullable', 'string', 'max:1'],
+            'status_id' => ['nullable', 'string', 'max:2']
         ];
     }
 }
