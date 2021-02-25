@@ -22,7 +22,8 @@ class CurrencyCodeController extends BaseController
      */
     public function index()
     {
-        $currency_codes = new CurrencyCodeCollection(CurrencyCode::all());
+        $currency_codes = !empty(request()->all()) ? CurrencyCode::filter()->get() : CurrencyCode::all();
+        $currency_codes = new CurrencyCodeCollection($currency_codes);
 
         return $this->sendResponse(trans('response.success_currency_code_index'), $currency_codes);
     }
