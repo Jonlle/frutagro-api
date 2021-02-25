@@ -84,11 +84,12 @@ return [
     'success_user_address_update' => '¡Dirección de usuario actualizada con éxito!',
     'success_user_address_destroy' => '¡Dirección de usuario eliminada con éxito!',
 
-    'success_currency_code_index' => 'Códigos de moneda recuperados con éxito!',
-    'success_currency_code_store' => '¡Código de moneda creado con éxito!',
-    'success_currency_code_show' => '¡Código de moneda recuperado con éxito!',
-    'success_currency_code_update' => '¡Código de moneda actualizado con éxito!',
-    'success_currency_code_destroy' => '¡Código de moneda eliminado con éxito!',
+    'success_currency_code_index' => 'Monedas recuperados con éxito!',
+    'success_currency_code_store' => '¡Moneda creado con éxito!',
+    'success_currency_code_show' => '¡Moneda recuperado con éxito!',
+    'success_currency_code_update' => '¡Moneda actualizado con éxito!',
+    'success_currency_code_destroy' => '¡Moneda eliminado con éxito!',
+    'success_currency_code_default' => '¡Moneda cambiada a predeterminado con éxito!',
 
     'success_bank_data_index' => '¡Datos bancarios recuperados con éxito!',
     'success_bank_data_store' => '¡Datos bancarios creado con éxito!',

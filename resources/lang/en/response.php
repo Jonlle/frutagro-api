@@ -84,11 +84,12 @@ return [
     'success_user_address_update' => 'User address updated successfully!',
     'success_user_address_destroy' => 'User address deleted successfully!',
 
-    'success_currency_code_index' => 'Currency codes retrieved successfully!',
-    'success_currency_code_store' => 'Currency code created successfully!',
-    'success_currency_code_show' => 'Currency code retrieved successfully!',
-    'success_currency_code_update' => 'Currency code updated successfully!',
-    'success_currency_code_destroy' => 'Currency code deleted successfully!',
+    'success_currency_code_index' => 'Currencies codes retrieved successfully!',
+    'success_currency_code_store' => 'Currency created successfully!',
+    'success_currency_code_show' => 'Currency retrieved successfully!',
+    'success_currency_code_update' => 'Currency updated successfully!',
+    'success_currency_code_destroy' => 'Currency deleted successfully!',
+    'success_currency_code_default' => 'Currency changed to default successfully!',
 
     'success_bank_data_index' => 'Bank data retrieved successfully!',
     'success_bank_data_store' => 'Bank data created successfully!',
