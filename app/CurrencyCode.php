@@ -10,11 +10,13 @@ class CurrencyCode extends Model
     use Filterable;
 
     public $incrementing = false;
-    public $timestamps = false;
 
-    private static $whiteListFilter = [
-        'status_id'
-    ];
+    /**
+     * The "type" of the ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +30,10 @@ class CurrencyCode extends Model
         'exchange_rate',
         'default',
         'status_id',
+    ];
+
+    private static $whiteListFilter = [
+        'status_id'
     ];
 
     public function products()
