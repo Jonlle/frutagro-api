@@ -96,4 +96,20 @@ class CurrencyCodeController extends BaseController
 
         return $this->sendResponse(trans('response.success_currency_code_destroy'));
     }
+
+    /**
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function setDefaultCurrency($id)
+    {
+        $currency_code = CurrencyCode::findOrFail($id);
+
+        CurrencyCode::where('default', 1)
+            ->update(['default' => 0]);
+
+        $currency_code->update(['default' => 1]);
+
+        return $this->sendResponse(trans('response.success_currency_code_update'));
+    }
 }
