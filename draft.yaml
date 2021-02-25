@@ -33,6 +33,14 @@ models:
     section_name: string
     information_text: string
     status_id: string:2 default:ac
+  CurrencyCode:
+    currency_name: string:20
+    currency_symbol: string:4
+    exchange_rate: decimal:11,4
+    default: string:1
+    status_id: string:2 default:ac
+    relationships:
+      hasMany: Product
 controllers:
   State:
     resource: api
@@ -45,4 +53,6 @@ controllers:
   BankData:
     resource: api
   InformationText:
+    resource: api
+  CurrencyCode:
     resource: api
