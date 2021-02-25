@@ -67,6 +67,7 @@ Route::prefix('v1')->group(function () {
         Route::put('bank-data/{id}/lock', 'API\BankDataController@lock')->name('bankData.lock');
         Route::post('social-media/upsert', 'API\SocialMediaController@upsert')->name('socialMedia.upsert');
         Route::put('social-media/{id}/lock', 'API\SocialMediaController@lock')->name('socialMedia.lock');
+        Route::post('currencies/{id}/default', 'API\CurrencyCodeController@setDefaultCurrency')->name('socialMedia.setDefaultCurrency');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
