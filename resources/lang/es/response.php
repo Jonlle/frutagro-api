@@ -89,6 +89,8 @@ return [
     'success_currency_code_show' => '¡Moneda recuperado con éxito!',
     'success_currency_code_update' => '¡Moneda actualizado con éxito!',
     'success_currency_code_destroy' => '¡Moneda eliminado con éxito!',
+    'success_currency_code_lock' => '¡Currency suspendido con éxito!',
+    'success_currency_code_unlock' => '¡Currency activado con éxito!',
     'success_currency_code_default' => '¡Moneda cambiada a predeterminado con éxito!',
 
     'success_bank_data_index' => '¡Datos bancarios recuperados con éxito!',

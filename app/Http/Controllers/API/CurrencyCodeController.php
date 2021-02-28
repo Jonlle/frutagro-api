@@ -97,6 +97,26 @@ class CurrencyCodeController extends BaseController
         return $this->sendResponse(trans('response.success_currency_code_destroy'));
     }
 
+    public function status($id)
+    {
+        $currency_code = CurrencyCode::findOrFail($id);
+
+        if ($currency_code->status_id == "di") {
+            $status = 'en';
+            $message = trans('response.success_currency_code_unlock');
+        } else {
+            $status = 'di';
+            $message = trans('response.success_currency_code_lock');
+        }
+
+        $currency_code->status_id = $status;
+        $currency_code->save();
+
+        $succes['status'] = $status;
+
+        return $this->sendResponse($message, $succes);
+    }
+
     /**
      * @param  string  $id
      * @return \Illuminate\Http\Response

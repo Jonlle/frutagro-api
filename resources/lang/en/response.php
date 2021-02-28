@@ -89,6 +89,8 @@ return [
     'success_currency_code_show' => 'Currency retrieved successfully!',
     'success_currency_code_update' => 'Currency updated successfully!',
     'success_currency_code_destroy' => 'Currency deleted successfully!',
+    'success_currency_code_lock' => 'Currency disabled successfully!',
+    'success_currency_code_unlock' => 'Currency enabled successfully!',
     'success_currency_code_default' => 'Currency changed to default successfully!',
 
     'success_bank_data_index' => 'Bank data retrieved successfully!',
