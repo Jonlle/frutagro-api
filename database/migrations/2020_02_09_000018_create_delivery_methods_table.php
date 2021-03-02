@@ -23,14 +23,15 @@ class CreateDeliveryMethodsTable extends Migration
             $table->id();
             $table->string('name', 30)->unique();
             $table->unsignedDecimal('price', 11, 2);
-            $table->text('description');
-            $table->string('status_id', 2)->default('ac');
+            $table->string('description')->nullable();
+            $table->string('status_id', 2)->default('en');
+            $table->timestamps();
+        });
 
-            $table->index('status_id');
-
+        Schema::table($this->tableName, function (Blueprint $table) {
             $table->foreign('status_id')
-                  ->references('id')->on('statuses')
-                  ->onDelete('cascade');
+                ->references('id')->on('statuses')
+                ->onDelete('cascade');
         });
     }
 

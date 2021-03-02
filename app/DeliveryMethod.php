@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeliveryMethod extends Model
 {
-    public $timestamps = false;
-
     protected $fillable = [
-        'name', 'price', 'status_id', 'description'
+        'name', 'price', 'description', 'status_id'
     ];
 
     public function orders()
