@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\CurrencyCode;
 use App\Http\Requests\StoreCurrencyCode;
 use App\Http\Requests\UpdateCurrencyCode;
 use App\Http\Resources\CurrencyCodeCollection;
 use App\Http\Resources\CurrencyCode as CurrencyCodeResource;
-use App\CurrencyCode;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Arr;
 
 class CurrencyCodeController extends BaseController
 {
@@ -77,9 +73,8 @@ class CurrencyCodeController extends BaseController
         }
 
         $currency_code->save();
-        $success = new CurrencyCodeResource($currency_code);
 
-        return $this->sendResponse(trans('response.success_currency_code_update'), $success);
+        return $this->sendResponse(trans('response.success_currency_code_update'));
     }
 
     /**

@@ -54,6 +54,7 @@ Route::prefix('v1')->group(function () {
             'social-media' => 'API\SocialMediaController',
             'logo-favicon' => 'API\LogoFaviconController',
             'information-text' => 'API\InformationTextController',
+            'delivery_methods' => 'API\DeliveryMethodController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
@@ -69,6 +70,7 @@ Route::prefix('v1')->group(function () {
         Route::put('social-media/{id}/lock', 'API\SocialMediaController@lock')->name('socialMedia.lock');
         Route::put('currencies/{id}/status', 'API\CurrencyCodeController@status')->name('currency.status');
         Route::post('currencies/{id}/default', 'API\CurrencyCodeController@setDefaultCurrency')->name('currency.setDefaultCurrency');
+        Route::put('delivery_methods/{id}/status', 'API\DeliveryMethodController@status')->name('deliveryMethod.status');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
