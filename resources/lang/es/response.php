@@ -165,9 +165,16 @@ return [
     'success_information_text_lock' => '¡Texto de infomación desactivado con éxito!',
     'success_information_text_unlock' => '¡Texto de infomación activado con éxito!',
 
+    'success_delivery_method_index' => '¡Métodos de entrega recuperados con éxito!',
+    'success_delivery_method_store' => '¡Método de entrega creado con éxito!',
+    'success_delivery_method_show' => '¡Método de entrega recuperado con éxito!',
+    'success_delivery_method_update' => '¡Método de entrega actualizado con éxito!',
+    'success_delivery_method_destroy' => '¡Método de entrega eliminado con éxito!',
+    'success_delivery_method_lock' => '¡Método de entrega desactivado con éxito!',
+    'success_delivery_method_unlock' => '¡Método de entrega activado con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',
     'success_parish_index' => '¡Parroquias recuperadas con éxito!',
-
 ];

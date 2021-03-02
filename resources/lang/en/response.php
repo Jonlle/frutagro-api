@@ -165,9 +165,16 @@ return [
     'success_information_text_lock' => 'Information text disabled successfully!',
     'success_information_text_unlock' => 'Information text enabled successfully!',
 
+    'success_delivery_method_index' => 'Delivery methods retrieved successfully!',
+    'success_delivery_method_store' => 'Delivery method created successfully!',
+    'success_delivery_method_show' => 'Delivery method retrieved successfully!',
+    'success_delivery_method_update' => 'Delivery method updated successfully!',
+    'success_delivery_method_destroy' => 'Delivery method deleted successfully!',
+    'success_delivery_method_lock' => 'Delivery method disabled successfully!',
+    'success_delivery_method_unlock' => 'Delivery method enabled successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',
     'success_parish_index' => 'Parishes retrieved successfully!',
-
 ];
