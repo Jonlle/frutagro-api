@@ -54,7 +54,7 @@ Route::prefix('v1')->group(function () {
             'social-media' => 'API\SocialMediaController',
             'logo-favicon' => 'API\LogoFaviconController',
             'information-text' => 'API\InformationTextController',
-            'delivery_methods' => 'API\DeliveryMethodController',
+            'delivery-methods' => 'API\DeliveryMethodController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
