@@ -70,7 +70,7 @@ Route::prefix('v1')->group(function () {
         Route::put('social-media/{id}/lock', 'API\SocialMediaController@lock')->name('socialMedia.lock');
         Route::put('currencies/{id}/status', 'API\CurrencyCodeController@status')->name('currency.status');
         Route::post('currencies/{id}/default', 'API\CurrencyCodeController@setDefaultCurrency')->name('currency.setDefaultCurrency');
-        Route::put('delivery_methods/{id}/status', 'API\DeliveryMethodController@status')->name('deliveryMethod.status');
+        Route::put('delivery-methods/{id}/status', 'API\DeliveryMethodController@status')->name('deliveryMethod.status');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
