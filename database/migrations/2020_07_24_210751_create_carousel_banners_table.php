@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBannersTable extends Migration
+class CreateCarouselBannersTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'banners';
+    public $tableName = 'carousel_banners';
 
     /**
      * Run the migrations.
@@ -27,6 +27,8 @@ class CreateBannersTable extends Migration
             $table->string('description_color');
             $table->string('file_image');
             $table->string('file_path');
+            $table->string('file_image')->default('frutagro_carousel_banner.svg');
+            $table->string('file_path')->default('/images/carouselBanners');
             $table->string('status_id', 2)->default('en');
             $table->timestamps();
 

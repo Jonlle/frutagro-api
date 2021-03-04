@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class CarouselBanner extends Model
 {
     public function status()
     {
