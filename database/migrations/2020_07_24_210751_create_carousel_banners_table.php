@@ -22,11 +22,9 @@ class CreateCarouselBannersTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('title_color');
+            $table->string('title_color')->default('rgb(64, 73, 59)');
             $table->text('description');
-            $table->string('description_color');
-            $table->string('file_image');
-            $table->string('file_path');
+            $table->string('description_color')->default('rgb(64, 73, 59)');
             $table->string('file_image')->default('frutagro_carousel_banner.svg');
             $table->string('file_path')->default('/images/carouselBanners');
             $table->string('status_id', 2)->default('en');

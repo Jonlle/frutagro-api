@@ -12,12 +12,12 @@ class CarouselBannersTableSeeder extends Seeder
     public function run()
     {
         $banners = [
-            ['title' => 'Banner 1', 'title_color' => 'rgb(64, 73, 59)', 'description' => 'Banner 1 Description','description_color' => 'rgb(0, 0, 0)', 'file_image' => '3_banner.jpg', 'file_path' => '/images/carouselBanners'],
-            ['title' => 'Banner 2', 'title_color' => 'rgba(64, 73, 59, 1)', 'description' => 'Banner 2 Description','description_color' => 'rgba(64, 73, 59, 1)', 'file_image' => '5_banner.jpg', 'file_path' => '/images/carouselBanners'],
+            ['title' => 'Banner 1', 'description' => 'Banner 1 Description', 'file_image' => '3_banner.jpg'],
+            ['title' => 'Banner 2', 'description' => 'Banner 2 Description', 'file_image' => '5_banner.jpg'],
         ];
 
         foreach ($banners as $row) {
-            App\Banner::create($row);
+            App\CarouselBanner::create($row);
         }
 
     }
