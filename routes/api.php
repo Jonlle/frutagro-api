@@ -55,6 +55,7 @@ Route::prefix('v1')->group(function () {
             'logo-favicon' => 'API\LogoFaviconController',
             'information-text' => 'API\InformationTextController',
             'delivery-methods' => 'API\DeliveryMethodController',
+            'carousel-banners' => 'API\CarouselBannerController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
@@ -71,6 +72,7 @@ Route::prefix('v1')->group(function () {
         Route::put('currencies/{id}/status', 'API\CurrencyCodeController@status')->name('currency.status');
         Route::post('currencies/{id}/default', 'API\CurrencyCodeController@setDefaultCurrency')->name('currency.setDefaultCurrency');
         Route::put('delivery-methods/{id}/status', 'API\DeliveryMethodController@status')->name('deliveryMethod.status');
+        Route::put('carousel-banners/{id}/status', 'API\CarouselBannerController@status')->name('carouselBanner.status');
     });
 
     Route::get('states', 'API\AddressController@states')->name('states.index');
