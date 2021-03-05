@@ -23,7 +23,7 @@ class CreateCarouselBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('title_color')->default('rgb(64, 73, 59)');
-            $table->text('description');
+            $table->string('description', 50)->nullable();
             $table->string('description_color')->default('rgb(64, 73, 59)');
             $table->string('file_image')->default('frutagro_carousel_banner.svg');
             $table->string('file_path')->default('/images/carouselBanners');
