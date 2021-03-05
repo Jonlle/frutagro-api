@@ -173,6 +173,14 @@ return [
     'success_delivery_method_lock' => 'Delivery method disabled successfully!',
     'success_delivery_method_unlock' => 'Delivery method enabled successfully!',
 
+    'success_banner_index' => 'Banners retrieved successfully!',
+    'success_banner_store' => 'Banner created successfully!',
+    'success_banner_show' => 'Banner retrieved successfully!',
+    'success_banner_update' => 'Banner updated successfully!',
+    'success_banner_destroy' => 'Banner deleted successfully!',
+    'success_banner_disabled' => 'Banner disabled successfully!',
+    'success_banner_enabled' => 'Banner enabled successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',

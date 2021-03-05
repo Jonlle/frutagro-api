@@ -173,6 +173,14 @@ return [
     'success_delivery_method_lock' => '¡Método de entrega desactivado con éxito!',
     'success_delivery_method_unlock' => '¡Método de entrega activado con éxito!',
 
+    'success_banner_index' => '¡Banners recuperados con éxito!',
+    'success_banner_store' => '¡Banner creado con éxito!',
+    'success_banner_show' => '¡Banner recuperado con éxito!',
+    'success_banner_update' => '¡Banner actualizado con éxito!',
+    'success_banner_destroy' => '¡Banner eliminado con éxito!',
+    'success_banner_disabled' => '¡Banner desactivado con éxito!',
+    'success_banner_enabled' => '¡Banner habilitado con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',
