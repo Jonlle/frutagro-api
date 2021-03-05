@@ -87,4 +87,9 @@ class Status extends Model
     {
         return $this->hasMany('App\SocialMedia');
     }
+
+    public function carousel_banners()
+    {
+        return $this->hasMany('App\CarouselBanner');
+    }
 }
