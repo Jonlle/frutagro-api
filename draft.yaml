@@ -41,6 +41,12 @@ models:
     status_id: string:2 default:ac
     relationships:
       hasMany: Product
+  GeneralBanner:
+    section: string
+    title: string
+    slug: string
+    file_image: string default:frutagro_general_banner.svg
+    file_path: string default:/images/generalBanners
 controllers:
   State:
     resource: api
@@ -55,4 +61,6 @@ controllers:
   InformationText:
     resource: api
   CurrencyCode:
+    resource: api
+  GeneralBanner:
     resource: api
