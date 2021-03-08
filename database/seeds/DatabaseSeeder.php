@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyCodesTableSeeder::class);
         $this->call(TaxesTableSeeder::class);
         $this->call(ProductTableSeeder::class);
-        $this->call(CarouselBannersTableSeeder::class);
         $this->call(FinancialEntitiesTableSeeder::class);
         $this->call(PaymentTypesTableSeeder::class);
         $this->call(AdminPaymentMethodsTableSeeder::class);
@@ -38,5 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialMediaTableSeeder::class);
         $this->call(LogoFaviconTableSeeder::class);
         $this->call(InformationTextsTableSeeder::class);
+        $this->call(CarouselBannersTableSeeder::class);
+        $this->call(GeneralBannersTableSeeder::class);
     }
 }
