@@ -57,6 +57,7 @@ Route::prefix('v1')->group(function () {
             'delivery-methods' => 'API\DeliveryMethodController',
             'carousel-banners' => 'API\CarouselBannerController',
             'general-banners' => 'API\GeneralBannerController',
+            'tags' => 'API\TagController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
