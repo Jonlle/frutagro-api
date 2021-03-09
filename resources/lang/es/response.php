@@ -62,6 +62,12 @@ return [
     'success_product_lock' => '¡Producto suspendido con éxito!',
     'success_product_unlock' => '¡Producto activado con éxito!',
 
+    'success_tag_index' => '¡Etiquetas recuperados con éxito!',
+    'success_tag_store' => '¡Etiqueta creado con éxito!',
+    'success_tag_show' => '¡Etiqueta recuperado con éxito!',
+    'success_tag_update' => '¡Etiqueta actualizado con éxito!',
+    'success_tag_destroy' => '¡Etiqueta eliminado con éxito!',
+
     'success_category_index' => '¡Categorías recuperadas con éxito!',
     'success_category_store' => '¡Categoría creada con éxito!',
     'success_category_show' => '¡Categoría recuperada con éxito!',

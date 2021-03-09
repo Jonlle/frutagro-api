@@ -62,6 +62,12 @@ return [
     'success_product_lock' => 'Product disabled successfully!',
     'success_product_unlock' => 'Product enabled successfully!',
 
+    'success_tag_index' => 'Tags retrieved successfully!',
+    'success_tag_store' => 'Tag created successfully!',
+    'success_tag_show' => 'Tag retrieved successfully!',
+    'success_tag_update' => 'Tag updated successfully!',
+    'success_tag_destroy' => 'Tag deleted successfully!',
+
     'success_category_index' => 'Categories retrieved successfully!',
     'success_category_store' => 'Category created successfully!',
     'success_category_show' => 'Category retrieved successfully!',
