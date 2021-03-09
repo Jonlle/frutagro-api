@@ -12,8 +12,8 @@ class CarouselBannersTableSeeder extends Seeder
     public function run()
     {
         $banners = [
-            ['title' => 'Banner 1', 'description' => 'Banner 1 Description', 'file_image' => '3_banner.jpg'],
-            ['title' => 'Banner 2', 'description' => 'Banner 2 Description', 'file_image' => '5_banner.jpg'],
+            ['title' => 'Banner 1', 'description' => 'Banner 1 Description', 'file_image' => '170__banner_carousel.jpg'],
+            ['title' => 'Banner 2', 'description' => 'Banner 2 Description', 'file_image' => '423__banner_carousel.jpg'],
         ];
 
         foreach ($banners as $row) {
