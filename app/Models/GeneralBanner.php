@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class GeneralBanner extends Model
 {
+    use Filterable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,4 +23,8 @@ class GeneralBanner extends Model
     ];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    private static $whiteListFilter = [
+        'slug'
+    ];
 }
