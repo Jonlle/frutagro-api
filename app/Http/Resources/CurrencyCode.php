@@ -21,6 +21,8 @@ class CurrencyCode extends JsonResource
             'exchange_rate' => $this->exchange_rate,
             'default' => $this->default,
             'status' => $this->status_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }
