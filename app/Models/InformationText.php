@@ -25,4 +25,9 @@ class InformationText extends Model
     private static $whiteListFilter = [
         'status_id', 'section_name'
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
+    }
 }
