@@ -47,6 +47,8 @@ models:
     slug: string
     file_image: string default:frutagro_general_banner.svg
     file_path: string default:/images/generalBanners
+  Tag:
+    tag: string unique
 controllers:
   State:
     resource: api
@@ -63,4 +65,8 @@ controllers:
   CurrencyCode:
     resource: api
   GeneralBanner:
+    resource: api
+  Tag:
+    resource: api
+  MissionVision:
     resource: api
