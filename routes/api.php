@@ -43,6 +43,7 @@ Route::prefix('v1')->group(function () {
             'customers.addresses' => 'API\CustomerAddressController',
             'permissions' => 'API\PermissionController',
             'roles' => 'API\RoleController',
+            'tags' => 'API\TagController',
             'categories' => 'API\CategoryController',
             'currencies' => 'API\CurrencyCodeController',
             'products' => 'API\ProductController',
@@ -57,7 +58,7 @@ Route::prefix('v1')->group(function () {
             'delivery-methods' => 'API\DeliveryMethodController',
             'carousel-banners' => 'API\CarouselBannerController',
             'general-banners' => 'API\GeneralBannerController',
-            'tags' => 'API\TagController',
+            'mission-vision' => 'API\MissionVisionController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
