@@ -26,7 +26,7 @@ class MissionVisionStoreRequest extends FormRequest
             'information_text' => ['required', 'string'],
             'status_id' => ['max:2'],
             'tags.*' => ['string'],
-            'tags' => ['required', 'array']
+            'tags' => ['array']
         ];
     }
 }
