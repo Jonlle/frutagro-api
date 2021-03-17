@@ -22,7 +22,7 @@ class InformationTextStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'section_name' => ['required', 'string'],
+            'section_name' => ['required', 'string', 'unique:information_texts'],
             'information_text' => ['nullable', 'string'],
             'status_id' => ['nullable', 'string', 'max:2'],
         ];

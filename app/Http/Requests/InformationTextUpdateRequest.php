@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class InformationTextUpdateRequest extends FormRequest
 {
     /**
@@ -24,7 +23,7 @@ class InformationTextUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'section_name' => ['required', 'string'],
+            'section_name' => ['required', 'string', Rule::unique('information_texts')->ignore($this->route('information_text'))],
             'information_text' => ['nullable', 'string'],
             'status_id' => ['nullable', 'string', 'max:2'],
         ];
