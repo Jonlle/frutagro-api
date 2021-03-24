@@ -40,5 +40,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InformationTextsTableSeeder::class);
         $this->call(CarouselBannersTableSeeder::class);
         $this->call(GeneralBannersTableSeeder::class);
+        $this->call(InfoAboutUsTableSeeder::class);
     }
 }
