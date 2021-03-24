@@ -15,12 +15,14 @@ class CreateInfoAboutUsTable extends Migration
     {
         Schema::create('info_about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('section');
+            $table->string('section')->unique();
             $table->string('title');
             $table->string('info_text');
             $table->string('file_image')->nullable();
             $table->string('file_path')->default('/images/aboutUs');
             $table->timestamps();
+
+            $table->index('section');
         });
     }
 
