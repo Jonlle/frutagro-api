@@ -9,6 +9,8 @@ class InfoAboutUs extends Model
 {
     use Filterable;
 
+    protected $table = 'info_about_us';
+
     /**
      * The attributes that are mass assignable.
      *
