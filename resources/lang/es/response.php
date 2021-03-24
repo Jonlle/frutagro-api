@@ -187,6 +187,12 @@ return [
     'success_banner_disabled' => '¡Banner desactivado con éxito!',
     'success_banner_enabled' => '¡Banner habilitado con éxito!',
 
+    'success_information_index' => '¡Información recuperada con éxito!',
+    'success_information_store' => '¡Información creada con éxito!',
+    'success_information_show' => '¡Información recuperada con éxito!',
+    'success_information_update' => '¡Información actualizada con éxito!',
+    'success_information_destroy' => '¡Información eliminada con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',

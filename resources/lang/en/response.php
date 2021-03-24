@@ -187,6 +187,12 @@ return [
     'success_banner_disabled' => 'Banner disabled successfully!',
     'success_banner_enabled' => 'Banner enabled successfully!',
 
+    'success_information_index' => '¡Information retrieved successfully!',
+    'success_information_store' => 'Information created successfully!',
+    'success_information_show' => '¡Information retrieved successfully!',
+    'success_information_update' => 'Information updated successfully!',
+    'success_information_destroy' => '¡Information deleted successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',
