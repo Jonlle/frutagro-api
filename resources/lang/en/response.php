@@ -193,6 +193,12 @@ return [
     'success_information_update' => 'Information updated successfully!',
     'success_information_destroy' => '¡Information deleted successfully!',
 
+    'success_team_member_index' => 'Team members retrieved successfully!',
+    'success_team_member_store' => 'Team member created successfully!',
+    'success_team_member_show' => 'Team member retrieved successfully!',
+    'success_team_member_update' => 'Team member updated successfully!',
+    'success_team_member_destroy' => 'Team member removed successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',

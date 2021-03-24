@@ -193,6 +193,12 @@ return [
     'success_information_update' => '¡Información actualizada con éxito!',
     'success_information_destroy' => '¡Información eliminada con éxito!',
 
+    'success_team_member_index' => '¡Integrantes recuperados con éxito!',
+    'success_team_member_store' => '¡Integrante creado con éxito!',
+    'success_team_member_show' => '¡Integrante recuperado con éxito!',
+    'success_team_member_update' => '¡Integrante actualizado con éxito!',
+    'success_team_member_destroy' => '¡Integrante eliminado con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',
