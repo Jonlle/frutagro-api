@@ -199,6 +199,12 @@ return [
     'success_team_member_update' => 'Team member updated successfully!',
     'success_team_member_destroy' => 'Team member removed successfully!',
 
+    'success_service_index' => 'Services retrieved successfully!',
+    'success_service_store' => 'Service created successfully!',
+    'success_service_show' => 'Service retrieved successfully!',
+    'success_service_update' => 'Service updated successfully!',
+    'success_service_destroy' => 'Service removed successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',

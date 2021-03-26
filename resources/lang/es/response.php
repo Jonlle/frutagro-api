@@ -199,6 +199,12 @@ return [
     'success_team_member_update' => '¡Integrante actualizado con éxito!',
     'success_team_member_destroy' => '¡Integrante eliminado con éxito!',
 
+    'success_service_index' => '¡¡Servicios recuperados con éxito!',
+    'success_service_store' => '¡Servicio creado con éxito!',
+    'success_service_show' => '¡¡Servicio recuperado con éxito!',
+    'success_service_update' => '¡Servicio actualizado con éxito!',
+    'success_service_destroy' => '¡Servicio eliminado con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',
