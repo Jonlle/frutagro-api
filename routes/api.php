@@ -62,6 +62,7 @@ Route::prefix('v1')->group(function () {
             'info-about-us' => 'API\InfoAboutUsController',
             'team-members' => 'API\TeamMemberController',
             'our-services' => 'API\OurServiceController',
+            'contact-details' => 'API\ContactDetailsController',
         ]);
         Route::put('roles/{role}/status', 'API\RoleController@status')->name('role.status');
         Route::put('categories/{category}/lock', 'API\CategoryController@lock')->name('category.lock');
@@ -86,3 +87,6 @@ Route::prefix('v1')->group(function () {
     Route::get('states/{state}/municipalities', 'API\AddressController@municipalities')->name('states.municipalities.index');
     Route::get('municipalities/{municipality}/parishes', 'API\AddressController@parishes')->name('municipality.parishes.index');
 });
+
+
+Route::apiResource('contact-details', 'API\ContactDetailsController');
