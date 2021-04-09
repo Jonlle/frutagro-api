@@ -205,6 +205,12 @@ return [
     'success_service_update' => '¡Servicio actualizado con éxito!',
     'success_service_destroy' => '¡Servicio eliminado con éxito!',
 
+    'success_contact_details_index' => '¡¡Servicios recuperados con éxito!',
+    'success_contact_details_store' => '¡Datos de contacto creado con éxito!',
+    'success_contact_details_show' => '¡¡Servicio recuperado con éxito!',
+    'success_contact_details_update' => '¡Datos de contacto actualizado con éxito!',
+    'success_contact_details_destroy' => '¡Servicio eliminado con éxito!',
+
     'success_state_index' => '¡Estados recuperados con éxito!',
     'success_city_index' => '¡Ciudades recuperadas con éxito!',
     'success_municipality_index' => '¡Municipios recuperados con éxito!',

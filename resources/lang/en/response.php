@@ -205,6 +205,12 @@ return [
     'success_service_update' => 'Service updated successfully!',
     'success_service_destroy' => 'Service removed successfully!',
 
+    'success_contact_details_index' => 'Contact details retrieved successfully!',
+    'success_contact_details_store' => 'Contact details created successfully!',
+    'success_contact_details_show' => 'Contact details retrieved successfully!',
+    'success_contact_details_update' => 'Contact details updated successfully!',
+    'success_contact_details_destroy' => 'Contact details removed successfully!',
+
     'success_state_index' => 'States retrieved successfully!',
     'success_city_index' => 'Cities retrieved successfully!',
     'success_municipality_index' => 'Municipalities retrieved successfully!',
