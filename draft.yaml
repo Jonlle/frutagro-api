@@ -49,6 +49,27 @@ models:
     file_path: string default:/images/generalBanners
   Tag:
     tag: string unique
+  InfoAboutUs:
+    section: string unique
+    title: string
+    info_text: string
+    file_image: string nullable
+    file_path: string default:/images/aboutUs
+  TeamMember:
+    name: string
+    position: string
+    description: string
+    file_image: string default:frutagro_team.svg
+    file_path: string default:/images/team
+  OurService:
+    icon_name: string
+    service_name: string
+    description: string
+  ContactDetails:
+    address: string
+    phone: string
+    mobile: string
+    email: string
 controllers:
   State:
     resource: api
@@ -69,4 +90,12 @@ controllers:
   Tag:
     resource: api
   MissionVision:
+    resource: api
+  InfoAboutUs:
+    resource: api
+  TeamMember:
+    resource: api
+  OurService:
+    resource: api
+  ContactDetails:
     resource: api
