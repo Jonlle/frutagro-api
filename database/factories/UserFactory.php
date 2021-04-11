@@ -18,11 +18,20 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $role = $faker->randomElement([3, 4]);
+    $evenValidator = function($username) {
+       return strlen($username) < 16;
+    };
+    $document_type_id = $role == 3 ? $faker->randomElement(['ci', 'rif', 'p']) : 'rif';
+    $document = $role == 3 ? $faker->nationalId : $faker->taxpayerIdentificationNumber;
+    $name = $role == 3 ? $faker->name : $faker->company;
+
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
+        'username' => $faker->valid($evenValidator)->userName,
+        'document_type_id' => $document_type_id,
+        'role_id' => $role,
+        'name' => $name,
+        'document' => $document,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
     ];
 });

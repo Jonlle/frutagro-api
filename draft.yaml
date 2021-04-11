@@ -1,0 +1,101 @@
+models:
+  State:
+    state: string:50 unique
+    iso: string:5 unique
+    relationships:
+      hasMany: City, Municipality
+  City:
+    state_id: id
+    city: string:50
+    capital: tinyInteger default:0
+  Municipality:
+    state_id: id
+    municipality: string:50
+    relationships:
+      hasMany: Parish
+  Parish:
+    municipality_id: id
+    parish: string:50
+  BankData:
+    payment_type_id: string
+    financial_entity_id: id nullable
+    supplier_id: id nullable
+    target_acount: nullable
+    document_type_id: string:3 nullable
+    document: string:20 nullable
+    target_name: string nullable
+    file_image: string nullable
+    file_path: string nullable
+    status_id: string:2 default:en
+    relationships:
+      belongsTo: PaymentType, DocumentType, Status
+  InformationText:
+    section_name: string
+    information_text: string
+    status_id: string:2 default:ac
+  CurrencyCode:
+    currency_name: string:20
+    currency_symbol: string:4
+    exchange_rate: decimal:11,4
+    default: string:1
+    status_id: string:2 default:ac
+    relationships:
+      hasMany: Product
+  GeneralBanner:
+    section: string
+    title: string
+    slug: string
+    file_image: string default:frutagro_general_banner.svg
+    file_path: string default:/images/generalBanners
+  Tag:
+    tag: string unique
+  InfoAboutUs:
+    section: string unique
+    title: string
+    info_text: string
+    file_image: string nullable
+    file_path: string default:/images/aboutUs
+  TeamMember:
+    name: string
+    position: string
+    description: string
+    file_image: string default:frutagro_team.svg
+    file_path: string default:/images/team
+  OurService:
+    icon_name: string
+    service_name: string
+    description: string
+  ContactDetails:
+    address: string
+    phone: string
+    mobile: string
+    email: string
+controllers:
+  State:
+    resource: api
+  City:
+    resource: api
+  Municipality:
+    resource: api
+  Parish:
+    resource: api
+  BankData:
+    resource: api
+  InformationText:
+    resource: api
+  CurrencyCode:
+    resource: api
+  GeneralBanner:
+    resource: api
+  Tag:
+    resource: api
+  MissionVision:
+    resource: api
+  InfoAboutUs:
+    resource: api
+  TeamMember:
+    resource: api
+  OurService:
+    resource: api
+  ContactDetails:
+    resource: api

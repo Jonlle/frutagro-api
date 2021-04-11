@@ -11,6 +11,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
+        $this->call(MunicipalitiesTableSeeder::class);
+        $this->call(ParishesTableSeeder::class);
+        $this->call(StatusesTableSeeder::class);
+        $this->call(DocumentTypesTableSeeder::class);
+        $this->call(AddressTypeTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionRoleTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(CurrencyCodesTableSeeder::class);
+        $this->call(TaxesTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(FinancialEntitiesTableSeeder::class);
+        $this->call(PaymentTypesTableSeeder::class);
+        $this->call(AdminPaymentMethodsTableSeeder::class);
+        $this->call(SuppliersTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
+        $this->call(DeliveryMethodsTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
+        $this->call(OrderProductsTableSeeder::class);
+        $this->call(SocialMediaTableSeeder::class);
+        $this->call(LogoFaviconTableSeeder::class);
+        $this->call(InformationTextsTableSeeder::class);
+        $this->call(CarouselBannersTableSeeder::class);
+        $this->call(GeneralBannersTableSeeder::class);
+        $this->call(InfoAboutUsTableSeeder::class);
+        $this->call(TeamMembersTableSeeder::class);
+        $this->call(OurServicesTableSeeder::class);
+        $this->call(ContactDetailsTableSeeder::class);
     }
 }
