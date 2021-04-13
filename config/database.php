@@ -53,7 +53,7 @@ return [
             'database' => 'frutagro_api',
             // 'username' => env('DB_USERNAME', 'forge'),
             'username' => 'frutagro',
-            'password' => env('DB_PASSWORD', ''),
+            // 'password' => env('DB_PASSWORD', ''),
             'password' => '*-10j12',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
