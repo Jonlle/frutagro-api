@@ -16,9 +16,10 @@ class ContactDetailsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'icon_name' => $this->icon_name,
-            'service_name' => $this->service_name,
-            'description' => $this->description,
+            'address' => $this->address,
+            'phone' => $this->phone,
+            'mobile' => $this->mobile,
+            'email' => $this->email,
         ];
     }
 }
