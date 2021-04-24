@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\API\BaseController as Controller;
 use App\Http\Requests\MissionVisionStoreRequest;
 use App\Http\Requests\MissionVisionUpdateRequest;
-use App\Http\Resources\missionVisionResource;
+use App\Http\Resources\MissionVisionResource;
 use App\Models\InformationText;
 use App\Models\Tag;
 
@@ -17,7 +17,7 @@ class MissionVisionController extends Controller
     public function index()
     {
         $informationTexts = !empty(request()->all()) ? InformationText::missionVision()->filter()->get() : InformationText::missionVision()->get();
-        $informationTexts = missionVisionResource::collection($informationTexts);
+        $informationTexts = MissionVisionResource::collection($informationTexts);
 
         return $this->sendResponse(trans('response.success_information_text_index'), $informationTexts);
     }
@@ -51,7 +51,7 @@ class MissionVisionController extends Controller
     public function show($id)
     {
         $informationText = InformationText::findOrFail($id);
-        $informationText = new missionVisionResource($informationText);
+        $informationText = new MissionVisionResource($informationText);
 
         return $this->sendResponse(trans('response.success_information_text_show'), $informationText);
     }
