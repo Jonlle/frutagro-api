@@ -20,15 +20,12 @@ class CreateProductSupplierTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            $table->foreignId('supplier_id')->constrained()
-                  ->onDelete('cascade');
             $table->foreignId('product_id')->constrained()
                   ->onDelete('cascade');
+            $table->foreignId('supplier_id')->constrained()
+                  ->onDelete('cascade');
 
-            $table->primary(['supplier_id', 'product_id']);
-
-            $table->index('supplier_id');
-            $table->index('product_id');
+            $table->primary(['product_id', 'supplier_id']);
         });
     }
 
