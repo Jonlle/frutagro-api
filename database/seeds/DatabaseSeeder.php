@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
         $this->call(CurrencyCodesTableSeeder::class);
         $this->call(TaxesTableSeeder::class);
-        $this->call(ProductTableSeeder::class);
         $this->call(FinancialEntitiesTableSeeder::class);
         $this->call(PaymentTypesTableSeeder::class);
-        $this->call(AdminPaymentMethodsTableSeeder::class);
         $this->call(SuppliersTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(AdminPaymentMethodsTableSeeder::class);
         $this->call(PaymentsTableSeeder::class);
         $this->call(DeliveryMethodsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
