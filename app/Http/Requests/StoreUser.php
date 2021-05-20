@@ -22,7 +22,7 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users|max:15',
+            'username' => 'required|unique:users|min:5|max:15',
             'role_id' => 'required',
             'status_id' => 'max:2',
             'name' => 'required|max:100',
