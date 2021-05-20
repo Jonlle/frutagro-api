@@ -26,6 +26,7 @@ class Supplier extends JsonResource
             'phone' => $this->phone,
             'email' => $this->email,
             'bank_data' => new BankDataCollection($this->bank_data),
+            'products' => SupplierProduct::collection($this->products),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

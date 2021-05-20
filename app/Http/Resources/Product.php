@@ -14,8 +14,6 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        $attributes = $this->product_attributes;
-
         return [
             'id' => $this->id,
             'category' => $this->category,
@@ -28,6 +26,7 @@ class Product extends JsonResource
             'attributes' => $this->product_attributes,
             'currency' => $this->currency_code->currency_symbol,
             'status' => $this->status_id,
+            'suppliers' => ProductSupplier::collection($this->suppliers),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
