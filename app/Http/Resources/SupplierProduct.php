@@ -17,6 +17,7 @@ class SupplierProduct extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->product_name,
+            'category' => $this->category->category_name,
         ];
     }
 }

@@ -40,7 +40,7 @@ class ProductController extends BaseController
     {
         $validated = $request->validated();
 
-        $data_product = Arr::except($validated, ['attributes']);
+        $data_product = Arr::except($validated, ['attributes', 'suppliers']);
         $data_product['slug'] = isset($data_product['slug']) ? $data_product['slug'] : Str::slug($data_product['product_name']);
 
         $product = new Product($data_product);
@@ -59,6 +59,11 @@ class ProductController extends BaseController
 
             $product->product_attributes()->save($product_attributes);
         }
+
+        if (isset($validated['suppliers'])) {
+            $product->suppliers()->attach($validated['suppliers']);
+        }
+        
 
         return $this->sendResponse(trans('response.success_product_store'), null, BaseController::HTTP_CREATED);
     }
@@ -91,7 +96,7 @@ class ProductController extends BaseController
 
         $validated = $request->validated();
 
-        $data_product = Arr::except($validated, ['attributes']);
+        $data_product = Arr::except($validated, ['attributes', 'suppliers']);
         $data_product['slug'] = isset($data_product['slug']) ? $data_product['slug'] : Str::slug($data_product['product_name']);
 
         foreach ($data_product as $key => $value) {
@@ -121,6 +126,15 @@ class ProductController extends BaseController
                 $product->product_attributes()->save($product_attrs);
             }
         }
+
+        if (isset($validated['suppliers'])) {
+            $suppliers =  $validated['suppliers'];
+            unset($validated['suppliers']);
+            $product->suppliers()->sync($suppliers);
+        } else {
+            $product->suppliers()->detach();
+        }
+
 
         return $this->sendResponse(trans('response.success_product_update'));
     }

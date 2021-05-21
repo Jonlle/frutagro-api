@@ -38,6 +38,7 @@ class StoreProduct extends FormRequest
             'attributes.*.price' => 'required|numeric|min:0.00',
             'attributes.*.discount' => 'nullable|numeric|min:0|max:100',
             'attributes.*.status_id' => 'max:2',
+            'suppliers.*' => 'numeric'
         ];
     }
 }
