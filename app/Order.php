@@ -10,7 +10,15 @@ class Order extends Model
     use Filterable;
 
     protected $fillable = [
-        'order_number', 'status_id', 'user_id', 'user_address_id', 'payment_id', 'delivery_method_id', 'commentary', 'grand_total', 'item_count'
+        'order_number',
+        'status_id',
+        'user_id',
+        'user_address_id',
+        'payment_id',
+        'delivery_method_id',
+        'commentary',
+        'grand_total',
+        'item_count'
     ];
 
     private static $whiteListFilter = [
@@ -44,10 +52,9 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product')
-                        ->withPivot([
-                            'tax_id', 'quantity', 'discount', 'unit'
-                        ]);
+        return $this->belongsToMany('App\ProductAttribute', 'order_product')->using(OrderProduct::class)
+            ->withPivot([
+                'tax_id', 'quantity', 'discount', 'unit'
+            ]);
     }
-
 }

@@ -24,16 +24,12 @@ class CreateOrderProductTable extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()
                   ->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()
+            $table->foreignId('product_attribute_id')->constrained()
                   ->onDelete('cascade');
             $table->unsignedBigInteger('tax_id')->nullable();
             $table->unsignedInteger('quantity');
             $table->unsignedInteger('discount')->nullable();
             $table->string('unit', 10);
-
-            $table->index('order_id');
-            $table->index('product_id');
-            $table->index('tax_id');
 
             $table->foreign('tax_id')
                   ->references('id')->on('taxes')

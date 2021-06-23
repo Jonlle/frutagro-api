@@ -10,7 +10,16 @@ class Product extends Model
     use Filterable;
 
     protected $fillable = [
-        'category_id', 'product_name', 'slug', 'discount', 'description', 'file_image', 'file_path', 'tags', 'currency_code_id', 'status_id'
+        'category_id',
+        'product_name',
+        'slug',
+        'discount',
+        'description',
+        'file_image',
+        'file_path',
+        'tags',
+        'currency_code_id',
+        'status_id'
     ];
 
     private static $whiteListFilter = [
@@ -40,14 +49,6 @@ class Product extends Model
     public function currency_code()
     {
         return $this->belongsTo('App\CurrencyCode');
-    }
-
-    public function orders()
-    {
-        return $this->belongsToMany('App\Order')
-                        ->withPivot([
-                            'tax_id', 'quantity', 'discount', 'unit'
-                        ]);
     }
 
     public function suppliers()
