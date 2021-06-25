@@ -22,13 +22,20 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
+            $table->decimal('amount', 20, 2);
+            $table->timestamps();
+        });
+
+        Schema::table($this->tableName, function (Blueprint $table) {
             $table->string('status_id', 2)->default('pe');
 
-            $table->index('status_id');
-
             $table->foreign('status_id')
-                  ->references('id')->on('statuses')
-                  ->onDelete('cascade');
+                ->references('id')->on('statuses')
+                ->onDelete('cascade');
+
+            $table->foreignId('order_id')
+                ->constrained()
+                ->onDelete('cascade');
         });
     }
 
