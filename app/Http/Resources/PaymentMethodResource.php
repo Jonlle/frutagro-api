@@ -18,7 +18,8 @@ class PaymentMethodResource extends JsonResource
             'id' => $this->id,
             'payment_type' => $this->payment_type_id,
             'reference_number' => $this->reference_number,
-            'financial_entity_id' => $this->financial_entity->entity_name
+            'financial_entity' => $this->financial_entity ? $this->financial_entity->entity_name : null,
+            'payment_id' => $this->payment_id
         ];
     }
 }

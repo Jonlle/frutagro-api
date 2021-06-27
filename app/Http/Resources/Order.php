@@ -20,7 +20,6 @@ class Order extends JsonResource
             'status' => $this->status_id,
             'user' => $this->user_id,
             'user_address' => $this->user_address_id,
-            'payment' => $this->payment_id,
             'delivery_method' => $this->delivery_method_id,
             'commentary' => $this->commentary,
             'grand_total' => $this->grand_total,

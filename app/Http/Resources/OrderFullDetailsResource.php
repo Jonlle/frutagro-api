@@ -20,7 +20,7 @@ class OrderFullDetailsResource extends JsonResource
             'status' => $this->status_id,
             'user' => Customer::make($this->user)->hide(['address']),
             'user_address' => new Address($this->user_address),
-            'payment' => new PaymentResource($this->payment),
+            'payments' => PaymentResource::collection($this->payments),
             'delivery_method' => $this->delivery_method_id,
             'commentary' => $this->commentary,
             'grand_total' => $this->grand_total,
