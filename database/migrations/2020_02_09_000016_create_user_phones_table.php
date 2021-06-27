@@ -29,9 +29,6 @@ class CreateUserPhonesTable extends Migration
             $table->string('principal', 1);
             $table->timestamps();
 
-            $table->index('status_id');
-            $table->index('user_id');
-
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('cascade');

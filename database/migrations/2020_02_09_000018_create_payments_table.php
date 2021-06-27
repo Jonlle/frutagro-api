@@ -32,7 +32,6 @@ class CreatePaymentsTable extends Migration
             $table->foreign('status_id')
                 ->references('id')->on('statuses')
                 ->onDelete('cascade');
-
             $table->foreignId('order_id')
                 ->constrained()
                 ->onDelete('cascade');
