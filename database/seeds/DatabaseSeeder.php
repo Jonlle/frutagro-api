@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SuppliersTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(AdminPaymentMethodsTableSeeder::class);
-        $this->call(PaymentsTableSeeder::class);
         $this->call(DeliveryMethodsTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
         $this->call(OrderProductsTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
         $this->call(SocialMediaTableSeeder::class);
         $this->call(LogoFaviconTableSeeder::class);
         $this->call(InformationTextsTableSeeder::class);
