@@ -40,14 +40,14 @@ class Order extends Model
         return $this->belongsTo('App\UserAddress');
     }
 
-    public function payment()
-    {
-        return $this->belongsTo('App\Payment');
-    }
-
     public function delivery_method()
     {
         return $this->belongsTo('App\DeliveryMethod');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
     }
 
     public function products()

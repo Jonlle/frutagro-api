@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    public $timestamps = false;
-
     protected $fillable = [
         'status_id'
     ];
@@ -17,13 +15,13 @@ class Payment extends Model
         return $this->belongsTo('App\Status');
     }
 
-    public function payment_methods()
-    {
-        return $this->hasMany('App\PaymentMethod');
-    }
-
     public function order()
     {
-        return $this->hasMany('App\Order');
+        return $this->belongsTo('App\Order');
+    }
+
+    public function payment_method()
+    {
+        return $this->hasOne('App\PaymentMethod');
     }
 }
